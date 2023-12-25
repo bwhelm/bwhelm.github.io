@@ -1,0 +1,307 @@
+\documentclass[%
+  11pt,%
+  % final,%
+  % commentdraft,%
+  % marginhide,%
+  % fixmeprint,%
+  % fixmefnprint,%
+  % highlightdraft,%
+]{article}
+
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
+% Fonts
+\usepackage[osf]{mathpazo}
+
+% BibLaTeX
+\usepackage[%
+  notes,%
+  % indexing=cite,%
+  eprint=true,%
+  isbn=false,%
+  % url=false,%
+  % doi=false,%
+  compresspages=true,%
+  sorting=ydnt,% Sort descending by year, then by name and title
+  backend=biber%
+]{biblatex-chicago}
+\addbibresource{bibdatabase.bib}
+\addbibresource{bibdatabase-helm.bib}
+% \AtEveryCitekey{\clearfield{author}\clearfield{bookauthor}}
+
+% Page geometry
+\usepackage[% iPad
+  paperwidth=190.5mm,%
+  paperheight=271.88mm,%
+  width=136.95mm,%
+  height=221.09mm,%
+  headsep=1pc,%
+  centering,%
+]{geometry}
+% \usepackage[% standard letter
+%   margin=1.25in%
+% ]{geometry}
+
+\input{standard-preamble}% Should be loaded late (includes hyperref package)
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  }
+
+\ProvideDocumentCommand\link{m}{%
+  \href{#1}{\textbf{Download}}%
+}
+
+% Define htmlnosection environment -- gets redefined in ./webpage-create.cfg
+% Wraps this text in html to provide appropriate margins. Intended with plain
+% text outside of a section heading
+\NewDocumentEnvironment{htmlnosection}{}%
+  {}%
+  {}
+
+% Print abstract field with bibliography entry
+\DeclareFieldFormat{abstract}{#1}
+\renewbibmacro*{finentry}{%
+   \iffieldundef{abstract}
+      {%
+         \finentry
+      }
+      {%
+        \finentrypunct{}\begin{htmlabstract}\printfield{abstract}\end{htmlabstract}\finentry
+      }
+   }
+% Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
+\NewDocumentEnvironment{htmlabstract}{}%
+  {\par\begin{small}
+    \textbf{Abstract:}}%
+  {\end{small}}
+
+% Define htmlcourse environment -- gets redefined in ./webpage-create.cfg
+  \NewDocumentEnvironment{htmlcourse}{m}%
+  {\textbf{#1} }%
+  {}
+
+% Limit TOC to sections and above
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+% Compile this file to .pdf. Then run:
+%     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
+% This will generate an .html file, and handle moving the <Download> link
+% before the abstract, and making all abstracts be hidden behind drop-down
+% buttons.
+
+\tableofcontents
+
+\ifdefined\HCode
+  \HCode{<div class="w3-container" style="margin-top:15ex;">}
+
+  \HCode{<div id="startDiv" class="sectionDiv" style="display: block;">}
+  Please select an option in the navigation bar, above.
+  \HCode{</div>}
+\else
+\fi
+
+\section{About Me}
+
+I am the Elijah Kresge Professor of Philosophy at \href{www.fandm.edu}{Franklin \& Marshall College}, and am heavily involved not only in the \href{https://www.fandm.edu/fields-of-study/philosophy/index.html}{Philosophy Department}, but also in our \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology} majors.
+
+\subsection{Education}
+
+\begin{itemize}
+  \item PhD in Philosophy, University of Pittsburgh, 1994
+  \item MA in Philosophy, University of Pittsburgh, 1990
+  \item BA in Philosophy, Carleton College, 1988
+\end{itemize}
+
+\noindent\textbf{Areas of Specialization:} Moral Psychology, Social Ontology, Philosophy of Mind, Emotions
+
+\noindent\textbf{Areas of Competence:} Philosophy of Race and Gender
+
+\noindent\href{https://drive.google.com/file/d/1-8fjo2F9EzgfDyYo_WSTYhaU-xrDNU8P/view}{Curriculum Vitae}.
+
+\section{Research}
+
+The central aim of my research has been to understand more deeply the kind of rationality characteristic of us persons, and I have argued both (a) that such rationality, rather than being opposed to the emotions, instead is an essentially emotional rationality (what I call a \enquote{rationality of import}) and (b) that such rationality is not intelligible apart from our social relations with others. Consequently, I believe it is a mistake to conceive of us persons as divided into distinct theoretical and practical sides or to approach understanding personhood via distinct metaphysical and moral notions. The rationality of import, as I have understood it, is simultaneously both practical and theoretical: our being the sort of epistemic agents we are rests on our practical capacities collectively to value (and to hold each other responsible to) public, objective truth, and our being the sort of moral agents we are depends on our epistemic abilities to contest and so ultimately to discover what has objective value. Moreover, the \enquote{metaphysical} capacities we have for autonomous, rational, and responsible agency are capacities we ourselves construct via the interpersonal commitments to import we collectively undertake. The result is that through our practical agency, we jointly construct ourselves as persons in a way that is simultaneously answerable to our experience of personhood itself.
+
+I reach this conclusion over the course of three books in which I find moral psychology and value theory deeply intertwined with philosophy of mind and emotions and with social ontology. My work is highly systematic, with these books taking me from a consideration of (1) intrapersonal values and identity, to (2) interpersonal values in intimate relationships, to (3) communal norms and values in the context of non-intimate \enquote{communities of respect}, all of which lead to my current research to the objectivity of social identities.
+
+\paragraph{\emph{Emotional Reason} (CUP, 2001).}
+
+One characteristic of us persons is that we value things as a part of the kind of life we each find worth living, thereby partially constituting our identities as the particular persons we are, such that part of our autonomy consists in our ability to determine what our values shall be. On the other hand, we persons can also rationally deliberate about what really is valuable in our lives, thereby potentially coming to discover who we are. Yet such autonomous invention and rational discovery of personal values might seem to be in tension with one another (how can personal values be something we simultaneously both invent and discover?), and this book aims to resolve that tension by developing an account of the relation between emotions and value (or of \enquote{\emph{import}} more generally) that enables me to reject the rational and ontological priority implicit in this formulation of the tension.
+
+In developing this account, I focus not on particular kinds of emotions but rather on the sorts of \emph{rational patterns} emotions can form, arguing that such patterns constitute what it is for things to have import to one. The kind of rationality involved in these patterns of emotions is what I call a \enquote{\emph{rationality of import}}, and it does not fit neatly into standard ways of thinking about practical or theoretical rationality. If we accept (as I do) the Davidsonian thesis that mental capacities are to be understood in terms of rationality, such a rethinking of rationality means reconceiving the nature of the mind quite generally and of believing and desiring in particular. This enables me to make sense of the distinctive rational role emotions play both in relation to desire and evaluative judgment, thereby dissolving the above tension, and in relation to motivation, thereby making intelligible how we can have rational control over what we do and yet be susceptible to even strong forms of weakness of will. Indeed, I argue that this is essential to presenting an account of the mind adequate to a serious moral psychology.
+
+\paragraph{\emph{Love, Friendship, and the Self} (OUP, 2010).}
+
+We persons are social animals, partly insofar as we are able to form intimate relationships with others and thereby can come to share our lives, our identities, and our capacity for autonomy with others in relationships of love and friendship. In this book, I argue against various forms of individualism and egocentrism I find implicit in many other accounts of love and friendship, and I present an alternative account of love as intimate identification in terms of \emph{interpersonal} rational patterns of emotions. On the one hand this enables me to explain how a caregiver in a loving relationship with a child can provide the child with access to reasons (for being neat or for being moral) that otherwise might seem \enquote{external} to the child's existing motivations. On the other hand, this account of love enables me to present a rich account of shared agency and ultimately of friendship in terms of the notions of \emph{plural agents} (who not only share certain ends but also the cares motivating those ends) and \emph{plural persons} (who share values and hence a conception of the kind of life worth their living together) and to show how they can, partly through their rationally intertwined emotions, deliberate together and exercise joint autonomy over their shared lives.
+
+\paragraph{\emph{Communities of Respect} (OUP, 2017).}
+
+To make sense of persons, we must consider as well the \emph{non-intimate} relationships we have with others who are in community with us. In this book I join other Strawsonians in thinking that the reactive attitudes and the ways we \emph{hold} each other responsible is central to our being responsible agents at all. Yet in contrast to other accounts, I reject the explanatory \emph{priority} of the reactive attitudes over our being responsible agents: our reactive attitudes are appropriate in part because they are directed at responsible agents, while simultaneously someone is a responsible agent because they are an appropriate target of the reactive attitudes. I make sense of such circularity as non-vicious by appealing to interpersonal, rational patterns of reactive attitudes, which I argue constitute the community itself, communal norms and values as \emph{our} norms and values, and so individual members of the community as bound by those norms and as having the authority to hold each other responsible to them. Consequently, we in the community \emph{collectively} respect each other as members, and each as one of us ought therefore to respect the others as members. Such an account is not second-personal but \emph{first-person plural}, a conclusion that has several important implications for the social dimension of us persons. First, \emph{responsibility is social}: to be a responsible agent requires that one have the capacity for reactive attitudes, a capacity that one can develop and sustain only as a member of a community of respect. Second, \emph{rationality is social}: insofar as it is we collectively who have authority over ourselves, we must reject a Humean conception of practical reason (as depending on one's \enquote{subjective motivation set}, say) and recognize an essentially social dimension to practical reason and the possible connections and conflicts among such social reasons and individual reasons grounded in, for example, personal values. Finally, \emph{identity is social}: a community of respect can shape and define certain social identities by prescribing or proscribing communal values as elements of the kind of life worth its members living.
+
+\paragraph{Recent Work.}
+
+In the last few years I have begun to apply these ideas to the topic of social construction, especially of social roles and identities. Social roles and identities presuppose an at least rough-and-ready understanding of them in virtue of which the various communal norms and values that partly define them hang together as a coherent whole that can have a point in our lives. Indeed, these understandings must normally come to inform the patterns of participants' reactive attitudes constituting those norms and values and hence the role itself. This makes room for the possibility that participants' experiences of themselves as occupants of these roles is inconsistent with the background understandings and point, providing empirical purchase for rationally contesting those understandings and hence the norms and roles themselves. Whereas others think about such contestation as grounded in unjust \emph{consequences} of these social roles, my claim is that they can also be grounded in the roles themselves being \emph{ontologically misconstructed}. That is, our construction of social roles and identities can be objective in that our activities of construction can come to be answerable to the very roles and identities they thereby construct in a way that opens up the possibility of our getting these roles and identities themselves wrong.
+% This, I hope, can provide an avenue for understanding the objectivity of moral values and, thereby, of our understanding of ourselves as persons.
+
+\bigskip{}
+
+Ultimately my aim is to provide an account of moral values as the communal values of the community of respect of all persons, a community in which these values and our personhood itself are both socially constructed and contestable.
+
+\section{Publications}
+
+\subsection{Books}
+
+\begin{enumerate}
+
+  \item \fullcite{Helm2017Communities-Respect-Persons}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhR2ZtZ2pqQmZHZ2c}
+  \item \fullcite{Helm2010Love-Friendship-Self}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhOTEteU5GeEthckU&amp;authuser=0}
+  \item \fullcite{Helm2001Emotional-Reason-Deliberation}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhSUZFS1YxTDRmUVE&amp;authuser=0}
+
+\end{enumerate}
+
+\subsection{Articles}
+
+Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions. Comments on any of these would be appreciated.
+
+\begin{enumerate}
+
+  \item \fullcite{Helm2022Cognitivist-Theories-Emotions}. \link{https://drive.google.com/open?id=16tQyJ7bvdMH9qfGeZoSvm7mj2_vm2Flk}
+
+  \item \fullcite{Helm2023Hate-Identification-Othering}. \link{https://drive.google.com/file/d/176o0Q-Gt2yW9R8kSf9e0Vih6ZtznbLfK/view?usp=drive_link}
+
+  \item \fullcite{Helm2023Emotions-Contestation-Social}. \link{https://drive.google.com/file/d/1--6BOQLzSc6w3TEBPvVrKuanfquHH8vP/view?usp=sharing}
+
+  \item \fullcite{Helm2020Affective-Intentionality-Reactive}. \link{https://drive.google.com/open?id=1zG4dML0wbe2gFNaBIyIfzi_XdmJhUOcX}
+
+  \item \fullcite{Helm2018LAmitie}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhb0RTT1pXMUpUYm8&amp;authuser=0}
+
+  \item \fullcite{Helm2018Personal-Relationships-Blame}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhbTZkbHJwa0xlYnM}
+
+  \item \fullcite{Helm2018Gratitude-Norms-Social}. \link{https://drive.google.com/open?id=1QcPLpTkDUEq5C6wsm9tuhwlop2UQcvZf}
+
+  \item \fullcite{Helm2017Truth-Objectivity-Emotional}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhU3FJYThiMFpsQkU&amp;authuser=0}
+
+  \item \fullcite{Helm2016Emotional-Expression-Import}. \link{http://drive.google.com/open?id=0B45uPWgGHVLhci1VVUYzQ2JHT3M}
+
+  \item \fullcite{Helm2015Rationality-Authority-Bindingness}. \link{https://drive.google.com/open?id=0B45uPWgGHVLheXpKTURnVURScEk&amp;authuser=0}
+
+  \item \fullcite{Helm2015Emotions-Recalcitrance-Reevaluating}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhZDlJbjk3YnI2VGM&amp;authuser=0}
+
+  \item \fullcite{Helm2014Trust-as-Reactive}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcVZVOHBaOGZuMkk&amp;authuser=0}
+
+  \item \fullcite{Helm2014Emotional-Communities-Respect}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcmFSM3gxUmZDa2s&amp;authuser=0}
+
+  \item \fullcite{Helm2014What-Is-Role}.
+
+  \item \fullcite{Helm2013Paternalistic-Love-Reasons}. \link{https://drive.google.com/file/d/1lFRH4f-9yzrI9Ask19ZZfMRZ7skIHF3c/view?usp=drive_link}
+
+  \item \fullcite{Helm2012Accountability-Some-Social}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhRWsxaExMaXJtODQ&amp;authuser=0}
+
+  \item \fullcite{Helm2011Responsibility-Dignity-Strawsonian}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhejE2ZmU4MFlFSTQ&amp;authuser=0}
+
+  \item \fullcite{Helm2011Affektive-Intentionalitat-Holistisch}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcXRZR0lWNFZWVjQ&amp;authuser=0}
+
+  \item \fullcite{Helm2010bLove-as-Intimate}.
+
+  \item \fullcite{Helm2009Self-Love-Structure-Personal}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhUF95eHljajJmbWM&amp;authuser=0}
+
+  \item \fullcite{Helm2009Emotions-Motivation-Reconsidering}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhc2RyYVM1ODVXbFU&amp;authuser=0}
+
+  \item \fullcite{Helm2009Import-Human-Action}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhU2JhbE5NSkxMVU0&amp;authuser=0}
+
+  \item \fullcite{Helm2009Emotions-as-Evaluative}. \link{https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link}
+
+  \item \fullcite{Helm2009Love-Identification-Emotions}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhWnpvSzZwSlJJOG8&amp;authuser=0}
+
+  \item \fullcite{Helm2008Plural-Agents}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhdnA3MU1UeVdKTWM&amp;authuser=0}
+
+  \item \fullcite{Helm2005Friendship}. Revised: Fall 2009, Fall 2013, Fall 2017, Fall, 2021.
+
+  \item \fullcite{Helm2005Love}. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021.
+
+  \item \fullcite{Helm2002Felt-Evaluations-Theory}. Reprinted as \fullcite{Helm2009Gefuhlte-Bewertungen-Eine}.\\\link{https://drive.google.com/open?id=0B45uPWgGHVLhRDhCa1AyUUpmUTA&amp;authuser=0}
+
+  \item \fullcite{Helm2002Action-for-Sake}.
+
+  \item \fullcite{Helm2001Emotions-Practical-Reason}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhV0lvU2o1blhiY2c&amp;authuser=0}
+
+  \item \fullcite{Helm2000Emotional-Reason-How}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhM1lwNVprU0toRmM&amp;authuser=0}
+
+  \item \fullcite{Helm1996Integration-Fragmentation-Self}. \link{https://drive.google.com/file/d/1xRrjsIh2tlp1VrYhvEc-3FgCO5fya3W9/view?usp=drive_link}
+
+  \item \fullcite{Helm1996Freedom-Heart}. \link{https://drive.google.com/file/d/1nWu5zW_19pTpKvelTTTqBQN7IGJeUTwX/view?usp=drive_link}
+
+  \item \fullcite{Helm1994Significance-Emotions}. \link{https://drive.google.com/file/d/1g7F2zbfoJbW3wgWL8oMGab4MJTKvIyuL/view?usp=drive_link}
+
+  \item \fullcite{Helm1993Why-We-Believe}. \link{https://drive.google.com/file/d/1s0bmKWBSS4XPGUaNENHaf9il3jVI09Og/view?usp=sharing}
+
+\end{enumerate}
+
+\section{Awards}
+
+\begin{itemize}
+
+  \item Cowling Distinguished Visiting Professor of Philosophy, Carleton College (2018)
+  \item Templeton Foundation Grant (2012--15): \emph{Love and Human Agency: An Interdisciplinary Investigation} (with Agnieszka Jaworska and Jeffrey Seidman), \$640,317
+  \item NEH Fellowship (2012--13): \enquote{Defining Moral Communities: Respect, Dignity, and the Reactive Attitudes}, \$50,400
+  \item Laurance S. Rockefeller Visiting Faculty Fellow (2012--13), Princeton University Center for Human Values, \$47,000
+  \item Bradley R. Dewey Award for Outstanding Scholarship (2012), Franklin \& Marshall College
+  \item Brocher Foundation Award (2011) for a workshop on \enquote{The Neuroethics of Caring} (with Agnieszka Jaworska), \$36,000
+  \item NEH Fellowship (2005--06): \enquote{Love, Friendship and the Self: The Emotional and Interpersonal Grounds of Autonomy}, \$40,000
+  \item NSF-CCLI Grant (2001--04): Creation of Artificial Intelligence Laboratory (with Tony Chemero), \$173,281
+  \item ACLS Fellowship (1998--99): \enquote{Emotion, Judgment, and Practical Reason: How to Deliberate about Value}, \$20,000
+  \item NEH Summer Stipend (1998): \enquote{Reason, Emotion, and Evaluative Judgment: How to Think about the Meaning of Life}, \$6,000
+
+\end{itemize}
+
+\section{Students}
+
+\begin{itemize}
+
+  \item Anzhou He (Hackman Scholar, 2023): \enquote{Resisting the Misconstruction of Social Identities: The Interpersonal Call of Ontological Reactive Attitudes}
+  \item Raluca Rilla (Hackman Scholar, 2022): \enquote{Objective Self-Constitution of Personhood}
+  \item Dan Kaplan (Hackman Scholar, 2011): \enquote{Joint Caring about Truth}
+  \item Kathryn Kutz (Hackman Scholar, 2009): \enquote{Truth, Emotion, and Shared Commitment}
+  \item Neal Swisher (Coutros Scholar, 2004): \enquote{Artificial-Life Learning in Mobile Robotics}
+  \item Yaroslava Babych and Aleksandra Markovic (Hackman Scholars, 1998), \enquote{Moods as a Sense of Priorities}
+
+\end{itemize}
+
+\section{Courses}
+
+Many of these courses satisfy requirements for our interdisciplinary majors in \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology}.
+\medskip{}
+
+\begin{htmlcourse}{CNX 149: Race, Gender, and Community.}{Race and gender are centrally important to each of our lives. But what are they exactly? How many races or genders are there? Who has what race or what gender? How are these answers determined? (Are race and gender biologically real? Are they socially constructed? Would their being socially constructed make them any less real?) How does someone's race or gender affect their social position? What injustices do these social positions involve, and what can or should we do about them? How are these social positions affected by intersecting social identity categories, including not only race and gender but also class, sexuality, ability, religion, and more? Drawing on fields such as philosophy, sociology, women's and gender studies, and critical race theory, we will critically examine a variety of answers to these questions, in the process trying to understand how we can have reasonable and productive disagreements about these contentious and politically charged issues.}\end{htmlcourse}
+
+\begin{htmlcourse}{SPM 100: Minds, Machines, and Morals.}{This course provides an introduction to some central problems, concepts, and methods of cognitive science and moral psychology. We will address questions concerning the nature of intelligence, the relationship between minds and bodies, and the basis of moral beliefs and behaviors. These explorations will bridge the sciences and humanities by taking a fundamentally interdisciplinary perspective.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 250: Philosophy of Mind.}{This class is designed as a general introduction to the philosophy of mind (and, consequently, as an introduction to the philosophical side of both majors in the Scientific and Philosophical Studies of Mind program: Cognitive Science and Moral Psychology). We will begin by examining the mind--body problem, a problem which arises out of our differing conceptions of the natural world and of our minds. In particular, science tells us that the body is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly. The mind, of course, is anything but mindless. So what's the connection between the two? How should we conceive of the mind in relation to the body? In trying to answer this question, we will critically examine several different purported solutions to this problem and assess how they fare with respect to understanding particular issues that arise in the context of this mind--body problem: the nature of representation, consciousness, psychological explanation, freedom, and meaning, and identity. In addressing these questions, we shall gain a clearer understanding of the strengths, weaknesses, and implications of the various theories about what the mind is and its relation to the body.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 351: Mind-Body Problem.}{It has long been perceived by many philosophers that there is a problem about the relationship between the mind and the body. The body, after all, is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly---whereas the mind, of course, is anything but mindless. So what's the connection between the two? How do we conceive of the mind in relation to the body? In this course we'll examine mostly contemporary accounts of the relation in an attempt to understand whether there really is a mind--body problem and, if so, how to solve it. But this course is about more than just the mind and its place in the broader world; it's about the nature of that world, too. In the course of trying to understand how our thoughts can be \emph{about} anything in the world, we'll need to think about the nature of the world such that our thoughts can be about it.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 352: Philosophy of Emotions.}{Long neglected in philosophy, the emotions have recently and increasingly come to be seen as important both in their own right and for their bearing on a wide variety of issues, including (a) the mind--body problem and the nature of consciousness and intentionality, (b) the nature of rationality, (c) aesthetics, (d) interpersonal relationships, and (e) moral psychology and metaethics. My intention in this course is to focus on the first two such issues, since the other issues are covered more fully in other courses. However, in doing so it is important that we have a sufficiently rich understanding of the place emotions can have in our lives, an understanding that many philosophers and psychologists tend to simplify and diminish.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 360: Concept of a Person.}{Philosophers tend to understand the concept of a person in two ways: as a metaphysical notion and as a moral notion. \emph{Moral personhood} is roughly an understanding of ourselves as the subjects of moral rights and responsibilities. By contrast, to understand personhood as a \emph{metaphysical} notion is to understand it as delineating a special category of being---as having or being a soul, for example. Typically, the metaphysical notion of personhood is thought to somehow underwrite our status as moral persons. Indeed, it is precisely because of this explanatory link between them that many philosophers think it is appropriate to understand the concept of personhood not as having two senses but rather as being a univocal concept with two aspects. Our aim in this course is to examine these notions and their interrelations, with an emphasis on our social nature.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 361: Moral Psychology.}{Moral psychology is the study of us persons as responsible moral agents and subjects of value. As such, it is constrained by, and must cohere with, the facts about human psychology; but its primary focus is on human good, an evaluative notion. Topics include virtue and character, motivation and reasons, internal/external reasons and moral development, and responsibility and blame.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 362: Love and Friendship.}{Love and friendship are undoubtedly important in our lives \dots{} but why? Although we commonly say that we \enquote{love} both chocolate cake and philosophy or that we are \enquote{friends} with people on Facebook, these seem to be thin surrogates for the potentially deep, rich, intimate, and rewarding attitudes and relationships we develop towards and with other persons. Clearly it is the latter that we interested in here: forms of love and friendship that apply paradigmatically to intimate relations among persons. In investigating personal love and friendship, we will encounter several problems concerning their justification, their bearing on the autonomy and identity of the individual, and the place their value has within a broader system of values, including moral values.}\end{htmlcourse}
+
+\begin{htmlcourse}{PHI 363: Respect, Responsibility, and Ethics.}
+  Recently many philosophers have argued that certain interpersonal emotions, such as resentment, indignation, guilt, gratitude, and approbation, are fundamental to a host of interconnected issues in ethics, including the nature of respect, dignity, responsibility and freedom, and the origins of moral values. This class will closely examine these claims and arguments with the aim of understanding more clearly how moral psychology and metaethics intersect.
+\end{htmlcourse}
+
+\ifdefined\HCode
+  \HCode{<div>}
+\else
+\fi
+
+\end{document}
