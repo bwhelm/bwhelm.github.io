@@ -4,6 +4,8 @@
 .ectt-1095{ font-family: monospace,monospace;}
 .pplb9d-x-x-109{font-weight: bold;}
 .pplri9d-x-x-109{font-style: italic;}
+.pplrc9d-x-x-109{}
+.small-caps{font-variant: small-caps; }
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
@@ -139,6 +141,8 @@ figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
 p + figcaption, img + figcaption{margin-top: 1em;}
 .abstract{margin:1em;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
+dd.thebibliography {margin-left: 2.5em;}
+dt.thebibliography {float:left; clear:left; margin-right:1em;}
 span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
 span.textul{text-decoration:underline}
 span.textst{text-decoration:line-through}

@@ -27,9 +27,16 @@ function! s:tohtml() abort  " {{{
 
     " Delete my name in bibliography entries
     silent %substitute/Bennett\_sW\.\_sHelm,//e
+    silent %substitute/Helm,\_sBennett\_sW\.\_s*//e
+    " silent %substitute/Helm,\_sBennett\_sW\.\_s(\([^)]*\))/\1/e
+    silent %substitute/>— />/e
 
-    " Reverse ordered lists
-    silent %substitute/<ol /<ol reversed /ge
+    " Change description lists to ordered lists
+    silent %substitute/<dl/<ol reversed/e
+    silent %substitute/<\/dl/<\/ol/e
+    silent %substitute/<\/\?dt[^>]*>//e
+    silent %substitute/<dd/<li/e
+    silent %substitute/<\/dd/<\/li/e
 
     update
 
