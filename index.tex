@@ -70,6 +70,21 @@
     }
   }
 }
+% Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
+% should be listed in the `\defbibfilter`, below!
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=notincv,matchi={true},final]% For any entry that has notincv field = true ...
+      \step[typesource=article,typetarget=customa]% Change entry type to customa
+      \step[typesource=incollection,typetarget=customa]
+      \step[typesource=online,typetarget=customa]
+      \step[typesource=book,typetarget=customa]
+      \step[typesource=thesis,typetarget=customa]
+      \step[typesource=misc,typetarget=customa]
+    }
+  }
+}
 % Print abstract field with bibliography entry
 \DeclareFieldFormat{abstract}{#1}
 \DeclareFieldFormat{usera}{\link{#1}}
@@ -229,9 +244,14 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % Now cite everything
 \nocite{*}
 
-\defbibfilter{myarticle}{type=article or type=incollection}
+% FIXME: These entry types should be listed the `\DeclareSourcemap` above!
+\defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
 Select a category below. Comments on any of these would be appreciated.
+
+\paragraph{Complete List (by Date)}
+
+\printbibliography[filter=myarticle]
 
 \paragraph{Personhood}
 
@@ -262,6 +282,12 @@ Select a category below. Comments on any of these would be appreciated.
 \subsubsection*{}% Empty section to break collapsed paragraph category
 
 (Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.)
+
+\section{Talks}
+
+\defbibfilter{mytalk}{type=misc}
+
+\printbibliography[filter=mytalk]
 
 \section{Awards}
 
