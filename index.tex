@@ -54,22 +54,6 @@
   \href{#1}{\textbf{Download.}}%
 }
 
-% Define htmlnosection environment -- gets redefined in ./webpage-create.cfg
-% Wraps this text in html to provide appropriate margins. Intended with plain
-% text outside of a section heading
-\NewDocumentEnvironment{htmlnosection}{}%
-  {}%
-  {}
-
-% Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldsource=download,fieldtarget=usera]
-      % \step[fieldset=usera]
-    }
-  }
-}
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
 % should be listed in the `\defbibfilter`, below!
 \DeclareSourcemap{
@@ -85,6 +69,51 @@
     }
   }
 }
+
+
+% Print keywords at end of entry, but before abstract and download link.
+\NewBibliographyString{keyword,keywords}
+\DefineBibliographyStrings{english}{%
+  keyword  = {category},
+  keywords = {categories},
+}
+\newcounter{cbx@keyword@total}
+\newcounter{cbx@keyword@count}
+\newcommand*{\keywordscount}[1]{%
+  \stepcounter{cbx@keyword@total}}
+\newcommand*{\keywordsprint}[1]{%
+  \stepcounter{cbx@keyword@count}%
+  \ifnumless{\value{cbx@keyword@count}}{2}
+    {}
+    {\addcomma\space}%
+  #1}
+\DeclareFieldFormat{keywords}{%
+  \setcounter{cbx@keyword@total}{0}%
+  \setcounter{cbx@keyword@count}{0}%
+  \forcsvlist{\keywordscount}{#1}%
+  \emph{%
+    \ifnumgreater{\value{cbx@keyword@total}}{1}
+      {\bibstring{keywords}}
+      {\bibstring{keyword}}%
+    \addcolon}
+  \space
+  \forcsvlist{\keywordsprint}{#1}%
+}
+\renewbibmacro*{addendum+pubstate}{%
+  \printfield{addendum}%
+  \newunit\newblock
+  \printfield{pubstate}%
+  \newunit\newblock
+  \printfield{keywords}}
+
+% Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=download,fieldtarget=usera]
+    }
+  }
+}
 % Print abstract field with bibliography entry
 \DeclareFieldFormat{abstract}{#1}
 \DeclareFieldFormat{usera}{\link{#1}}
@@ -94,9 +123,13 @@
       {\finentrypunct{} \begin{htmlabstract}\printfield{abstract}\end{htmlabstract}}
    \iffieldundef{usera}%
       {}%
-      {\finentrypunct{} \printfield{usera}\finentry}
+      {\finentrypunct{} \printfield{usera}}
    \finentry
    }
+
+% Modify <doi> and <url> fields in biblatex
+\DeclareFieldFormat{url}{\href{#1}{Link (URL)}.}
+\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{Link (DOI)}.}
 
 % Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
 \NewDocumentEnvironment{htmlabstract}{}%
@@ -110,7 +143,9 @@
   {}
 
 % Limit TOC to sections and above
-\setcounter{tocdepth}{1}
+\ifdefined\HCode
+  \setcounter{tocdepth}{1}
+\fi
 
 % Define filters by keyword
 \ExplSyntaxOn
@@ -247,6 +282,23 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % FIXME: These entry types should be listed the `\DeclareSourcemap` above!
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
+% % Existing keywords (12/28/2023). FIXME: Update the `Other` category, below!
+% personhood
+% rationality
+% social ontology
+% social identity
+% moral psychology
+% value theory
+% agency
+% love
+% friendship
+% mind/emotion
+% belief
+% % animal
+% % metaphysics
+% history
+% popular
+
 Select a category below. Comments on any of these would be appreciated.
 
 \paragraph{Complete List (by Date)}
@@ -265,6 +317,10 @@ Select a category below. Comments on any of these would be appreciated.
 
 \printbibliography[filter=myarticle,keyword={social ontology}]
 
+\paragraph{Social Identity}
+
+\printbibliography[filter=myarticle,keyword={social identity}]
+
 \paragraph{Moral Psychology and Value Theory}
 
 \defbibfilter{mporvt}{keyword={moral psychology} or keyword={value theory}}
@@ -275,11 +331,33 @@ Select a category below. Comments on any of these would be appreciated.
 
 \printbibliography[filter=myarticle,keyword=agency]
 
+\paragraph{Love}
+
+\printbibliography[filter=myarticle,keyword={love}]
+
+\paragraph{Friendship}
+
+\printbibliography[filter=myarticle,keyword={friendship}]
+
 \paragraph{Mind/Emotion}
 
 \printbibliography[filter=myarticle,keyword=mind/emotion]
 
-\subsubsection*{}% Empty section to break collapsed paragraph category
+% \paragraph{Belief}
+
+% \printbibliography[filter=myarticle,keyword={belief}]
+
+% \paragraph{Other}% FIXME!
+
+% \printbibliography[filter=myarticle,notkeyword={personhood},notkeyword={rationality},notkeyword={social ontology},notkeyword={social identity},notkeyword={moral psychology},notkeyword={value theory},notkeyword={agency},notkeyword={love},notkeyword={friendship},notkeyword={mind/emotion},notkeyword={belief},notkeyword={popular}]
+
+\paragraph{Popular}
+
+\printbibliography[filter=myarticle,keyword={popular}]
+
+\ifdefined\HCode
+  \subsubsection*{}% Empty section to break collapsed paragraph category
+\fi
 
 (Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.)
 
@@ -362,7 +440,6 @@ Many of these courses satisfy requirements for our interdisciplinary majors in \
 
 \ifdefined\HCode
   \HCode{<div>}
-\else
 \fi
 
 \end{document}
