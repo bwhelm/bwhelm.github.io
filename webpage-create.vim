@@ -25,7 +25,7 @@ function! s:tohtml() abort  " {{{
         execute "silent substitute/SeCtIoN/" . l:id
     endwhile
 
-    " Delete my name in bibliography entries
+    " Delete my name in bibliography entries FIXME: What to do with Enzo?
     silent %substitute/Bennett\_sW\.\_sHelm,//e
     silent %substitute/Helm,\_sBennett\_sW\.\_s*//e
     " silent %substitute/Helm,\_sBennett\_sW\.\_s(\([^)]*\))/\1/e
@@ -37,6 +37,42 @@ function! s:tohtml() abort  " {{{
     silent %substitute/<\/\?dt[^>]*>//e
     silent %substitute/<dd/<li/e
     silent %substitute/<\/dd/<\/li/e
+
+    " Get complete list of categories and put <div> around list items
+    let l:categoryList = []
+    1
+    while(search('<span class="categories">', 'W'))
+        let [l:startLine, l:startPos] = searchpos('<span class="categories">', 'e')
+        let [l:endLine, l:endPos] = searchpos('<\/span>')
+        " Assume at most l:endLine = l:startLine + 1
+        if l:startLine == l:endLine
+            let l:keywords = getline(l:startLine)[l:startPos:l:endPos - 2]
+        else
+            let l:keywords = getline(l:startLine)[l:startPos:]
+            let l:keywords .= getline(l:endLine)[:l:endPos - 2]
+        endif
+        " let l:keywords = search('<span class="categories">\zs\_.\{-}\ze<\/span>')
+        let l:keywordsList = split(l:keywords, ',')
+        call map(l:keywordsList, 'trim(v:val)')
+        call extend(l:categoryList, l:keywordsList)
+        call map(l:keywordsList, 'substitute(v:val, "[^A-z]", "", "g")')
+        " Put <div> around the list item
+        call search('<li', 'b')
+        call append(line('.') - 1, '<div class="filterBib ' . join(l:keywordsList) . '">')
+        call search('</li>', '')
+        call append(line('.'), '</div>')
+    endwhile
+    call map(l:categoryList, 'trim(v:val)')
+    call sort(l:categoryList)
+    call uniq(l:categoryList)
+    " Create navigation/filter bar
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="bibNav w3-button active" onclick="filterBibliography(''all'')">Show all</button>']
+    for l:category in l:categoryList
+        call add(l:bibNavBarList, '  <button class="bibNav w3-button" onclick="filterBibliography(''' . substitute(l:category, '[^A-z]', '', 'g') . ''')"> ' . l:category . '</button>')
+    endfor
+    call add(l:bibNavBarList, '</div>')
+    call search('<ol reversed class="thebibliography">')
+    call append(line('.') - 1, l:bibNavBarList)
 
     update
 

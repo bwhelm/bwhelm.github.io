@@ -72,6 +72,7 @@
 
 
 % Print keywords at end of entry, but before abstract and download link.
+\ProvideDocumentCommand\categories{m}{#1}
 \NewBibliographyString{keyword,keywords}
 \DefineBibliographyStrings{english}{%
   keyword  = {category},
@@ -97,7 +98,9 @@
       {\bibstring{keyword}}%
     \addcolon}
   \space
-  \forcsvlist{\keywordsprint}{#1}%
+  \categories{%
+    \forcsvlist{\keywordsprint}{#1}%
+  }%
 }
 \renewbibmacro*{addendum+pubstate}{%
   \printfield{addendum}%
@@ -166,8 +169,10 @@
 
 \def\blx@bibbykeyword@i#1{%
   \ifcsundef{keyword@title@\detokenize{#1}}
-    {\printbibliography[keyword=#1, title=#1]}
-    {\printbibliography[keyword=#1, title=\csuse{keyword@title@\detokenize{#1}}]}}
+    {\subsection{#1}
+
+    \printbibliography[keyword=#1, title=#1]}
+    {BBB\printbibliography[keyword=#1, title=\csuse{keyword@title@\detokenize{#1}}]}}
 
 \newcommand*{\bibbykeyword}
   {
@@ -208,6 +213,16 @@
 \else
 \fi
 
+%%%%%%% TEST CODE ---v
+\section{Publications}
+
+\nocite{*}
+
+\defbibfilter{myarticle}{type=article or type=incollection or type=online}
+
+\printbibliography[filter=myarticle]
+%%%%%%% TEST CODE ---^
+
 \section{About Me}
 
 I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index.html}{philosophy} at \href{www.fandm.edu}{Franklin \& Marshall College}, and teach mostly philosophy courses oriented to our \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology} majors. My research focuses on understanding what it is to be a person as a distinctive sort of free and responsible social agent. Central to my approach is a concern with the \enquote{evaluative attitudes}---caring, valuing, loving, respecting, etc.---and the holistic rational patterns of emotions in terms of which they are intelligible.
@@ -215,6 +230,8 @@ I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index
 \noindent\textbf{Areas of Specialization:} Moral Psychology, Social Ontology, Philosophy of Mind, Emotions
 
 \noindent\textbf{Areas of Competence:} Philosophy of Race and Gender
+
+\end{document}
 
 \subsection{Academic Positions}
 
