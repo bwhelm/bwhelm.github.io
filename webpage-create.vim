@@ -41,6 +41,7 @@ function! s:tohtml() abort  " {{{
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
+    call search('Articles<\/h3>')
     while(search('<span class="categories">', 'W'))
         let [l:startLine, l:startPos] = searchpos('<span class="categories">', 'e')
         let [l:endLine, l:endPos] = searchpos('<\/span>')
@@ -66,11 +67,13 @@ function! s:tohtml() abort  " {{{
     call sort(l:categoryList)
     call uniq(l:categoryList)
     " Create navigation/filter bar
-    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="bibNav w3-button active" onclick="filterBibliography(''all'')">Show all</button>']
+    let l:buttonClasses = "bibNav w3-button w3-round-large w3-white w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="' . l:buttonClasses . '" onclick="filterBibliography(''all'')">Show all</button>']
     for l:category in l:categoryList
-        call add(l:bibNavBarList, '  <button class="bibNav w3-button" onclick="filterBibliography(''' . substitute(l:category, '[^A-z]', '', 'g') . ''')"> ' . l:category . '</button>')
+        call add(l:bibNavBarList, '  <button class="' . l:buttonClasses . '" onclick="filterBibliography(''' . substitute(l:category, '[^A-z]', '', 'g') . ''')"> ' . l:category . '</button>')
     endfor
     call add(l:bibNavBarList, '</div>')
+    call search('Articles<\/h3>', 'w')
     call search('<ol reversed class="thebibliography">')
     call append(line('.') - 1, l:bibNavBarList)
 

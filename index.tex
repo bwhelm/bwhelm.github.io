@@ -213,16 +213,6 @@
 \else
 \fi
 
-%%%%%%% TEST CODE ---v
-\section{Publications}
-
-\nocite{*}
-
-\defbibfilter{myarticle}{type=article or type=incollection or type=online}
-
-\printbibliography[filter=myarticle]
-%%%%%%% TEST CODE ---^
-
 \section{About Me}
 
 I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index.html}{philosophy} at \href{www.fandm.edu}{Franklin \& Marshall College}, and teach mostly philosophy courses oriented to our \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology} majors. My research focuses on understanding what it is to be a person as a distinctive sort of free and responsible social agent. Central to my approach is a concern with the \enquote{evaluative attitudes}---caring, valuing, loving, respecting, etc.---and the holistic rational patterns of emotions in terms of which they are intelligible.
@@ -230,8 +220,6 @@ I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index
 \noindent\textbf{Areas of Specialization:} Moral Psychology, Social Ontology, Philosophy of Mind, Emotions
 
 \noindent\textbf{Areas of Competence:} Philosophy of Race and Gender
-
-\end{document}
 
 \subsection{Academic Positions}
 
@@ -281,16 +269,16 @@ In the last few years I have begun to apply these ideas to the topic of social c
 
 Ultimately my aim is to provide an account of moral values as the communal values of the community of respect of all persons, a community in which these values and our personhood itself are both socially constructed and contestable.
 
-\section{Publications}
+% \section{Publications}
 
-\subsection{Books}
+\section{Books}
 
 % Cite just things I've written, so that I can filter out only the books
 \nocite{Helm2017Communities-Respect-Persons,Helm2010Love-Friendship-Self,Helm2001Emotional-Reason-Deliberation}
 
 \printbibliography
 
-\subsection{Articles}
+\section{Articles}
 
 \newrefsection
 % Now cite everything
@@ -299,90 +287,19 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % FIXME: These entry types should be listed the `\DeclareSourcemap` above!
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
-% % Existing keywords (12/28/2023). FIXME: Update the `Other` category, below!
-% personhood
-% rationality
-% social ontology
-% social identity
-% moral psychology
-% value theory
-% agency
-% love
-% friendship
-% mind/emotion
-% belief
-% % animal
-% % metaphysics
-% history
-% popular
-
-Select a category below. Comments on any of these would be appreciated.
-
-\paragraph{Complete List (by Date)}
+(Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.)
 
 \printbibliography[filter=myarticle]
 
-\paragraph{Personhood}
+% \ifdefined\HCode
+%   \subsubsection*{}% Empty section to break collapsed paragraph category
+% \fi
 
-\printbibliography[filter=myarticle,keyword=personhood]
+% \section{Talks}
 
-\paragraph{Rationality}
+% \defbibfilter{mytalk}{type=misc}
 
-\printbibliography[filter=myarticle,keyword=rationality]
-
-\paragraph{Social Ontology}
-
-\printbibliography[filter=myarticle,keyword={social ontology}]
-
-\paragraph{Social Identity}
-
-\printbibliography[filter=myarticle,keyword={social identity}]
-
-\paragraph{Moral Psychology and Value Theory}
-
-\defbibfilter{mporvt}{keyword={moral psychology} or keyword={value theory}}
-
-\printbibliography[filter=myarticle,filter=mporvt]
-
-\paragraph{Agency}
-
-\printbibliography[filter=myarticle,keyword=agency]
-
-\paragraph{Love}
-
-\printbibliography[filter=myarticle,keyword={love}]
-
-\paragraph{Friendship}
-
-\printbibliography[filter=myarticle,keyword={friendship}]
-
-\paragraph{Mind/Emotion}
-
-\printbibliography[filter=myarticle,keyword=mind/emotion]
-
-% \paragraph{Belief}
-
-% \printbibliography[filter=myarticle,keyword={belief}]
-
-% \paragraph{Other}% FIXME!
-
-% \printbibliography[filter=myarticle,notkeyword={personhood},notkeyword={rationality},notkeyword={social ontology},notkeyword={social identity},notkeyword={moral psychology},notkeyword={value theory},notkeyword={agency},notkeyword={love},notkeyword={friendship},notkeyword={mind/emotion},notkeyword={belief},notkeyword={popular}]
-
-\paragraph{Popular}
-
-\printbibliography[filter=myarticle,keyword={popular}]
-
-\ifdefined\HCode
-  \subsubsection*{}% Empty section to break collapsed paragraph category
-\fi
-
-(Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.)
-
-\section{Talks}
-
-\defbibfilter{mytalk}{type=misc}
-
-\printbibliography[filter=mytalk]
+% \printbibliography[filter=mytalk]
 
 \section{Awards}
 
