@@ -23,6 +23,7 @@ function! s:tohtml() abort  " {{{
         execute l:theline
         execute "silent substitute/>" . l:id . "</>" . l:sectionName . "<"
         execute "silent substitute/SeCtIoN/" . l:id
+        execute "silent substitute/secNav/secNav secButton" . l:id
     endwhile
 
     " Delete my name in bibliography entries FIXME: What to do with Enzo?
@@ -59,7 +60,7 @@ function! s:tohtml() abort  " {{{
         call map(l:keywordsList, 'substitute(v:val, "[^A-z]", "", "g")')
         " Put <div> around the list item
         call search('<li', 'b')
-        call append(line('.') - 1, '<div class="filterBib ' . join(l:keywordsList) . '">')
+        call append(line('.') - 1, '<div class="show filterBib ' . join(l:keywordsList) . '">')
         call search('</li>', '')
         call append(line('.'), '</div>')
     endwhile
@@ -67,10 +68,12 @@ function! s:tohtml() abort  " {{{
     call sort(l:categoryList)
     call uniq(l:categoryList)
     " Create navigation/filter bar
-    let l:buttonClasses = "bibNav w3-button w3-round-large w3-white w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
-    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="' . l:buttonClasses . '" onclick="filterBibliography(''all'')">Show all</button>']
+    let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>']
     for l:category in l:categoryList
-        call add(l:bibNavBarList, '  <button class="' . l:buttonClasses . '" onclick="filterBibliography(''' . substitute(l:category, '[^A-z]', '', 'g') . ''')"> ' . l:category . '</button>')
+        let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
+        call add(l:bibNavBarList, '  <button class="' . l:shortCategory . ' ' . l:buttonClasses . '" onclick="filterBibliography(''' . l:shortCategory . ''')"> ' . l:category . '</button>')
+        call add(l:bibNavBarList, '      <span style="font-size:1.5em;">&hairsp;</span>')
     endfor
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
