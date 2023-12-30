@@ -78,7 +78,8 @@ function! s:tohtml() abort  " {{{
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
     call search('<ol reversed class="thebibliography">')
-    call append(line('.') - 1, l:bibNavBarList)
+    " FIXME: Uncomment the line below for CATEGORIES
+    " call append(line('.') - 1, l:bibNavBarList)
 
     update
 

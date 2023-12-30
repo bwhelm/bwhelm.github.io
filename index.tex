@@ -60,7 +60,7 @@
   \maps[datatype=bibtex]{
     \map{
       \step[fieldsource=notincv,matchi={true},final]% For any entry that has notincv field = true ...
-      \step[typesource=article,typetarget=customa]% Change entry type to customa
+      \step[typesource=article,typetarget=customa]% Change entry type to customa (which gets ignored)
       \step[typesource=incollection,typetarget=customa]
       \step[typesource=online,typetarget=customa]
       \step[typesource=book,typetarget=customa]
@@ -69,7 +69,6 @@
     }
   }
 }
-
 
 % Print keywords at end of entry, but before abstract and download link.
 \ProvideDocumentCommand\categories{m}{#1}
@@ -88,19 +87,20 @@
     {}
     {\addcomma\space}%
   #1}
+% FIXME: Uncomment the lines below for CATEGORIES
 \DeclareFieldFormat{keywords}{%
-  \setcounter{cbx@keyword@total}{0}%
-  \setcounter{cbx@keyword@count}{0}%
-  \forcsvlist{\keywordscount}{#1}%
-  \emph{%
-    \ifnumgreater{\value{cbx@keyword@total}}{1}
-      {\bibstring{keywords}}
-      {\bibstring{keyword}}%
-    \addcolon}
-  \space
-  \categories{%
-    \forcsvlist{\keywordsprint}{#1}%
-  }%
+  % \setcounter{cbx@keyword@total}{0}%
+  % \setcounter{cbx@keyword@count}{0}%
+  % \forcsvlist{\keywordscount}{#1}%
+  % \emph{%
+  %   \ifnumgreater{\value{cbx@keyword@total}}{1}
+  %     {\bibstring{keywords}}
+  %     {\bibstring{keyword}}%
+  %   \addcolon}
+  % \space
+  % \categories{%
+  %   \forcsvlist{\keywordsprint}{#1}%
+  % }%
 }
 \renewbibmacro*{addendum+pubstate}{%
   \printfield{addendum}%
@@ -149,47 +149,6 @@
 \ifdefined\HCode
   \setcounter{tocdepth}{1}
 \fi
-
-% Define filters by keyword
-\ExplSyntaxOn
-\makeatletter
-\def\blx@addkeyword#1#2{%
-  \seq_if_exist:cF {g_hchr_keyword_\the\c@refsection _seq}
-    {
-      \seq_new:c {g_hchr_keyword_\the\c@refsection _seq}
-    }
-  \seq_if_in:cxF {g_hchr_keyword_\the\c@refsection _seq} {\detokenize{#2}}
-    {
-      \seq_gput_left:cx {g_hchr_keyword_\the\c@refsection _seq} {\detokenize{#2}}
-    }
-  \listcsxadd{blx@keyw@\the\c@refsection @\detokenize{#2}}{#1}}
-
-\newcommand*{\DefineKeywordTitle}[2]{%
-  \csdef{keyword@title@\detokenize{#1}}{#2}}
-
-\def\blx@bibbykeyword@i#1{%
-  \ifcsundef{keyword@title@\detokenize{#1}}
-    {\subsection{#1}
-
-    \printbibliography[keyword=#1, title=#1]}
-    {BBB\printbibliography[keyword=#1, title=\csuse{keyword@title@\detokenize{#1}}]}}
-
-\newcommand*{\bibbykeyword}
-  {
-    \seq_if_exist:cT {g_hchr_keyword_\the\c@refsection _seq}
-      {
-        \seq_sort:cn {g_hchr_keyword_\the\c@refsection _seq}
-          {
-            \str_compare:nNnTF { ##1 } > { ##2 }
-              { \sort_return_swapped: }
-              { \sort_return_same: }
-          }
-
-        \seq_map_function:cN {g_hchr_keyword_\the\c@refsection _seq} \blx@bibbykeyword@i
-      }
-  }
-\makeatother
-\ExplSyntaxOff
 
 \defbibheading{bibliography}[]{}
 
@@ -287,7 +246,9 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % FIXME: These entry types should be listed the `\DeclareSourcemap` above!
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
-Choose a category below. Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
+% FIXME: Uncomment line below for CATEGORIES
+% Choose a category below.
+Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
 
 \printbibliography[filter=myarticle]
 
