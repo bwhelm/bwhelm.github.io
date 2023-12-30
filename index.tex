@@ -89,18 +89,18 @@
   #1}
 % FIXME: Uncomment the lines below for CATEGORIES
 \DeclareFieldFormat{keywords}{%
-  % \setcounter{cbx@keyword@total}{0}%
-  % \setcounter{cbx@keyword@count}{0}%
-  % \forcsvlist{\keywordscount}{#1}%
-  % \emph{%
-  %   \ifnumgreater{\value{cbx@keyword@total}}{1}
-  %     {\bibstring{keywords}}
-  %     {\bibstring{keyword}}%
-  %   \addcolon}
-  % \space
-  % \categories{%
-  %   \forcsvlist{\keywordsprint}{#1}%
-  % }%
+  \setcounter{cbx@keyword@total}{0}%
+  \setcounter{cbx@keyword@count}{0}%
+  \forcsvlist{\keywordscount}{#1}%
+  \emph{%
+    \ifnumgreater{\value{cbx@keyword@total}}{1}
+      {\bibstring{keywords}}
+      {\bibstring{keyword}}%
+    \addcolon}
+  \space
+  \categories{%
+    \forcsvlist{\keywordsprint}{#1}%
+  }%
 }
 \renewbibmacro*{addendum+pubstate}{%
   \printfield{addendum}%
@@ -249,7 +249,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
 % FIXME: Uncomment line below for CATEGORIES
-% Choose a category below.
+Choose a category below.
 Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
 
 \printbibliography[filter=myarticle]
