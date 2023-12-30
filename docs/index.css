@@ -184,3 +184,14 @@ span.dotuline, .dotuline-math {text-decoration:underline dotted;}
  a:link { color: blue; } a:visited { color: purple; } div.sectionDiv { display: none; } .filterBib { display: none; } .show { display: block; } .container { margin-top: 20px; overflow: hidden; } .thebibliography { margin-bottom: 1ex; } 
 /* end css.sty */
 
+body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+#content {
+    flex: auto;
+    overflow-y: auto;
+}
