@@ -139,6 +139,8 @@ figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
 p + figcaption, img + figcaption{margin-top: 1em;}
 .abstract{margin:1em;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
+dd.thebibliography {margin-left: 2.5em;}
+dt.thebibliography {float:left; clear:left; margin-right:1em;}
 span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
 span.textul{text-decoration:underline}
 span.textst{text-decoration:line-through}
@@ -179,6 +181,6 @@ span.uwave, .uwave-math {text-decoration:underline wavy; }
 span.dashuline, .dashuline-math {text-decoration:underline dashed;}
 span.dotuline, .dotuline-math {text-decoration:underline dotted;}
 .mdframed{margin-top:1em;margin-bottom:1em;}
- a:link { color: blue; } a:visited { color: purple; } div.sectionDiv { display: none; } 
+ a:link { color: blue; } a:visited { color: purple; } div.sectionDiv { display: none; } .filterBib { display: none; } .show { display: block; } .container { margin-top: 20px; overflow: hidden; } 
 /* end css.sty */
 

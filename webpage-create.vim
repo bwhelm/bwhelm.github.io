@@ -23,13 +23,62 @@ function! s:tohtml() abort  " {{{
         execute l:theline
         execute "silent substitute/>" . l:id . "</>" . l:sectionName . "<"
         execute "silent substitute/SeCtIoN/" . l:id
+        execute "silent substitute/secNav/secNav secButton" . l:id
     endwhile
 
-    " Delete my name in bibliography entries
+    " Delete my name in bibliography entries FIXME: What to do with Enzo?
     silent %substitute/Bennett\_sW\.\_sHelm,//e
+    silent %substitute/Helm,\_sBennett\_sW\.\_s*//e
+    " silent %substitute/Helm,\_sBennett\_sW\.\_s(\([^)]*\))/\1/e
+    silent %substitute/>— />/e
 
-    " Reverse ordered lists
-    silent %substitute/<ol /<ol reversed /ge
+    " Change description lists to ordered lists
+    silent %substitute/<dl/<ol reversed/e
+    silent %substitute/<\/dl/<\/ol/e
+    silent %substitute/<\/\?dt[^>]*>//e
+    silent %substitute/<dd/<li/e
+    silent %substitute/<\/dd/<\/li/e
+
+    " Get complete list of categories and put <div> around list items
+    let l:categoryList = []
+    1
+    call search('Articles<\/h3>')
+    while(search('<span class="categories">', 'W'))
+        let [l:startLine, l:startPos] = searchpos('<span class="categories">', 'e')
+        let [l:endLine, l:endPos] = searchpos('<\/span>')
+        " Assume at most l:endLine = l:startLine + 1
+        if l:startLine == l:endLine
+            let l:keywords = getline(l:startLine)[l:startPos:l:endPos - 2]
+        else
+            let l:keywords = getline(l:startLine)[l:startPos:]
+            let l:keywords .= getline(l:endLine)[:l:endPos - 2]
+        endif
+        " let l:keywords = search('<span class="categories">\zs\_.\{-}\ze<\/span>')
+        let l:keywordsList = split(l:keywords, ',')
+        call map(l:keywordsList, 'trim(v:val)')
+        call extend(l:categoryList, l:keywordsList)
+        call map(l:keywordsList, 'substitute(v:val, "[^A-z]", "", "g")')
+        " Put <div> around the list item
+        call search('<li', 'b')
+        call append(line('.') - 1, '<div class="show filterBib ' . join(l:keywordsList) . '">')
+        call search('</li>', '')
+        call append(line('.'), '</div>')
+    endwhile
+    call map(l:categoryList, 'trim(v:val)')
+    call sort(l:categoryList)
+    call uniq(l:categoryList)
+    " Create navigation/filter bar
+    let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>']
+    for l:category in l:categoryList
+        let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
+        call add(l:bibNavBarList, '  <button class="' . l:shortCategory . ' ' . l:buttonClasses . '" onclick="filterBibliography(''' . l:shortCategory . ''')"> ' . l:category . '</button>')
+        call add(l:bibNavBarList, '      <span style="font-size:1.5em;">&hairsp;</span>')
+    endfor
+    call add(l:bibNavBarList, '</div>')
+    call search('Articles<\/h3>', 'w')
+    call search('<ol reversed class="thebibliography">')
+    call append(line('.') - 1, l:bibNavBarList)
 
     update
 

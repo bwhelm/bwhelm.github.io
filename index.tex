@@ -15,19 +15,17 @@
 
 % BibLaTeX
 \usepackage[%
-  notes,%
-  % indexing=cite,%
+  bibstyle=authortitle,%
   eprint=true,%
   isbn=false,%
-  % url=false,%
-  % doi=false,%
-  compresspages=true,%
   sorting=ydnt,% Sort descending by year, then by name and title
   backend=biber%
-]{biblatex-chicago}
-\addbibresource{bibdatabase.bib}
+]{biblatex}
 \addbibresource{bibdatabase-helm.bib}
-% \AtEveryCitekey{\clearfield{author}\clearfield{bookauthor}}
+
+% \AtEveryBibitem{\clearname{author}}
+% \renewbibmacro*{byauthor}{}
+% \AtEveryCitekey{\clearname{author}}
 
 % Page geometry
 \usepackage[% iPad
@@ -53,27 +51,89 @@
   }
 
 \ProvideDocumentCommand\link{m}{%
-  \href{#1}{\textbf{Download}}%
+  \href{#1}{\textbf{Download.}}%
 }
 
-% Define htmlnosection environment -- gets redefined in ./webpage-create.cfg
-% Wraps this text in html to provide appropriate margins. Intended with plain
-% text outside of a section heading
-\NewDocumentEnvironment{htmlnosection}{}%
-  {}%
-  {}
+% Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
+% should be listed in the `\defbibfilter`, below!
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=notincv,matchi={true},final]% For any entry that has notincv field = true ...
+      \step[typesource=article,typetarget=customa]% Change entry type to customa
+      \step[typesource=incollection,typetarget=customa]
+      \step[typesource=online,typetarget=customa]
+      \step[typesource=book,typetarget=customa]
+      \step[typesource=thesis,typetarget=customa]
+      \step[typesource=misc,typetarget=customa]
+    }
+  }
+}
 
+
+% Print keywords at end of entry, but before abstract and download link.
+\ProvideDocumentCommand\categories{m}{#1}
+\NewBibliographyString{keyword,keywords}
+\DefineBibliographyStrings{english}{%
+  keyword  = {category},
+  keywords = {categories},
+}
+\newcounter{cbx@keyword@total}
+\newcounter{cbx@keyword@count}
+\newcommand*{\keywordscount}[1]{%
+  \stepcounter{cbx@keyword@total}}
+\newcommand*{\keywordsprint}[1]{%
+  \stepcounter{cbx@keyword@count}%
+  \ifnumless{\value{cbx@keyword@count}}{2}
+    {}
+    {\addcomma\space}%
+  #1}
+\DeclareFieldFormat{keywords}{%
+  \setcounter{cbx@keyword@total}{0}%
+  \setcounter{cbx@keyword@count}{0}%
+  \forcsvlist{\keywordscount}{#1}%
+  \emph{%
+    \ifnumgreater{\value{cbx@keyword@total}}{1}
+      {\bibstring{keywords}}
+      {\bibstring{keyword}}%
+    \addcolon}
+  \space
+  \categories{%
+    \forcsvlist{\keywordsprint}{#1}%
+  }%
+}
+\renewbibmacro*{addendum+pubstate}{%
+  \printfield{addendum}%
+  \newunit\newblock
+  \printfield{pubstate}%
+  \newunit\newblock
+  \printfield{keywords}
+  \newunit\newblock
+  \printfield{usera}
+}
+
+% Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=download,fieldtarget=usera]
+    }
+  }
+}
 % Print abstract field with bibliography entry
 \DeclareFieldFormat{abstract}{#1}
+\DeclareFieldFormat{usera}{\link{#1}}
 \renewbibmacro*{finentry}{%
-   \iffieldundef{abstract}
-      {%
-         \finentry
-      }
-      {%
-        \finentrypunct{}\begin{htmlabstract}\printfield{abstract}\end{htmlabstract}\finentry
-      }
+   \iffieldundef{abstract}%
+      {}%
+      {\finentrypunct{} \begin{htmlabstract}\printfield{abstract}\end{htmlabstract}}
+   \finentry
    }
+
+% Modify <doi> and <url> fields in biblatex
+\DeclareFieldFormat{url}{\href{#1}{Link (URL)}.}
+\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{Link (DOI)}.}
+
 % Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
 \NewDocumentEnvironment{htmlabstract}{}%
   {\par\begin{small}
@@ -86,15 +146,57 @@
   {}
 
 % Limit TOC to sections and above
-\setcounter{tocdepth}{1}
+\ifdefined\HCode
+  \setcounter{tocdepth}{1}
+\fi
+
+% Define filters by keyword
+\ExplSyntaxOn
+\makeatletter
+\def\blx@addkeyword#1#2{%
+  \seq_if_exist:cF {g_hchr_keyword_\the\c@refsection _seq}
+    {
+      \seq_new:c {g_hchr_keyword_\the\c@refsection _seq}
+    }
+  \seq_if_in:cxF {g_hchr_keyword_\the\c@refsection _seq} {\detokenize{#2}}
+    {
+      \seq_gput_left:cx {g_hchr_keyword_\the\c@refsection _seq} {\detokenize{#2}}
+    }
+  \listcsxadd{blx@keyw@\the\c@refsection @\detokenize{#2}}{#1}}
+
+\newcommand*{\DefineKeywordTitle}[2]{%
+  \csdef{keyword@title@\detokenize{#1}}{#2}}
+
+\def\blx@bibbykeyword@i#1{%
+  \ifcsundef{keyword@title@\detokenize{#1}}
+    {\subsection{#1}
+
+    \printbibliography[keyword=#1, title=#1]}
+    {BBB\printbibliography[keyword=#1, title=\csuse{keyword@title@\detokenize{#1}}]}}
+
+\newcommand*{\bibbykeyword}
+  {
+    \seq_if_exist:cT {g_hchr_keyword_\the\c@refsection _seq}
+      {
+        \seq_sort:cn {g_hchr_keyword_\the\c@refsection _seq}
+          {
+            \str_compare:nNnTF { ##1 } > { ##2 }
+              { \sort_return_swapped: }
+              { \sort_return_same: }
+          }
+
+        \seq_map_function:cN {g_hchr_keyword_\the\c@refsection _seq} \blx@bibbykeyword@i
+      }
+  }
+\makeatother
+\ExplSyntaxOff
+
+\defbibheading{bibliography}[]{}
 
 \begin{document}
 
-% Compile this file to .pdf. Then run:
+% Compile this file to .pdf. To generate the .html file, run:
 %     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
-% This will generate an .html file, and handle moving the <Download> link
-% before the abstract, and making all abstracts be hidden behind drop-down
-% buttons.
 
 \tableofcontents
 
@@ -167,95 +269,37 @@ In the last few years I have begun to apply these ideas to the topic of social c
 
 Ultimately my aim is to provide an account of moral values as the communal values of the community of respect of all persons, a community in which these values and our personhood itself are both socially constructed and contestable.
 
-\section{Publications}
+% \section{Publications}
 
-\subsection{Books}
+\section{Books}
 
-\begin{enumerate}
+% Cite just things I've written, so that I can filter out only the books
+\nocite{Helm2017Communities-Respect-Persons,Helm2010Love-Friendship-Self,Helm2001Emotional-Reason-Deliberation}
 
-  \item \fullcite{Helm2017Communities-Respect-Persons}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhR2ZtZ2pqQmZHZ2c}
-  \item \fullcite{Helm2010Love-Friendship-Self}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhOTEteU5GeEthckU&amp;authuser=0}
-  \item \fullcite{Helm2001Emotional-Reason-Deliberation}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhSUZFS1YxTDRmUVE&amp;authuser=0}
+\printbibliography
 
-\end{enumerate}
+\section{Articles}
 
-\subsection{Articles}
+\newrefsection
+% Now cite everything
+\nocite{*}
 
-Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions. Comments on any of these would be appreciated.
+% FIXME: These entry types should be listed the `\DeclareSourcemap` above!
+\defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
-\begin{enumerate}
+Choose a category below. Links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
 
-  \item \fullcite{Helm2022Cognitivist-Theories-Emotions}. \link{https://drive.google.com/open?id=16tQyJ7bvdMH9qfGeZoSvm7mj2_vm2Flk}
+\printbibliography[filter=myarticle]
 
-  \item \fullcite{Helm2023Hate-Identification-Othering}. \link{https://drive.google.com/file/d/176o0Q-Gt2yW9R8kSf9e0Vih6ZtznbLfK/view?usp=drive_link}
+% \ifdefined\HCode
+%   \subsubsection*{}% Empty section to break collapsed paragraph category
+% \fi
 
-  \item \fullcite{Helm2023Emotions-Contestation-Social}. \link{https://drive.google.com/file/d/1--6BOQLzSc6w3TEBPvVrKuanfquHH8vP/view?usp=sharing}
+% \section{Talks}
 
-  \item \fullcite{Helm2020Affective-Intentionality-Reactive}. \link{https://drive.google.com/open?id=1zG4dML0wbe2gFNaBIyIfzi_XdmJhUOcX}
+% \defbibfilter{mytalk}{type=misc}
 
-  \item \fullcite{Helm2018LAmitie}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhb0RTT1pXMUpUYm8&amp;authuser=0}
-
-  \item \fullcite{Helm2018Personal-Relationships-Blame}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhbTZkbHJwa0xlYnM}
-
-  \item \fullcite{Helm2018Gratitude-Norms-Social}. \link{https://drive.google.com/open?id=1QcPLpTkDUEq5C6wsm9tuhwlop2UQcvZf}
-
-  \item \fullcite{Helm2017Truth-Objectivity-Emotional}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhU3FJYThiMFpsQkU&amp;authuser=0}
-
-  \item \fullcite{Helm2016Emotional-Expression-Commitment}. \link{http://drive.google.com/open?id=0B45uPWgGHVLhci1VVUYzQ2JHT3M}
-
-  \item \fullcite{Helm2015Rationality-Authority-Bindingness}. \link{https://drive.google.com/open?id=0B45uPWgGHVLheXpKTURnVURScEk&amp;authuser=0}
-
-  \item \fullcite{Helm2015Emotions-Recalcitrance-Reevaluating}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhZDlJbjk3YnI2VGM&amp;authuser=0}
-
-  \item \fullcite{Helm2014Trust-as-Reactive}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcVZVOHBaOGZuMkk&amp;authuser=0}
-
-  \item \fullcite{Helm2014Emotional-Communities-Respect}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcmFSM3gxUmZDa2s&amp;authuser=0}
-
-  \item \fullcite{Helm2014What-Is-Role}.
-
-  \item \fullcite{Helm2013Paternalistic-Love-Reasons}. \link{https://drive.google.com/file/d/1lFRH4f-9yzrI9Ask19ZZfMRZ7skIHF3c/view?usp=drive_link}
-
-  \item \fullcite{Helm2012Accountability-Some-Social}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhRWsxaExMaXJtODQ&amp;authuser=0}
-
-  \item \fullcite{Helm2011Responsibility-Dignity-Strawsonian}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhejE2ZmU4MFlFSTQ&amp;authuser=0}
-
-  \item \fullcite{Helm2011Affektive-Intentionalitat-Holistisch}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhcXRZR0lWNFZWVjQ&amp;authuser=0}
-
-  \item \fullcite{Helm2010bLove-as-Intimate}.
-
-  \item \fullcite{Helm2009Self-Love-Structure-Personal}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhUF95eHljajJmbWM&amp;authuser=0}
-
-  \item \fullcite{Helm2009Emotions-Motivation-Reconsidering}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhc2RyYVM1ODVXbFU&amp;authuser=0}
-
-  \item \fullcite{Helm2009Import-Human-Action}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhU2JhbE5NSkxMVU0&amp;authuser=0}
-
-  \item \fullcite{Helm2009Emotions-as-Evaluative}. \link{https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link}
-
-  \item \fullcite{Helm2009Love-Identification-Emotions}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhWnpvSzZwSlJJOG8&amp;authuser=0}
-
-  \item \fullcite{Helm2008Plural-Agents}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhdnA3MU1UeVdKTWM&amp;authuser=0}
-
-  \item \fullcite{Helm2005Friendship}. Revised: Fall 2009, Fall 2013, Fall 2017, Fall, 2021.
-
-  \item \fullcite{Helm2005Love}. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021.
-
-  \item \fullcite{Helm2002Felt-Evaluations-Theory}. Reprinted as \fullcite{Helm2009Gefuhlte-Bewertungen-Eine}.\\\link{https://drive.google.com/open?id=0B45uPWgGHVLhRDhCa1AyUUpmUTA&amp;authuser=0}
-
-  \item \fullcite{Helm2002Action-for-Sake}.
-
-  \item \fullcite{Helm2001Emotions-Practical-Reason}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhV0lvU2o1blhiY2c&amp;authuser=0}
-
-  \item \fullcite{Helm2000Emotional-Reason-How}. \link{https://drive.google.com/open?id=0B45uPWgGHVLhM1lwNVprU0toRmM&amp;authuser=0}
-
-  \item \fullcite{Helm1996Integration-Fragmentation-Self}. \link{https://drive.google.com/file/d/1xRrjsIh2tlp1VrYhvEc-3FgCO5fya3W9/view?usp=drive_link}
-
-  \item \fullcite{Helm1996Freedom-Heart}. \link{https://drive.google.com/file/d/1nWu5zW_19pTpKvelTTTqBQN7IGJeUTwX/view?usp=drive_link}
-
-  \item \fullcite{Helm1994Significance-Emotions}. \link{https://drive.google.com/file/d/1g7F2zbfoJbW3wgWL8oMGab4MJTKvIyuL/view?usp=drive_link}
-
-  \item \fullcite{Helm1993Why-We-Believe}. \link{https://drive.google.com/file/d/1s0bmKWBSS4XPGUaNENHaf9il3jVI09Og/view?usp=sharing}
-
-\end{enumerate}
+% \printbibliography[filter=mytalk]
 
 \section{Awards}
 
@@ -293,21 +337,37 @@ Links to published articles are mostly to late drafts; see the relevant journals
 Many of these courses satisfy requirements for our interdisciplinary majors in \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology}.
 \medskip{}
 
-\begin{htmlcourse}{CNX 149: Race, Gender, and Community.}{Race and gender are centrally important to each of our lives. But what are they exactly? How many races or genders are there? Who has what race or what gender? How are these answers determined? (Are race and gender biologically real? Are they socially constructed? Would their being socially constructed make them any less real?) How does someone's race or gender affect their social position? What injustices do these social positions involve, and what can or should we do about them? How are these social positions affected by intersecting social identity categories, including not only race and gender but also class, sexuality, ability, religion, and more? Drawing on fields such as philosophy, sociology, women's and gender studies, and critical race theory, we will critically examine a variety of answers to these questions, in the process trying to understand how we can have reasonable and productive disagreements about these contentious and politically charged issues.}\end{htmlcourse}
+\begin{htmlcourse}{CNX 149: Race, Gender, and Community.}
+  Race and gender are centrally important to each of our lives. But what are they exactly? How many races or genders are there? Who has what race or what gender? How are these answers determined? (Are race and gender biologically real? Are they socially constructed? Would their being socially constructed make them any less real?) How does someone's race or gender affect their social position? What injustices do these social positions involve, and what can or should we do about them? How are these social positions affected by intersecting social identity categories, including not only race and gender but also class, sexuality, ability, religion, and more? Drawing on fields such as philosophy, sociology, women's and gender studies, and critical race theory, we will critically examine a variety of answers to these questions, in the process trying to understand how we can have reasonable and productive disagreements about these contentious and politically charged issues.
+\end{htmlcourse}
 
-\begin{htmlcourse}{SPM 100: Minds, Machines, and Morals.}{This course provides an introduction to some central problems, concepts, and methods of cognitive science and moral psychology. We will address questions concerning the nature of intelligence, the relationship between minds and bodies, and the basis of moral beliefs and behaviors. These explorations will bridge the sciences and humanities by taking a fundamentally interdisciplinary perspective.}\end{htmlcourse}
+\begin{htmlcourse}{SPM 100: Minds, Machines, and Morals.}
+  This course provides an introduction to some central problems, concepts, and methods of cognitive science and moral psychology. We will address questions concerning the nature of intelligence, the relationship between minds and bodies, and the basis of moral beliefs and behaviors. These explorations will bridge the sciences and humanities by taking a fundamentally interdisciplinary perspective.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 250: Philosophy of Mind.}{This class is designed as a general introduction to the philosophy of mind (and, consequently, as an introduction to the philosophical side of both majors in the Scientific and Philosophical Studies of Mind program: Cognitive Science and Moral Psychology). We will begin by examining the mind--body problem, a problem which arises out of our differing conceptions of the natural world and of our minds. In particular, science tells us that the body is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly. The mind, of course, is anything but mindless. So what's the connection between the two? How should we conceive of the mind in relation to the body? In trying to answer this question, we will critically examine several different purported solutions to this problem and assess how they fare with respect to understanding particular issues that arise in the context of this mind--body problem: the nature of representation, consciousness, psychological explanation, freedom, and meaning, and identity. In addressing these questions, we shall gain a clearer understanding of the strengths, weaknesses, and implications of the various theories about what the mind is and its relation to the body.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 250: Philosophy of Mind.}
+  This class is designed as a general introduction to the philosophy of mind (and, consequently, as an introduction to the philosophical side of both majors in the Scientific and Philosophical Studies of Mind program: Cognitive Science and Moral Psychology). We will begin by examining the mind--body problem, a problem which arises out of our differing conceptions of the natural world and of our minds. In particular, science tells us that the body is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly. The mind, of course, is anything but mindless. So what's the connection between the two? How should we conceive of the mind in relation to the body? In trying to answer this question, we will critically examine several different purported solutions to this problem and assess how they fare with respect to understanding particular issues that arise in the context of this mind--body problem: the nature of representation, consciousness, psychological explanation, freedom, and meaning, and identity. In addressing these questions, we shall gain a clearer understanding of the strengths, weaknesses, and implications of the various theories about what the mind is and its relation to the body.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 351: Mind-Body Problem.}{It has long been perceived by many philosophers that there is a problem about the relationship between the mind and the body. The body, after all, is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly---whereas the mind, of course, is anything but mindless. So what's the connection between the two? How do we conceive of the mind in relation to the body? In this course we'll examine mostly contemporary accounts of the relation in an attempt to understand whether there really is a mind--body problem and, if so, how to solve it. But this course is about more than just the mind and its place in the broader world; it's about the nature of that world, too. In the course of trying to understand how our thoughts can be \emph{about} anything in the world, we'll need to think about the nature of the world such that our thoughts can be about it.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 351: Mind-Body Problem.}
+  It has long been perceived by many philosophers that there is a problem about the relationship between the mind and the body. The body, after all, is just a hunk of physical matter that obeys the laws of nature mechanistically---mindlessly---whereas the mind, of course, is anything but mindless. So what's the connection between the two? How do we conceive of the mind in relation to the body? In this course we'll examine mostly contemporary accounts of the relation in an attempt to understand whether there really is a mind--body problem and, if so, how to solve it. But this course is about more than just the mind and its place in the broader world; it's about the nature of that world, too. In the course of trying to understand how our thoughts can be \emph{about} anything in the world, we'll need to think about the nature of the world such that our thoughts can be about it.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 352: Philosophy of Emotions.}{Long neglected in philosophy, the emotions have recently and increasingly come to be seen as important both in their own right and for their bearing on a wide variety of issues, including (a) the mind--body problem and the nature of consciousness and intentionality, (b) the nature of rationality, (c) aesthetics, (d) interpersonal relationships, and (e) moral psychology and metaethics. My intention in this course is to focus on the first two such issues, since the other issues are covered more fully in other courses. However, in doing so it is important that we have a sufficiently rich understanding of the place emotions can have in our lives, an understanding that many philosophers and psychologists tend to simplify and diminish.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 352: Philosophy of Emotions.}
+  Long neglected in philosophy, the emotions have recently and increasingly come to be seen as important both in their own right and for their bearing on a wide variety of issues, including (a) the mind--body problem and the nature of consciousness and intentionality, (b) the nature of rationality, (c) aesthetics, (d) interpersonal relationships, and (e) moral psychology and metaethics. My intention in this course is to focus on the first two such issues, since the other issues are covered more fully in other courses. However, in doing so it is important that we have a sufficiently rich understanding of the place emotions can have in our lives, an understanding that many philosophers and psychologists tend to simplify and diminish.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 360: Concept of a Person.}{Philosophers tend to understand the concept of a person in two ways: as a metaphysical notion and as a moral notion. \emph{Moral personhood} is roughly an understanding of ourselves as the subjects of moral rights and responsibilities. By contrast, to understand personhood as a \emph{metaphysical} notion is to understand it as delineating a special category of being---as having or being a soul, for example. Typically, the metaphysical notion of personhood is thought to somehow underwrite our status as moral persons. Indeed, it is precisely because of this explanatory link between them that many philosophers think it is appropriate to understand the concept of personhood not as having two senses but rather as being a univocal concept with two aspects. Our aim in this course is to examine these notions and their interrelations, with an emphasis on our social nature.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 360: Concept of a Person.}
+  Philosophers tend to understand the concept of a person in two ways: as a metaphysical notion and as a moral notion. \emph{Moral personhood} is roughly an understanding of ourselves as the subjects of moral rights and responsibilities. By contrast, to understand personhood as a \emph{metaphysical} notion is to understand it as delineating a special category of being---as having or being a soul, for example. Typically, the metaphysical notion of personhood is thought to somehow underwrite our status as moral persons. Indeed, it is precisely because of this explanatory link between them that many philosophers think it is appropriate to understand the concept of personhood not as having two senses but rather as being a univocal concept with two aspects. Our aim in this course is to examine these notions and their interrelations, with an emphasis on our social nature.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 361: Moral Psychology.}{Moral psychology is the study of us persons as responsible moral agents and subjects of value. As such, it is constrained by, and must cohere with, the facts about human psychology; but its primary focus is on human good, an evaluative notion. Topics include virtue and character, motivation and reasons, internal/external reasons and moral development, and responsibility and blame.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 361: Moral Psychology.}
+  Moral psychology is the study of us persons as responsible moral agents and subjects of value. As such, it is constrained by, and must cohere with, the facts about human psychology; but its primary focus is on human good, an evaluative notion. Topics include virtue and character, motivation and reasons, internal/external reasons and moral development, and responsibility and blame.
+\end{htmlcourse}
 
-\begin{htmlcourse}{PHI 362: Love and Friendship.}{Love and friendship are undoubtedly important in our lives \dots{} but why? Although we commonly say that we \enquote{love} both chocolate cake and philosophy or that we are \enquote{friends} with people on Facebook, these seem to be thin surrogates for the potentially deep, rich, intimate, and rewarding attitudes and relationships we develop towards and with other persons. Clearly it is the latter that we interested in here: forms of love and friendship that apply paradigmatically to intimate relations among persons. In investigating personal love and friendship, we will encounter several problems concerning their justification, their bearing on the autonomy and identity of the individual, and the place their value has within a broader system of values, including moral values.}\end{htmlcourse}
+\begin{htmlcourse}{PHI 362: Love and Friendship.}
+  Love and friendship are undoubtedly important in our lives \dots{} but why? Although we commonly say that we \enquote{love} both chocolate cake and philosophy or that we are \enquote{friends} with people on Facebook, these seem to be thin surrogates for the potentially deep, rich, intimate, and rewarding attitudes and relationships we develop towards and with other persons. Clearly it is the latter that we interested in here: forms of love and friendship that apply paradigmatically to intimate relations among persons. In investigating personal love and friendship, we will encounter several problems concerning their justification, their bearing on the autonomy and identity of the individual, and the place their value has within a broader system of values, including moral values.
+\end{htmlcourse}
 
 \begin{htmlcourse}{PHI 363: Respect, Responsibility, and Ethics.}
   Recently many philosophers have argued that certain interpersonal emotions, such as resentment, indignation, guilt, gratitude, and approbation, are fundamental to a host of interconnected issues in ethics, including the nature of respect, dignity, responsibility and freedom, and the origins of moral values. This class will closely examine these claims and arguments with the aim of understanding more clearly how moral psychology and metaethics intersect.
@@ -315,7 +375,6 @@ Many of these courses satisfy requirements for our interdisciplinary majors in \
 
 \ifdefined\HCode
   \HCode{<div>}
-\else
 \fi
 
 \end{document}
