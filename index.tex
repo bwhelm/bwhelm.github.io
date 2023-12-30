@@ -107,7 +107,10 @@
   \newunit\newblock
   \printfield{pubstate}%
   \newunit\newblock
-  \printfield{keywords}}
+  \printfield{keywords}
+  \newunit\newblock
+  \printfield{usera}
+}
 
 % Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
 \DeclareSourcemap{
@@ -124,9 +127,6 @@
    \iffieldundef{abstract}%
       {}%
       {\finentrypunct{} \begin{htmlabstract}\printfield{abstract}\end{htmlabstract}}
-   \iffieldundef{usera}%
-      {}%
-      {\finentrypunct{} \printfield{usera}}
    \finentry
    }
 
