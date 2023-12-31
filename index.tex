@@ -52,12 +52,12 @@
   urlcolor={myblue},
   }
 
+\let\oldparagraph\paragraph
+\renewcommand\paragraph[1]{\oldparagraph{\textcolor{myblue}{#1}}}
+
 \ProvideDocumentCommand\link{m}{%
   \href{#1}{\textbf{Download.}}%
 }
-
-\let\oldparagraph\paragraph
-\renewcommand\paragraph[1]{\oldparagraph{\textcolor{myblue}{#1}}}
 
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
 % should be listed in the `\defbibfilter`, below!
@@ -337,6 +337,7 @@ Philosophers tend to understand the concept of a person in two ways: as a metaph
 Moral psychology is the study of us persons as responsible moral agents and subjects of value. As such, it is constrained by, and must cohere with, the facts about human psychology; but its primary focus is on human good, an evaluative notion. Topics include virtue and character, motivation and reasons, internal/external reasons and moral development, and responsibility and blame.
 
 \paragraph{PHI 362: Love and Friendship.}
+
 Love and friendship are undoubtedly important in our lives \dots{} but why? Although we commonly say that we \enquote{love} both chocolate cake and philosophy or that we are \enquote{friends} with people on Facebook, these seem to be thin surrogates for the potentially deep, rich, intimate, and rewarding attitudes and relationships we develop towards and with other persons. Clearly it is the latter that we interested in here: forms of love and friendship that apply paradigmatically to intimate relations among persons. In investigating personal love and friendship, we will encounter several problems concerning their justification, their bearing on the autonomy and identity of the individual, and the place their value has within a broader system of values, including moral values.
 
 \paragraph{PHI 363: Respect, Responsibility, and Ethics.}
