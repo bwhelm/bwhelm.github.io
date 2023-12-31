@@ -157,8 +157,8 @@
 % Compile this file to .pdf. To generate the .html file, run:
 %     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
 
+% No title for tableofcontents
 \renewcommand{\contentsname}{}
-
 \tableofcontents
 
 \ifdefined\HCode
@@ -171,10 +171,10 @@
       \HCode{<img src="Helm.jpg" alt="Bennett Helm" style="width:300px;">}
     \end{center}
   \HCode{</div>}
-\else
 \fi
 
 \section{About Me}
+\addcontentsline{About}
 
 I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index.html}{philosophy} at \href{www.fandm.edu}{Franklin \& Marshall College}, and teach mostly philosophy courses oriented to our \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology} majors. My research focuses on understanding what it is to be a person as a distinctive sort of free and responsible social agent. Central to my approach is a concern with the \enquote{evaluative attitudes}---caring, valuing, loving, respecting, etc.---and the holistic rational patterns of emotions in terms of which they are intelligible.
 
