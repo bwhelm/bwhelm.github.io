@@ -80,37 +80,42 @@
 \newcounter{cbx@keyword@total}
 \newcounter{cbx@keyword@count}
 \newcommand*{\keywordscount}[1]{%
-  \stepcounter{cbx@keyword@total}}
+\stepcounter{cbx@keyword@total}}
 \newcommand*{\keywordsprint}[1]{%
   \stepcounter{cbx@keyword@count}%
   \ifnumless{\value{cbx@keyword@count}}{2}
     {}
     {\addcomma\space}%
   #1}
-% FIXME: Uncomment the lines below for CATEGORIES
+  % FIXME: Uncomment the lines below for CATEGORIES
+  \ProvideDocumentCommand\categoryStyle{m}{%
+    \textcolor{teal}{#1}
+  }
 \DeclareFieldFormat{keywords}{%
   \setcounter{cbx@keyword@total}{0}%
   \setcounter{cbx@keyword@count}{0}%
-  \forcsvlist{\keywordscount}{#1}%
-  \emph{%
-    \ifnumgreater{\value{cbx@keyword@total}}{1}
-      {\bibstring{keywords}}
-      {\bibstring{keyword}}%
-    \addcolon}
-  \space
-  \categories{%
-    \forcsvlist{\keywordsprint}{#1}%
-  }%
-}
-\renewbibmacro*{addendum+pubstate}{%
-  \printfield{addendum}%
-  \newunit\newblock
-  \printfield{pubstate}%
-  \newunit\newblock
-  \printfield{keywords}
-  \newunit\newblock
-  \printfield{usera}
-}
+  \categoryStyle{%
+    \forcsvlist{\keywordscount}{#1}%
+    \emph{
+      \ifnumgreater{\value{cbx@keyword@total}}{1}
+        {\bibstring{keywords}}
+        {\bibstring{keyword}}%
+      \addcolon}
+      \space
+      \categories{%
+        \forcsvlist{\keywordsprint}{#1}%
+      }%
+    }%
+  }
+  \renewbibmacro*{addendum+pubstate}{%
+    \printfield{addendum}%
+    \newunit\newblock
+    \printfield{pubstate}%
+    \newunit\newblock
+    \printfield{keywords}
+    \newunit\newblock
+    \printfield{usera}
+  }
 
 % Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
 \DeclareSourcemap{

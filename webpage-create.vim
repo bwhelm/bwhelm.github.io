@@ -46,7 +46,7 @@ function! s:tohtml() abort  " {{{
     while(search('<span class="categories">', 'W'))
         let [l:startLine, l:startPos] = searchpos('<span class="categories">', 'e')
         let [l:endLine, l:endPos] = searchpos('<\/span>')
-        " Assume at most l:endLine = l:startLine + 1
+        " Categories can span multiple lines. Assume at most l:endLine = l:startLine + 1
         if l:startLine == l:endLine
             let l:keywords = getline(l:startLine)[l:startPos:l:endPos - 2]
         else
@@ -64,16 +64,19 @@ function! s:tohtml() abort  " {{{
         call search('</li>', '')
         call append(line('.'), '</div>')
     endwhile
-    call map(l:categoryList, 'trim(v:val)')
+    "Clean up categoryList
+    call map(l:categoryList, 'trim(v:val)')  " Remove spaces from all items
     call sort(l:categoryList)
     call uniq(l:categoryList)
     " Create navigation/filter bar
     let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
-    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>', '      <span style="font-size:1.5em;">&hairsp;</span>']
+    " l:buttonSpacer is needed to provide vertical spacing between lines of buttons
+    let l:buttonSpacer = '      <span style="font-size:1.5em;">&hairsp;</span>'
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>', l:buttonSpacer]
     for l:category in l:categoryList
         let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
         call add(l:bibNavBarList, '  <button class="' . l:shortCategory . ' ' . l:buttonClasses . '" onclick="filterBibliography(''' . l:shortCategory . ''')"> ' . l:category . '</button>')
-        call add(l:bibNavBarList, '      <span style="font-size:1.5em;">&hairsp;</span>')
+        call add(l:bibNavBarList, l:buttonSpacer)
     endfor
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
