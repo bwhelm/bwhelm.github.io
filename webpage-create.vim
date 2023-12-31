@@ -8,7 +8,7 @@ function! s:tohtml() abort  " {{{
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
     execute "edit" l:htmlfile
-    silent %substitute/\s\+/ /ge
+    " silent %substitute/\s\+/ /ge
 
     " Fix TOC
     %substitute/<button/\r<button/ge
@@ -69,7 +69,7 @@ function! s:tohtml() abort  " {{{
     call uniq(l:categoryList)
     " Create navigation/filter bar
     let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
-    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>']
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>', '      <span style="font-size:1.5em;">&hairsp;</span>']
     for l:category in l:categoryList
         let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
         call add(l:bibNavBarList, '  <button class="' . l:shortCategory . ' ' . l:buttonClasses . '" onclick="filterBibliography(''' . l:shortCategory . ''')"> ' . l:category . '</button>')
@@ -84,7 +84,7 @@ function! s:tohtml() abort  " {{{
     update
 
     " Open .html file
-    " execute "!open" fnameescape(expand("%:r")) . ".html"
+    execute "!open" fnameescape(expand("%:r")) . ".html"
 
     return
 

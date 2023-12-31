@@ -182,5 +182,17 @@ span.dashuline, .dashuline-math {text-decoration:underline dashed;}
 span.dotuline, .dotuline-math {text-decoration:underline dotted;}
 .mdframed{margin-top:1em;margin-bottom:1em;}
  a:link { color: blue; } a:visited { color: purple; } div.sectionDiv { display: none; } .container { margin-top: 20px; overflow: hidden; } .thebibliography { margin-bottom: 1ex; } 
+span#textcolor1{color:#0000BF}
+span#textcolor2{color:#0000BF}
+span#textcolor3{color:#0000BF}
+span#textcolor4{color:#0000BF}
+span#textcolor5{color:#0000BF}
+span#textcolor6{color:#0000BF}
+span#textcolor7{color:#0000BF}
+span#textcolor8{color:#0000BF}
+span#textcolor9{color:#0000BF}
+span#textcolor10{color:#0000BF}
+span#textcolor11{color:#0000BF}
+span#textcolor12{color:#0000BF}
 /* end css.sty */
 
