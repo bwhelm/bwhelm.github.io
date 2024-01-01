@@ -182,9 +182,9 @@ span.dashuline, .dashuline-math {text-decoration:underline dashed;}
 span.dotuline, .dotuline-math {text-decoration:underline dotted;}
 .mdframed{margin-top:1em;margin-bottom:1em;}
  a:link { color: blue; } a:visited { color: purple; } div.sectionDiv { display: none; } .filterBib { display: none; } .show { display: block; } .container { margin-top: 20px; overflow: hidden; } .thebibliography { margin-bottom: 1ex; } 
-span#textcolor1{color:#008080}
-span#textcolor2{color:#008080}
-span#textcolor3{color:#008080}
+span#textcolor1{color:#0000BF}
+span#textcolor2{color:#0000BF}
+span#textcolor3{color:#0000BF}
 span#textcolor4{color:#008080}
 span#textcolor5{color:#008080}
 span#textcolor6{color:#008080}
@@ -222,5 +222,17 @@ span#textcolor37{color:#008080}
 span#textcolor38{color:#008080}
 span#textcolor39{color:#008080}
 span#textcolor40{color:#008080}
+span#textcolor41{color:#008080}
+span#textcolor42{color:#008080}
+span#textcolor43{color:#008080}
+span#textcolor44{color:#0000BF}
+span#textcolor45{color:#0000BF}
+span#textcolor46{color:#0000BF}
+span#textcolor47{color:#0000BF}
+span#textcolor48{color:#0000BF}
+span#textcolor49{color:#0000BF}
+span#textcolor50{color:#0000BF}
+span#textcolor51{color:#0000BF}
+span#textcolor52{color:#0000BF}
 /* end css.sty */
 
