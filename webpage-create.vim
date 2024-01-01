@@ -81,13 +81,12 @@ function! s:tohtml() abort  " {{{
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
     call search('<ol reversed class="thebibliography">')
-    " FIXME: Uncomment the line below for CATEGORIES
     call append(line('.') - 1, l:bibNavBarList)
 
     update
 
     " Open .html file
-    execute "!open" fnameescape(expand("%:r")) . ".html"
+    execute "!open -g" fnameescape(expand("%:r")) . ".html"
 
     return
 
