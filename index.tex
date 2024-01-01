@@ -75,6 +75,10 @@
   }
 }
 
+% Modify <doi> and <url> fields in biblatex
+\DeclareFieldFormat{url}{\href{#1}{Link (URL)}.}
+\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{Link (DOI)}.}
+
 % Print keywords at end of entry, but before abstract and download link.
 \ProvideDocumentCommand\categories{m}{#1}
 \NewBibliographyString{keyword,keywords}
@@ -107,6 +111,18 @@
   %   \forcsvlist{\keywordsprint}{#1}%
   % }%
 }
+
+% Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=download,fieldtarget=usera]
+    }
+  }
+}
+\DeclareFieldFormat{usera}{\link{#1}}
+
+% Print keywords and download (usera) at end of entry
 \renewbibmacro*{addendum+pubstate}{%
   \printfield{addendum}%
   \newunit\newblock
@@ -117,17 +133,14 @@
   \printfield{usera}
 }
 
-% Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldsource=download,fieldtarget=usera]
-    }
-  }
-}
-% Print abstract field with bibliography entry
+% Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
+\NewDocumentEnvironment{htmlabstract}{}%
+  {\par\begin{small}
+    \textbf{\textcolor{myblue}{Abstract:}}}%
+  {\end{small}}
+
+% Print abstract field after bibliography entry
 \DeclareFieldFormat{abstract}{#1}
-\DeclareFieldFormat{usera}{\link{#1}}
 \renewbibmacro*{finentry}{%
    \iffieldundef{abstract}%
       {}%
@@ -135,21 +148,13 @@
    \finentry
    }
 
-% Modify <doi> and <url> fields in biblatex
-\DeclareFieldFormat{url}{\href{#1}{Link (URL)}.}
-\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{Link (DOI)}.}
-
-% Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
-\NewDocumentEnvironment{htmlabstract}{}%
-  {\par\begin{small}
-    \textbf{\textcolor{myblue}{Abstract:}}}%
-  {\end{small}}
-
 % Limit TOC to sections and above
 \ifdefined\HCode
   \setcounter{tocdepth}{1}
 \fi
 
+% No title for tableofcontents or bibliography sections
+\renewcommand{\contentsname}{}
 \defbibheading{bibliography}[]{}
 
 \begin{document}
@@ -157,8 +162,6 @@
 % Compile this file to .pdf. To generate the .html file, run:
 %     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
 
-% No title for tableofcontents
-\renewcommand{\contentsname}{}
 \tableofcontents
 
 \ifdefined\HCode
@@ -181,7 +184,7 @@ I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index
 
 \noindent\textbf{Areas of Competence:} Philosophy of Race and Gender
 
-\subsection{Academic Positions}
+\subsection*{Academic Positions}
 
 \begin{itemize}
   \item 2013--: Elijah E. Kresge Professor of Philosophy, Franklin \& Marshall College
@@ -190,7 +193,7 @@ I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index
   \item 1995--2001: Assistant Professor, Franklin \& Marshall College
 \end{itemize}
 
-\subsection{Education}
+\subsection*{Education}
 
 \begin{itemize}
   \item PhD in Philosophy, University of Pittsburgh, 1994
