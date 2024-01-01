@@ -84,7 +84,7 @@ function! s:tohtml() abort  " {{{
     update
 
     " Open .html file
-    execute "!open" fnameescape(expand("%:r")) . ".html"
+    execute "!open -g" fnameescape(expand("%:r")) . ".html"
 
     return
 
