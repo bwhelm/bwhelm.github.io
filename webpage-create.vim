@@ -26,19 +26,6 @@ function! s:tohtml() abort  " {{{
         execute "silent substitute/secNav/secNav secButton" . l:id
     endwhile
 
-    " Delete my name in bibliography entries FIXME: What to do with Enzo?
-    silent %substitute/Bennett\_sW\.\_sHelm,//e
-    silent %substitute/Helm,\_sBennett\_sW\.\_s*//e
-    " silent %substitute/Helm,\_sBennett\_sW\.\_s(\([^)]*\))/\1/e
-    silent %substitute/>— />/e
-
-    " Change description lists to ordered lists
-    silent %substitute/<dl/<ul/e
-    silent %substitute/<\/dl/<\/ul/e
-    silent %substitute/<\/\?dt[^>]*>//e
-    silent %substitute/<dd/<li/e
-    silent %substitute/<\/dd/<\/li/e
-
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
@@ -55,14 +42,17 @@ function! s:tohtml() abort  " {{{
         endif
         " let l:keywords = search('<span class="categories">\zs\_.\{-}\ze<\/span>')
         let l:keywordsList = split(l:keywords, ',')
-        call map(l:keywordsList, 'trim(v:val)')
+        call map(l:keywordsList, 'trim(v:val)')  " Remove spaces around items
+        call map(l:keywordsList, 'substitute(v:val, "\\s\\+", " ", "g")')  " Remove spaces within items
         call extend(l:categoryList, l:keywordsList)
         call map(l:keywordsList, 'substitute(v:val, "[^A-z]", "", "g")')
-        " Put <div> around the list item
-        call search('<li', 'b')
+        " Put <div> around the list item -- above `<dt...>` and below `</dd>`
+        call search('<dt', 'b')
+        normal! i
         call append(line('.') - 1, '<div class="show filterBib ' . join(l:keywordsList) . '">')
-        call search('</li>', '')
-        call append(line('.'), '</div>')
+        call search('<\/dd>', 'e')
+        normal! a
+        call append(line('.') - 1, '</div>')
     endwhile
     call map(l:categoryList, 'trim(v:val)')
     call sort(l:categoryList)
@@ -77,9 +67,9 @@ function! s:tohtml() abort  " {{{
     endfor
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
-    call search('<ul class="thebibliography">')
+    call search('<dl class="thebibliography">')
     " FIXME: Uncomment the line below for CATEGORIES
-    " call append(line('.') - 1, l:bibNavBarList)
+    call append(line('.') - 1, l:bibNavBarList)
 
     update
 

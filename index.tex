@@ -15,17 +15,27 @@
 
 % BibLaTeX
 \usepackage[%
-  bibstyle=authortitle,%
-  eprint=true,%
+  bibstyle=publist,%
+  hlyear=false,%
+  % marginyear=true,%
+  plnumbering=local-descending,%
+  plauthorhandling=omit,%
+  linktitles=all,%
+  % authordate,%
+  eprint=false,%
+  doi=false,%
+  url=false,%
   isbn=false,%
-  sorting=ydnt,% Sort descending by year, then by name and title
   backend=biber%
 ]{biblatex}
+% \addbibresource{bibdatabase.bib}
 \addbibresource{bibdatabase-helm.bib}
 
-% \AtEveryBibitem{\clearname{author}}
-% \renewbibmacro*{byauthor}{}
-% \AtEveryCitekey{\clearname{author}}
+% Customize bibliography printing
+\AtEveryBibitem{\clearfield{month}}               % Don't use month field
+\AtEveryBibitem{\clearfield{day}}                 % Don't use day field
+\AtEveryBibitem{\clearfield{extradate}}           % Remove extra 'a', 'b', etc. on year
+\DeclareFieldFormat{labelnumberwidth}{#1\adddot}  % Set numbering style
 
 % Page geometry
 \usepackage[% iPad
@@ -75,10 +85,6 @@
   }
 }
 
-% Modify <doi> and <url> fields in biblatex
-\DeclareFieldFormat{url}{\href{#1}{Link (URL)}.}
-\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{Link (DOI)}.}
-
 % Print keywords at end of entry, but before abstract and download link.
 \ProvideDocumentCommand\categories{m}{#1}
 \NewBibliographyString{keyword,keywords}
@@ -98,19 +104,26 @@
   #1%
 }
 % FIXME: Uncomment the lines below for CATEGORIES
+\ProvideDocumentCommand\categoryStyle{m}{%
+  \textcolor{teal}{#1}
+}
+% FIXME: Uncomment the lines below for CATEGORIES
 \DeclareFieldFormat{keywords}{%
-  % \setcounter{cbx@keyword@total}{0}%
-  % \setcounter{cbx@keyword@count}{0}%
-  % \forcsvlist{\keywordscount}{#1}%
-  % \emph{%
-  %   \ifnumgreater{\value{cbx@keyword@total}}{1}
-  %     {\bibstring{keywords}}
-  %     {\bibstring{keyword}}%
-  %   \addcolon}
-  % \space
-  % \categories{%
-  %   \forcsvlist{\keywordsprint}{#1}%
-  % }%
+  \setcounter{cbx@keyword@total}{0}%
+  \setcounter{cbx@keyword@count}{0}%
+  \categoryStyle{%
+    \forcsvlist{\keywordscount}{#1}%
+    \emph{
+      \ifnumgreater{\value{cbx@keyword@total}}{1}
+        {\bibstring{keywords}}
+        {\bibstring{keyword}}%
+      \addcolon
+    }
+    \space
+    \categories{%
+      \forcsvlist{\keywordsprint}{#1}%
+    }%
+  }%
 }
 
 % Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
@@ -156,7 +169,6 @@
 
 % No title for tableofcontents or bibliography sections
 \renewcommand{\contentsname}{}
-\defbibheading{bibliography}[]{}
 
 \begin{document}
 
@@ -249,7 +261,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % Cite just things I've written, so that I can filter out only the books
 \nocite{Helm2017Communities-Respect-Persons,Helm2010Love-Friendship-Self,Helm2001Emotional-Reason-Deliberation}
 
-\printbibliography
+\printbibliography[heading=none]
 
 \section{Articles}
 
@@ -261,10 +273,10 @@ Ultimately my aim is to provide an account of moral values as the communal value
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
 % FIXME: Uncomment line below for CATEGORIES
-% Choose a category below.
+Choose a category below.
 Download links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
 
-\printbibliography[filter=myarticle]
+\printbibliography[filter=myarticle, heading=none]
 
 % \ifdefined\HCode
 %   \subsubsection*{}% Empty section to break collapsed paragraph category
@@ -274,7 +286,7 @@ Download links to published articles are mostly to late drafts; see the relevant
 
 % \defbibfilter{mytalk}{type=misc}
 
-% \printbibliography[filter=mytalk]
+% \printbibliography[filter=mytalk, heading=none]
 
 \section{Awards}
 
