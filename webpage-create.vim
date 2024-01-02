@@ -33,8 +33,8 @@ function! s:tohtml() abort  " {{{
     silent %substitute/>— />/e
 
     " Change description lists to ordered lists
-    silent %substitute/<dl/<ol reversed/e
-    silent %substitute/<\/dl/<\/ol/e
+    silent %substitute/<dl/<ul/e
+    silent %substitute/<\/dl/<\/ul/e
     silent %substitute/<\/\?dt[^>]*>//e
     silent %substitute/<dd/<li/e
     silent %substitute/<\/dd/<\/li/e
@@ -77,7 +77,7 @@ function! s:tohtml() abort  " {{{
     endfor
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
-    call search('<ol reversed class="thebibliography">')
+    call search('<ul class="thebibliography">')
     " FIXME: Uncomment the line below for CATEGORIES
     " call append(line('.') - 1, l:bibNavBarList)
 
