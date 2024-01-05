@@ -8,7 +8,7 @@ function! s:tohtml() abort  " {{{
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
     execute "edit" l:htmlfile
-    silent %substitute/\s\+/ /ge
+    silent %substitute/\S\zs\s\+/ /ge
 
     " Fix TOC
     %substitute/<button/\r<button/ge

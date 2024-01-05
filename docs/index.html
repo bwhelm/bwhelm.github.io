@@ -6,66 +6,66 @@
 <script type="text/javascript"> 
 // Script to filter sections of webpage
 function openSection(secName) {
- var i;
- var secItems = document.getElementsByClassName("sectionDiv");
- for (i = 0; i < secItems.length; i++) {
- secItems[i].style.display = "none";
- }
- document.getElementById(secName).style.display = "block";
- var secButtons = document.getElementsByClassName("secNav");
- for (var i = 0; i < secButtons.length; i++) {
- w3RemoveClass(secButtons[i], "w3-light-grey");
- if (secButtons[i].className.indexOf("secButton" + secName) > -1) {
- w3AddClass(secButtons[i], "w3-light-grey");
- }
- }
+    var i;
+    var secItems = document.getElementsByClassName("sectionDiv");
+    for (i = 0; i < secItems.length; i++) {
+         secItems[i].style.display = "none";
+    }
+    document.getElementById(secName).style.display = "block";
+    var secButtons = document.getElementsByClassName("secNav");
+    for (var i = 0; i < secButtons.length; i++) {
+         w3RemoveClass(secButtons[i], "w3-light-grey");
+         if (secButtons[i].className.indexOf("secButton" + secName) > -1) {
+             w3AddClass(secButtons[i], "w3-light-grey");
+         }
+    }
 }
 
 // Script to filter items by category in bibliography
  function filterBibliography(bibName) {
- var bibItems, bibButtons, i;
- // Add "w3-blue" class to button that was clicked, removing it from others
- bibButtons = document.getElementsByClassName("bibNav");
- for (i = 0; i < bibButtons.length; i++) {
- w3RemoveClass(bibButtons[i], "w3-blue");
- if (bibButtons[i].className.indexOf(bibName) > -1) {
- w3AddClass(bibButtons[i], "w3-blue");
- }
- }
- bibItems = document.getElementsByClassName("filterBib");
- if (bibName == "showall") bibName = "";
- // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
- for (i = 0; i < bibItems.length; i++) {
- w3RemoveClass(bibItems[i], "show");
- if (bibItems[i].className.indexOf(bibName) > -1) {
- w3AddClass(bibItems[i], "show");
- }
- }
+     var bibItems, bibButtons, i;
+     // Add "w3-blue" class to button that was clicked, removing it from others
+     bibButtons = document.getElementsByClassName("bibNav");
+     for (i = 0; i < bibButtons.length; i++) {
+          w3RemoveClass(bibButtons[i], "w3-blue");
+          if (bibButtons[i].className.indexOf(bibName) > -1) {
+              w3AddClass(bibButtons[i], "w3-blue");
+          }
+     }
+     bibItems = document.getElementsByClassName("filterBib");
+     if (bibName == "showall") bibName = "";
+     // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+     for (i = 0; i < bibItems.length; i++) {
+          w3RemoveClass(bibItems[i], "show");
+          if (bibItems[i].className.indexOf(bibName) > -1) {
+              w3AddClass(bibItems[i], "show");
+          }
+     }
  }
 
  // Show filtered elements
  function w3AddClass(element, name) {
- var i, arr1, arr2;
- arr1 = element.className.split(" ");
- arr2 = name.split(" ");
- for (i = 0; i < arr2.length; i++) {
- if (arr1.indexOf(arr2[i]) == -1) {
- element.className += " " + arr2[i];
- }
- }
+     var i, arr1, arr2;
+     arr1 = element.className.split(" ");
+     arr2 = name.split(" ");
+     for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+              element.className += " " + arr2[i];
+          }
+     }
  }
 
  // Hide elements that are not selected
  function w3RemoveClass(element, name) {
- var i, arr1, arr2;
- arr1 = element.className.split(" ");
- arr2 = name.split(" ");
- for (i = 0; i < arr2.length; i++) {
- while (arr1.indexOf(arr2[i]) > -1) {
- arr1.splice(arr1.indexOf(arr2[i]), 1);
- }
- }
- element.className = arr1.join(" ");
+     var i, arr1, arr2;
+     arr1 = element.className.split(" ");
+     arr2 = name.split(" ");
+     for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+              arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+     }
+     element.className = arr1.join(" ");
  }
 
  
@@ -78,8 +78,8 @@ function openSection(secName) {
 <meta name="src" content="index.tex"> 
 </head><body 
 > 
- 
- <h3 class="likesectionHead"><a 
+                                                                          
+   <h3 class="likesectionHead"><a 
  id="x1-1000"></a></h3>
 <div style="position:fixed; overflow:hidden; top:0; left:0; width:100vw;"> <div class="w3-container w3-blue"> <h1 style="text-align:center;">
 <button onClick="openSection('startDiv')" style="all:unset; cursor:pointer;">Bennett W. Helm</a></h1> </div> <div id="sectionContainer" class="w3-mobile w3-black" style="text-align:center;">
@@ -90,20 +90,20 @@ function openSection(secName) {
 <button class="secNav secButton5 w3-mobile-item w3-button w3-padding-small" onclick="openSection('5')">Awards</button>
 <button class="secNav secButton6 w3-mobile-item w3-button w3-padding-small" onclick="openSection('6')">Students</button>
 <button class="secNav secButton7 w3-mobile-item w3-button w3-padding-small" onclick="openSection('7')">Courses</button>
- </div>
-<!--l. 178--><p class="noindent" ></div>
-<!--l. 180--><p class="indent" > <div class="w3-container" style="margin-top:15ex;">
-<!--l. 182--><p class="indent" > <div id="startDiv" class="sectionDiv" style="display: block;">
+   </div>
+<!--l. 182--><p class="noindent" ></div>
+<!--l. 184--><p class="indent" > <div class="w3-container" style="margin-top:15ex;">
+<!--l. 186--><p class="indent" > <div id="startDiv" class="sectionDiv" style="display: block;">
 <div class="center" 
 >
-<!--l. 183--><p class="noindent" >
-<!--l. 184--><p class="noindent" >Please select an option in the navigation bar above.
-<!--l. 186--><p class="noindent" ><img src="Helm.jpg" alt="Bennett Helm" style="width:300px;"></div>
-<!--l. 188--><p class="noindent" ></div>
-<!--l. 191--><p class="noindent" >
+<!--l. 187--><p class="noindent" >
+<!--l. 188--><p class="noindent" >Please select an option in the navigation bar above.
+<!--l. 190--><p class="noindent" ><img src="Helm.jpg" alt="Bennett Helm" style="width:300px;"></div>
+<!--l. 192--><p class="noindent" ></div>
+<!--l. 195--><p class="noindent" >
 <div id="1" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 191--><p class="indent" > <a 
+<!--l. 195--><p class="indent" > <a 
  id="x1-20001"></a>About Me</h3> <a 
  id="x1-2001"></a> am a professor of <a 
 href="https://www.fandm.edu/fields-of-study/philosophy/index.html" >philosophy</a> at <a 
@@ -116,50 +116,51 @@ distinctive sort of free and responsible social agent. Central to my approach is
 concern with the “evaluative attitudes”—caring, valuing, loving, respecting,
 etc.—and the holistic rational patterns of emotions in terms of which they are
 intelligible.
-<!--l. 196--><p class="noindent" ><span 
+<!--l. 200--><p class="noindent" ><span 
 class="pplb9d-x-x-109">Areas of Specialization: </span>Moral Psychology, Social Ontology, Philosophy of Mind,
 Emotions
-<!--l. 198--><p class="noindent" ><span 
+<!--l. 202--><p class="noindent" ><span 
 class="pplb9d-x-x-109">Areas of Competence: </span>Philosophy of Race and Gender
-<!--l. 200--><p class="noindent" >
- <h4 class="likesubsectionHead"><a 
+<!--l. 204--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
  id="x1-3000"></a>Academic Positions</h4>
- <ul class="itemize1">
- <li class="itemize">
- <!--l. 203--><p class="noindent" >2013–: Elijah E. Kresge Professor of Philosophy, Franklin &#x0026; Marshall
- College
- </li>
- <li class="itemize">
- <!--l. 204--><p class="noindent" >2007–13: Professor, Franklin &#x0026; Marshall College
- 
- 
- </li>
- <li class="itemize">
- <!--l. 205--><p class="noindent" >2001–07: Associate Professor, Franklin &#x0026; Marshall College
- </li>
- <li class="itemize">
- <!--l. 206--><p class="noindent" >1995–2001: Assistant Professor, Franklin &#x0026; Marshall College</li></ul>
-<!--l. 209--><p class="noindent" >
- <h4 class="likesubsectionHead"><a 
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 207--><p class="noindent" >2013–: Elijah E. Kresge Professor of Philosophy, Franklin &#x0026; Marshall
+     College
+     </li>
+     <li class="itemize">
+     <!--l. 208--><p class="noindent" >2007–13: Professor, Franklin &#x0026; Marshall College
+                                                                          
+                                                                          
+     </li>
+     <li class="itemize">
+     <!--l. 209--><p class="noindent" >2001–07: Associate Professor, Franklin &#x0026; Marshall College
+     </li>
+     <li class="itemize">
+     <!--l. 210--><p class="noindent" >1995–2001: Assistant Professor, Franklin &#x0026; Marshall College</li></ul>
+<!--l. 213--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
  id="x1-4000"></a>Education</h4>
- <ul class="itemize1">
- <li class="itemize">
- <!--l. 212--><p class="noindent" >PhD in Philosophy, University of Pittsburgh, 1994
- </li>
- <li class="itemize">
- <!--l. 213--><p class="noindent" >MA in Philosophy, University of Pittsburgh, 1990
- </li>
- <li class="itemize">
- <!--l. 214--><p class="noindent" >BA in Philosophy, Carleton College, 1988</li></ul>
-<!--l. 217--><p class="noindent" ><a 
-href="https://drive.google.com/file/d/1-8fjo2F9EzgfDyYo_WSTYhaU-xrDNU8P/view" >Curriculum Vitae</a>.
-<!--l. 219--><p class="noindent" >
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 216--><p class="noindent" >PhD in Philosophy, University of Pittsburgh, 1994
+     </li>
+     <li class="itemize">
+     <!--l. 217--><p class="noindent" >MA in Philosophy, University of Pittsburgh, 1990
+     </li>
+     <li class="itemize">
+     <!--l. 218--><p class="noindent" >BA in Philosophy, Carleton College, 1988</li></ul>
+<!--l. 221--><p class="noindent" ><a 
+href="https://drive.google.com/file/d/1-8fjo2F9EzgfDyYo_WSTYhaU-xrDNU8P/view" ><span 
+class="pplb9d-x-x-109">Curriculum Vitae</span></a>.
+<!--l. 223--><p class="noindent" >
 </div>
 <div id="2" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 219--><p class="indent" > <a 
+<!--l. 223--><p class="indent" > <a 
  id="x1-50002"></a>Research</h3>
-<!--l. 221--><p class="indent" > The central aim of my research has been to understand more deeply the kind of
+<!--l. 225--><p class="indent" > The central aim of my research has been to understand more deeply the kind of
 rationality characteristic of us persons, and I have argued both (a) that such rationality,
 rather than being opposed to the emotions, instead is an essentially emotional
 rationality (what I call a “rationality of import”) and (b) that such rationality is not
@@ -171,15 +172,15 @@ practical and theoretical: our being the sort of epistemic agents we are rests o
 practical capacities collectively to value (and to hold each other responsible to) public,
 objective truth, and our being the sort of moral agents we are depends on our
 epistemic abilities to contest and so ultimately to discover what has objective
- 
- 
+                                                                          
+                                                                          
 value. Moreover, the “metaphysical” capacities we have for autonomous,
 rational, and responsible agency are capacities we ourselves construct via the
 interpersonal commitments to import we collectively undertake. The result is that
 through our practical agency, we jointly construct ourselves as persons in
 a way that is simultaneously answerable to our experience of personhood
 itself.
-<!--l. 223--><p class="indent" > I reach this conclusion over the course of three books in which I find moral
+<!--l. 227--><p class="indent" > I reach this conclusion over the course of three books in which I find moral
 psychology and value theory deeply intertwined with philosophy of mind and
 emotions and with social ontology. My work is highly systematic, with these books
 taking me from a consideration of (1) intrapersonal values and identity, to (2)
@@ -190,10 +191,10 @@ research to the objectivity of social identities.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-6000"></a><span id="textcolor1"><span 
 class="pplri9d-x-x-109">Emotional Reason </span>(CUP, 2001).</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 227--><p class="indent" > One characteristic of us persons is that we value things as a part of the kind of life
+<!--l. 231--><p class="indent" > One characteristic of us persons is that we value things as a part of the kind of life
 we each find worth living, thereby partially constituting our identities as the particular
 persons we are, such that part of our autonomy consists in our ability to determine
 what our values shall be. On the other hand, we persons can also rationally
@@ -206,7 +207,7 @@ between emotions and value (or of “<span
 class="pplri9d-x-x-109">import</span>” more generally) that enables me to
 reject the rational and ontological priority implicit in this formulation of the
 tension.
-<!--l. 229--><p class="indent" > In developing this account, I focus not on particular kinds of emotions but rather
+<!--l. 233--><p class="indent" > In developing this account, I focus not on particular kinds of emotions but rather
 on the sorts of <span 
 class="pplri9d-x-x-109">rational patterns </span>emotions can form, arguing that such patterns
 constitute what it is for things to have import to one. The kind of rationality involved
@@ -222,8 +223,8 @@ dissolving the above tension, and in relation to motivation, thereby making
 intelligible how we can have rational control over what we do and yet be
 susceptible to even strong forms of weakness of will. Indeed, I argue that this is
 essential to presenting an account of the mind adequate to a serious moral
- 
- 
+                                                                          
+                                                                          
 psychology.
 </div>
 </details>
@@ -232,10 +233,10 @@ psychology.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-7000"></a><span id="textcolor2"><span 
 class="pplri9d-x-x-109">Love, Friendship, and the Self </span>(OUP, 2010).</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 240--><p class="indent" > We persons are social animals, partly insofar as we are able to form intimate
+<!--l. 244--><p class="indent" > We persons are social animals, partly insofar as we are able to form intimate
 relationships with others and thereby can come to share our lives, our identities, and
 our capacity for autonomy with others in relationships of love and friendship. In
 this book, I argue against various forms of individualism and egocentrism I
@@ -262,10 +263,10 @@ lives.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-8000"></a><span id="textcolor3"><span 
 class="pplri9d-x-x-109">Communities of Respect </span>(OUP, 2017).</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 244--><p class="indent" > To make sense of persons, we must consider as well the <span 
+<!--l. 248--><p class="indent" > To make sense of persons, we must consider as well the <span 
 class="pplri9d-x-x-109">non-intimate </span>relationships
 we have with others who are in community with us. In this book I join other
 Strawsonians in thinking that the reactive attitudes and the ways we <span 
@@ -276,8 +277,8 @@ accounts, I reject the explanatory priority of the reactive attitudes over our b
 responsible agents: our reactive attitudes are appropriate in part because they are
 directed at responsible agents, while simultaneously someone is a responsible
 agent because they are an appropriate target of the reactive attitudes. I make
- 
- 
+                                                                          
+                                                                          
 sense of such circularity as non-vicious by appealing to interpersonal, rational
 patterns of reactive attitudes, which I argue constitute the community itself,
 communal norms and values as <span 
@@ -304,13 +305,13 @@ class="pplri9d-x-x-109">identity is social</span>: a community
 of respect can shape and define certain social identities by prescribing or
 proscribing communal values as elements of the kind of life worth its members
 living.
-<!--l. 247--><p class="noindent" >
+<!--l. 251--><p class="noindent" >
 </div>
 </details>
 </div>
- <h5 class="likesubsubsectionHead"><a 
+   <h5 class="likesubsubsectionHead"><a 
  id="x1-9000"></a></h5>
-<!--l. 250--><p class="noindent" ><span 
+<!--l. 254--><p class="noindent" ><span 
 class="pplb9d-x-x-109">Recent Work. </span>In the last few years I have begun to apply these ideas to the topic of
 social construction, especially of social roles and identities. Social roles and identities
 presuppose an at least rough-and-ready understanding of them in virtue of
@@ -331,111 +332,111 @@ identities can be objective in that our activities of construction can come to b
 answerable to the very roles and identities they thereby construct in a way that
 opens up the possibility of our getting these roles and identities themselves
 wrong.
- 
- 
-<!--l. 255--><p class="indent" > Ultimately my aim is to provide an account of moral values as the communal
+                                                                          
+                                                                          
+<!--l. 259--><p class="indent" > Ultimately my aim is to provide an account of moral values as the communal
 values of the community of respect of all persons, a community in which
 these values and our personhood itself are both socially constructed and
 contestable.
-<!--l. 259--><p class="noindent" >
+<!--l. 263--><p class="noindent" >
 </div>
 <div id="3" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 259--><p class="indent" > <a 
+<!--l. 263--><p class="indent" > <a 
  id="x1-100003"></a>Books</h3>
-<!--l. 264--><p class="indent" >
- <dl class="thebibliography"><dt id="X0-Helm2017Communities-Respect-Persons" class="thebibliography">
+<!--l. 268--><p class="indent" >
+     <dl class="thebibliography"><dt id="X0-Helm2017Communities-Respect-Persons" class="thebibliography">
  3. </dt><dd 
 id="bib-1" class="thebibliography">
- <!--l. 264--><p class="noindent" ><a 
+     <!--l. 268--><p class="noindent" ><a 
  id="cite.0@Helm2017Communities-Respect-Persons"></a>2017. <a 
 href="https://doi.org/10.1093/oso/9780198801863.001.0001" ><span 
 class="pplri9d-x-x-109">Communities of Respect: Persons, Dignity, and the Reactive Attitudes</span></a>.
- Oxford: Oxford University Press. <span id="textcolor4"> <span 
+     Oxford: Oxford University Press. <span id="textcolor4"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">agency, moral psychology,
- personhood, rationality, social ontology, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhR2ZtZ2pqQmZHZ2c" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Communities of
- respect are communities of people sharing common practices or a (partial)
- way of life; they include families, clubs, religious groups, and political
- parties. This book develops a detailed account of such communities in
- terms of the rational structure of their members’ reactive attitudes, arguing
- that they are fundamental in three interrelated ways to understanding what
- it is to be a person. First, it is only by being a member of a community of
- respect that one can be a responsible agent having dignity; such an agent
- therefore has certain rights as well as the authority to demand that fellow
- members recognize her dignity and follow the norms of the community,
- norms compliance with which they likewise have the authority to demand
- from her. Second, by prescribing or proscribing both actions and values,
- communities of respect can shape the identities of its members in ways
- that others have the authority to enforce, thereby revealing an important
- interpersonal dimension of the identities of persons. Finally, all of this
- is grounded in a distinctively interpersonal form of practical rationality
- in virtue of which we jointly have reasons to recognize the dignity and
- authority of fellow members and so to comply with their authoritative
- demands, as well as to respect (and so comply with) the norms of the
- community. Hence we persons are essentially social creatures.</span></details>
- </dd><dt id="X0-Helm2010Love-Friendship-Self" class="thebibliography">
+     personhood, rationality, social ontology, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhR2ZtZ2pqQmZHZ2c" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Communities of
+     respect are communities of people sharing common practices or a (partial)
+     way of life; they include families, clubs, religious groups, and political
+     parties. This book develops a detailed account of such communities in
+     terms of the rational structure of their members’ reactive attitudes, arguing
+     that they are fundamental in three interrelated ways to understanding what
+     it is to be a person. First, it is only by being a member of a community of
+     respect that one can be a responsible agent having dignity; such an agent
+     therefore has certain rights as well as the authority to demand that fellow
+     members recognize her dignity and follow the norms of the community,
+     norms compliance with which they likewise have the authority to demand
+     from her. Second, by prescribing or proscribing both actions and values,
+     communities of respect can shape the identities of its members in ways
+     that others have the authority to enforce, thereby revealing an important
+     interpersonal dimension of the identities of persons. Finally, all of this
+     is grounded in a distinctively interpersonal form of practical rationality
+     in virtue of which we jointly have reasons to recognize the dignity and
+     authority of fellow members and so to comply with their authoritative
+     demands, as well as to respect (and so comply with) the norms of the
+     community. Hence we persons are essentially social creatures.</span></details>
+     </dd><dt id="X0-Helm2010Love-Friendship-Self" class="thebibliography">
  2. </dt><dd 
 id="bib-2" class="thebibliography">
- <!--l. 264--><p class="noindent" ><a 
+     <!--l. 268--><p class="noindent" ><a 
  id="cite.0@Helm2010Love-Friendship-Self"></a>2010. <a 
 href="https://doi.org/10.1093/acprof:oso/9780199567898.001.0001" ><span 
 class="pplri9d-x-x-109">Love, Friendship, and the Self: Intimacy, Identification, and the Social</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Nature of Persons</span></a>. Oxford: Oxford University Press. <span id="textcolor5"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">love,
- friendship, personhood, rationality, moral psychology, mind/emotion</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhOTEteU5GeEthckU&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p>
- Recent Western thought has consistently emphasized the individualistic
- strand in our understanding of persons at the expense of the social
- strand. Thus, it is generally thought that persons are self-determining
- and autonomous, where these are understood to be capacities we exercise
- 
- 
- most fully on our own, apart from others, whose influence on us tends to
- undermine that autonomy. <span 
+     friendship, personhood, rationality, moral psychology, mind/emotion</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhOTEteU5GeEthckU&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p>
+     Recent Western thought has consistently emphasized the individualistic
+     strand in our understanding of persons at the expense of the social
+     strand. Thus, it is generally thought that persons are self-determining
+     and autonomous, where these are understood to be capacities we exercise
+                                                                          
+                                                                          
+     most fully on our own, apart from others, whose influence on us tends to
+     undermine that autonomy. <span 
 class="pplri9d-x-x-109">Love, Friendship, and the Self </span>argues that we must
- reject a strongly individualistic conception of persons if we are to make
- sense of significant interpersonal relationships and the importance they can
- have in our lives. It presents a new account of love as intimate identification
- and of friendship as a kind of plural agency, in each case grounding and
- analyzing these notions in terms of interpersonal emotions. At the center of
- this account is an analysis of how our emotional connectedness with others
- is essential to our very capacities for autonomy and self-determination: we
- are rational and autonomous only because of and through our inherently
- social nature. By focusing on the role that relationships of love and
- friendship have both in the initial formation of our selves and in the
- on-going development and maturation of adult persons, Helm significantly
- alters our understanding of persons and the kind of psychology we persons
- have as moral and social beings.</span></details>
- </dd><dt id="X0-Helm2001Emotional-Reason-Deliberation" class="thebibliography">
+     reject a strongly individualistic conception of persons if we are to make
+     sense of significant interpersonal relationships and the importance they can
+     have in our lives. It presents a new account of love as intimate identification
+     and of friendship as a kind of plural agency, in each case grounding and
+     analyzing these notions in terms of interpersonal emotions. At the center of
+     this account is an analysis of how our emotional connectedness with others
+     is essential to our very capacities for autonomy and self-determination: we
+     are rational and autonomous only because of and through our inherently
+     social nature. By focusing on the role that relationships of love and
+     friendship have both in the initial formation of our selves and in the
+     on-going development and maturation of adult persons, Helm significantly
+     alters our understanding of persons and the kind of psychology we persons
+     have as moral and social beings.</span></details>
+     </dd><dt id="X0-Helm2001Emotional-Reason-Deliberation" class="thebibliography">
  1. </dt><dd 
 id="bib-3" class="thebibliography">
- <!--l. 264--><p class="noindent" ><a 
+     <!--l. 268--><p class="noindent" ><a 
  id="cite.0@Helm2001Emotional-Reason-Deliberation"></a>2001. <a 
 href="https://doi.org/10.1017/cbo9780511520044" ><span 
 class="pplri9d-x-x-109">Emotional Reason: Deliberation, Motivation, and the Nature of Value</span></a>.
- Cambridge: Cambridge University Press. <span id="textcolor6"> <span 
+     Cambridge: Cambridge University Press. <span id="textcolor6"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">personhood,
- mind/emotion, value theory, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhSUZFS1YxTDRmUVE&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How can we motivate ourselves to
- do what we think we ought? How can we deliberate about personal values
- and priorities? Bennett Helm argues that standard philosophical answers
- to these questions presuppose a sharp distinction between cognition
- and conation that undermines an adequate understanding of values and
- their connection to motivation and deliberation. Rejecting this distinction,
- Helm argues that emotions are fundamental to any account of value and
- motivation, and he develops a detailed alternative theory both of emotions,
- desires and evaluative judgements and of their rational interconnections.
- The result is an innovative theory of practical rationality and of how we
- can control not only what we do but also what we value and who we are
- as persons.</span></details></dd></dl>
-<!--l. 266--><p class="noindent" >
+     mind/emotion, value theory, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhSUZFS1YxTDRmUVE&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How can we motivate ourselves to
+     do what we think we ought? How can we deliberate about personal values
+     and priorities? Bennett Helm argues that standard philosophical answers
+     to these questions presuppose a sharp distinction between cognition
+     and conation that undermines an adequate understanding of values and
+     their connection to motivation and deliberation. Rejecting this distinction,
+     Helm argues that emotions are fundamental to any account of value and
+     motivation, and he develops a detailed alternative theory both of emotions,
+     desires and evaluative judgements and of their rational interconnections.
+     The result is an innovative theory of practical rationality and of how we
+     can control not only what we do but also what we value and who we are
+     as persons.</span></details></dd></dl>
+<!--l. 270--><p class="noindent" >
 </div>
 <div id="4" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 266--><p class="indent" > <a 
+<!--l. 270--><p class="indent" > <a 
  id="x1-110004"></a>Articles</h3>
-<!--l. 276--><p class="indent" > Choose a category below. Download links to published articles are mostly to late
+<!--l. 280--><p class="indent" > Choose a category below. Download links to published articles are mostly to late
 drafts; see the relevant journals or volumes for the definitive versions.
-<!--l. 279--><p class="indent" >
+<!--l. 283--><p class="indent" >
 <div id="bibFilterContainer">
   <button class="w3-blue showall bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small" onclick="filterBibliography('showall')">Show all</button>
       <span style="font-size:1.5em;">&hairsp;</span>
@@ -466,435 +467,436 @@ drafts; see the relevant journals or volumes for the definitive versions.
   <button class="valuetheory bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small" onclick="filterBibliography('valuetheory')"> value theory</button>
       <span style="font-size:1.5em;">&hairsp;</span>
 </div>
- <dl class="thebibliography">
+     <dl class="thebibliography">
 <div class="show filterBib mindemotion">
-     <dt id="X1-Helm2022Cognitivist-Theories-Emotions" class="thebibliography">
+         <dt id="X1-Helm2022Cognitivist-Theories-Emotions" class="thebibliography">
 37. </dt><dd 
 id="bib-4" class="thebibliography">
- 
- 
- <!--l. 279--><p class="noindent" ><a 
- id="cite.1@Helm2022Cognitivist-Theories-Emotions"></a>Forthcoming. “Cognitivist Theories of Emotions”. In: <span 
+                                                                          
+                                                                          
+     <!--l. 283--><p class="noindent" ><a 
+ id="cite.1@Helm2022Cognitivist-Theories-Emotions"></a>in press. “Cognitivist Theories of Emotions”. In: <span 
 class="pplri9d-x-x-109">Handbook of Emotion</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Theory</span>. Ed. by Andrea Scarantino. Routledge. <span id="textcolor7"> <span 
 class="pplri9d-x-x-109">Category:</span> <span class="categories">mind/emotion</span></span>.
- <a href="https://drive.google.com/open?id=16tQyJ7bvdMH9qfGeZoSvm7mj2_vm2Flk" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Cognitivist theories of emotions understand emotions to be caused or
- constituted by “cognitions”: information-carrying mental states that are
- to be distinguished not only from non-intentional “feelings” but also
- from desire-like states. This chapter identifies some criteria in terms of
- which any theory of the emotions can be assessed and reviews the
- central philosophical and psychological versions of cognitivism in light
- of these criteria. Finally, the chapter raises three interrelated problems
- for specifically cognitivist theories of emotions (the problem of circularity,
- the problem of recalcitrance, and the problem of phenomenal unity), and
- suggests that solving them requires blurring or rejecting the distinction
- between cognitions and other types of mental states, a distinction at the
- foundation of cognitivist theories of emotions.</span></details>
- </dd>
+     <a href="https://drive.google.com/file/d/1Hdt6Z153ntIdaWRW5N1Va4sDhsrGkFT8" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Cognitivist theories of emotions understand emotions to be caused or
+     constituted by “cognitions”: information-carrying mental states that are
+     to be distinguished not only from non-intentional “feelings” but also
+     from desire-like states. This chapter identifies some criteria in terms of
+     which any theory of the emotions can be assessed and reviews the
+     central philosophical and psychological versions of cognitivism in light
+     of these criteria. Finally, the chapter raises three interrelated problems
+     for specifically cognitivist theories of emotions (the problem of circularity,
+     the problem of recalcitrance, and the problem of phenomenal unity), and
+     suggests that solving them requires blurring or rejecting the distinction
+     between cognitions and other types of mental states, a distinction at the
+     foundation of cognitivist theories of emotions.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib socialontology rationality personhood socialidentity">
 <dt id="X1-Helm2023Emotions-Contestation-Social" class="thebibliography">
 36. </dt><dd 
 id="bib-5" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2023Emotions-Contestation-Social"></a>2023. “<a 
 href="https://doi.org/10.4324/9781003310945-6" >Emotions and the Contestation of Social Identities</a>”. In: <span 
 class="pplri9d-x-x-109">Emotional</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Self-Knowledge</span>. Ed. by Alba Montes Sánchez and Alessandro Salice. New
- York: Routledge, pp. 73–102. <span id="textcolor8"> <span 
+     York: Routledge, pp. 73–102. <span id="textcolor8"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">social ontology, rationality,
- personhood, social identity</span></span>. <a href="https://drive.google.com/file/d/1--6BOQLzSc6w3TEBPvVrKuanfquHH8vP/view?usp=sharing" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This chapter aims to understand the role
- of emotions in our knowledge of social identities. A central concern is
- to understand how social identities, while being socially constructed, can
- nonetheless be objective in the sense that we can be right or wrong
- not only about what social identities a particular person has but also
- about what social identities there are and how to understand them. Social
- identities are understood as social roles defined by certain communal
- norms and values within a particular kind of community: a community
- of respect. Such norms and values in turn are constructed by complex
- social structures of emotionally grounded, conceptually informed practices
- within the community. It is argued that emotions are simultaneously
- experiences of and commitments to these norms and values, and hence
- that the objectivity of the social identities they construct is possible when
- participants in the community are able to achieve a reflective equilibrium
- among their emotions, the concepts informing these emotions, and a theory
- that both partially articulates these concepts and purports to justify the
- norms and practices to which they are committed via these emotional
- experiences.</span></details>
- </dd>
+     personhood, social identity</span></span>. <a href="https://drive.google.com/file/d/1--6BOQLzSc6w3TEBPvVrKuanfquHH8vP/view?usp=sharing" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This chapter aims to understand the role
+     of emotions in our knowledge of social identities. A central concern is
+     to understand how social identities, while being socially constructed, can
+     nonetheless be objective in the sense that we can be right or wrong
+     not only about what social identities a particular person has but also
+     about what social identities there are and how to understand them. Social
+     identities are understood as social roles defined by certain communal
+     norms and values within a particular kind of community: a community
+     of respect. Such norms and values in turn are constructed by complex
+     social structures of emotionally grounded, conceptually informed practices
+     within the community. It is argued that emotions are simultaneously
+     experiences of and commitments to these norms and values, and hence
+     that the objectivity of the social identities they construct is possible when
+     participants in the community are able to achieve a reflective equilibrium
+     among their emotions, the concepts informing these emotions, and a theory
+     that both partially articulates these concepts and purports to justify the
+     norms and practices to which they are committed via these emotional
+     experiences.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib friendship popular">
 <dt id="X1-Helm2023Formy-Przyjazni-Forms" class="thebibliography">
 35. </dt><dd 
 id="bib-6" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2023Formy-Przyjazni-Forms"></a>2023. “<a 
 href="https://filozofuj.eu/wp-content/uploads/2023/06/fi52_net.pdf" >Formy Przyjaźni (Forms of Friendship)</a>”. In: <span 
 class="pplri9d-x-x-109">Filozofuj! </span>8.4, pp. 14–16.
- <span id="textcolor9"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">friendship, popular</span></span>. <a href="https://drive.google.com/file/d/1ZQNn5aiyXLJyPAJYh9ysFAiNvKrGClS6/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- </dd>
+     Translated into Polish; original title: “Forms of Friendship”. <span id="textcolor9"> <span 
+class="pplri9d-x-x-109">Categories:</span>
+     <span class="categories">friendship, popular</span></span>. <a href="https://drive.google.com/file/d/1ZQNn5aiyXLJyPAJYh9ysFAiNvKrGClS6/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology socialidentity">
 <dt id="X1-Helm2023Hate-Identification-Othering" class="thebibliography">
 34. </dt><dd 
 id="bib-7" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2023Hate-Identification-Othering"></a>2023. “<a 
 href="https://doi.org/10.5406/21521123.60.3.06" >Hate, Identification, and Othering</a>”. In: <span 
 class="pplri9d-x-x-109">American Philosophical</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Quarterly </span>60.3, pp. 289–310. <span id="textcolor10"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, social identity</span></span>.
- <a href="https://drive.google.com/file/d/176o0Q-Gt2yW9R8kSf9e0Vih6ZtznbLfK/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This paper argues that hate differs from mere disliking in terms of its
- 
- 
- “depth”, which is understood via a notion of “<span 
+                                                                          
+                                                                          
+     <a href="https://drive.google.com/file/d/176o0Q-Gt2yW9R8kSf9e0Vih6ZtznbLfK/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This paper argues that hate differs from mere disliking in terms of its
+     “depth”, which is understood via a notion of “<span 
 class="pplri9d-x-x-109">othering</span>”, whereby one rejects
- at least some aspect of the identity of the target of hate, identifying oneself
- as not being what they are. Fleshing this out reveals important differences
- between <span 
+     at least some aspect of the identity of the target of hate, identifying oneself
+     as not being what they are. Fleshing this out reveals important differences
+     between <span 
 class="pplri9d-x-x-109">personal hate</span>, which targets a particular individual, and <span 
 class="pplri9d-x-x-109">impersonal</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">hate</span>, which targets <span 
 class="pplri9d-x-x-109">groups </span>of people. Moreover, impersonal hate requires
- focusing on the place hate has within particular sorts of communities,
- enabling a further important distinction between “insider” and “outsider”
- hate in terms of whether the hater includes members of the targeted group
- within a particular community or rejects them as “beneath” membership in
- that community.</span></details>
- </dd>
+     focusing on the place hate has within particular sorts of communities,
+     enabling a further important distinction between “insider” and “outsider”
+     hate in terms of whether the hater includes members of the targeted group
+     within a particular community or rejects them as “beneath” membership in
+     that community.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion moralpsychology">
 <dt id="X1-Helm2020Affective-Intentionality-Reactive" class="thebibliography">
 33. </dt><dd 
 id="bib-8" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2020Affective-Intentionality-Reactive"></a>2020. “<a 
 href="https://doi.org/10.4324/9781315180786-23" >Affective Intentionality and the Reactive Attitudes</a>”. In: <span 
 class="pplri9d-x-x-109">The Routledge</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Handbook of Phenomenology of Emotion</span>. Ed. by Thomas Szanto and Hilge
- Landweer. 1st ed. Routledge Handbooks in Philosophy. Abingdon, Oxon:
- Routledge. Chap. 20, pp. 227–38. <span id="textcolor11"> <span 
+     Landweer. 1st ed. Routledge Handbooks in Philosophy. Abingdon, Oxon:
+     Routledge. Chap. 20, pp. 227–38. <span id="textcolor11"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, moral
- psychology</span></span>. <a href="https://drive.google.com/open?id=1zG4dML0wbe2gFNaBIyIfzi_XdmJhUOcX" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How should we understand the phenomenology of emotions?
- One standard way is to distinguish sharply between their intentionality
- and their phenomenology, understanding their phenomenology in terms
- of something like “bodily sensations”, which are simply added on
- to an independent account of their intentionality. I have elsewhere
- (Helm, 2011) argued that this strategy fails and that we should instead
- understand emotions to be “felt evaluations”: phenomenological feelings
- with evaluative content or, alternately, a distinctively affective form of
- intentionality. This paper repeats those arguments and extends them to
- thinking about the reactive attitudes: emotions like gratitude, resentment,
- approbation, and guilt. In particular, the phenomenology of the reactive
- attitudes cannot be neatly distinguished from the thought that their targets
- are responsible for <span 
+     psychology</span></span>. <a href="https://drive.google.com/open?id=1zG4dML0wbe2gFNaBIyIfzi_XdmJhUOcX" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How should we understand the phenomenology of emotions?
+     One standard way is to distinguish sharply between their intentionality
+     and their phenomenology, understanding their phenomenology in terms
+     of something like “bodily sensations”, which are simply added on
+     to an independent account of their intentionality. I have elsewhere
+     (Helm, 2011) argued that this strategy fails and that we should instead
+     understand emotions to be “felt evaluations”: phenomenological feelings
+     with evaluative content or, alternately, a distinctively affective form of
+     intentionality. This paper repeats those arguments and extends them to
+     thinking about the reactive attitudes: emotions like gratitude, resentment,
+     approbation, and guilt. In particular, the phenomenology of the reactive
+     attitudes cannot be neatly distinguished from the thought that their targets
+     are responsible for <span 
 class="pplri9d-x-x-109">wronging </span>or <span 
 class="pplri9d-x-x-109">benefiting </span>me. In applying my earlier account
- to the reactive attitudes, I shall make apparent commonly ignored aspects
- of the affectivity of the reactive attitudes, whereby they bind us together
- through our having shared values and communal norms.</span></details>
- </dd>
+     to the reactive attitudes, I shall make apparent commonly ignored aspects
+     of the affectivity of the reactive attitudes, whereby they bind us together
+     through our having shared values and communal norms.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology socialontology">
 <dt id="X1-Helm2018Gratitude-Norms-Social" class="thebibliography">
 32. </dt><dd 
 id="bib-9" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2018Gratitude-Norms-Social"></a>2018. “Gratitude and Norms: On the Social Function of Gratitude”.
- In: <span 
+     In: <span 
 class="pplri9d-x-x-109">Moral Psychology of Gratitude</span>. Ed. by Robert C. Roberts and Daniel
- Telech. London: Rowman &#x0026; Littlefield Publishers. <span id="textcolor12"> <span 
+     Telech. London: Rowman &#x0026; Littlefield Publishers. <span id="textcolor12"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral
- psychology, social ontology</span></span>. <a href="https://drive.google.com/open?id=1QcPLpTkDUEq5C6wsm9tuhwlop2UQcvZf" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Philosophical accounts of gratitude generally
- understand it to be a proper response to intentional (or even voluntary) and
- supererogatory and potentially burdensome actions of beneficence towards
- one. Much of this characterization is, I believe, a mistake that ignores the
- social significance not only of the benefactor’s actions but also of gratitude
- itself. By focusing on the place it has within broader interpersonal patterns
- of reactive attitudes, I argue that gratitude is better understood as itself
- a commitment to communal norms defining how we ought to manifest
- respect towards each other and as an invitation to others likewise to commit
- 
- 
- to these norms. Such norms thus define the social significance of that for
- which one is grateful, thereby sustaining and deepening the sort of default
- trust presupposed by communities of respect.</span></details>
- </dd>
+     psychology, social ontology</span></span>. <a href="https://drive.google.com/open?id=1QcPLpTkDUEq5C6wsm9tuhwlop2UQcvZf" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Philosophical accounts of gratitude generally
+     understand it to be a proper response to intentional (or even voluntary) and
+     supererogatory and potentially burdensome actions of beneficence towards
+     one. Much of this characterization is, I believe, a mistake that ignores the
+     social significance not only of the benefactor’s actions but also of gratitude
+     itself. By focusing on the place it has within broader interpersonal patterns
+     of reactive attitudes, I argue that gratitude is better understood as itself
+     a commitment to communal norms defining how we ought to manifest
+                                                                          
+                                                                          
+     respect towards each other and as an invitation to others likewise to commit
+     to these norms. Such norms thus define the social significance of that for
+     which one is grateful, thereby sustaining and deepening the sort of default
+     trust presupposed by communities of respect.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib friendship popular">
 <dt id="X1-Helm2018LAmitie" class="thebibliography">
 31. </dt><dd 
 id="bib-10" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2018LAmitie"></a>2018. “L’Amitié”. In: <span 
 class="pplri9d-x-x-109">Petit Trait</span><span 
 class="pplri9d-x-x-109">é Des Valeurs</span>. Ed. by Julien Deonna and
- Emma Tieffenbach. Paris: Ithaque, pp. 14–21. <span id="textcolor13"> <span 
+     Emma Tieffenbach. Paris: Ithaque, pp. 14–21. <span id="textcolor13"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">friendship,
- popular</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhb0RTT1pXMUpUYm8&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Many have argued that friendship is central to living a fulfilling
- life. Yet there is a remarkable diversity of kinds of friendship. Setting aside
- Facebook “friends”—people tagged as friends on social media but who
- are not friends in any meaningful sense—the kind of intimacy involved in
- friendship can vary widely, from acquaintance friends to life partners; and
- the context and scope of friendship can likewise vary, from tennis buddies,
- who meet to play once a month, to life partners, who share their lives with
- each other in ways they together find important. Part of the challenge in
- understanding friendship and its value, therefore, lies in recognizing the
- types or ranges of intimacy, context, and scope that friendship can involve.</span></details>
- </dd>
+     popular</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhb0RTT1pXMUpUYm8&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Many have argued that friendship is central to living a fulfilling
+     life. Yet there is a remarkable diversity of kinds of friendship. Setting aside
+     Facebook “friends”—people tagged as friends on social media but who
+     are not friends in any meaningful sense—the kind of intimacy involved in
+     friendship can vary widely, from acquaintance friends to life partners; and
+     the context and scope of friendship can likewise vary, from tennis buddies,
+     who meet to play once a month, to life partners, who share their lives with
+     each other in ways they together find important. Part of the challenge in
+     understanding friendship and its value, therefore, lies in recognizing the
+     types or ranges of intimacy, context, and scope that friendship can involve.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology agency socialontology">
 <dt id="X1-Helm2018Personal-Relationships-Blame" class="thebibliography">
 30. </dt><dd 
 id="bib-11" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2018Personal-Relationships-Blame"></a>2018. “<a 
 href="https://doi.org/10.1093/oso/9780190609610.003.0012" >Personal Relationships and Blame: Scanlon and the Reactive
- Attitudes</a>”. In: <span 
+     Attitudes</a>”. In: <span 
 class="pplri9d-x-x-109">Social Dimensions of Moral Responsibility</span>. Ed. by Katrina
- Hutchison, Catriona Mackenzie, and Marina Oshana. Oxford: Oxford
- University Press. <span id="textcolor14"> <span 
+     Hutchison, Catriona Mackenzie, and Marina Oshana. Oxford: Oxford
+     University Press. <span id="textcolor14"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, agency, social ontology</span></span>.
- <a href="https://drive.google.com/open?id=0B45uPWgGHVLhbTZkbHJwa0xlYnM" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Tim Scanlon has recently argued that an action is <span 
+     <a href="https://drive.google.com/open?id=0B45uPWgGHVLhbTZkbHJwa0xlYnM" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Tim Scanlon has recently argued that an action is <span 
 class="pplri9d-x-x-109">blameworthy </span>if it
- “show[s] something about the agent’s attitudes toward others that impairs
- the relations that others can have with him or her” and hence that
- “to <span 
+     “show[s] something about the agent’s attitudes toward others that impairs
+     the relations that others can have with him or her” and hence that
+     “to <span 
 class="pplri9d-x-x-109">blame </span>a person is to judge him or her to be blameworthy and to
- take your relationship with him or her to be modified in a way that
- this judgment of impaired relations holds to be appropriate” (<span 
+     take your relationship with him or her to be modified in a way that
+     this judgment of impaired relations holds to be appropriate” (<span 
 class="pplri9d-x-x-109">Moral</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Dimensions</span>, 128–29). Given this, Scanlon argues, reactive attitude accounts
- of blame, while they can capture some of the ways blaming attitudes vary
- depending on one’s relationship to the wrongdoer, are in general “too thin”
- and cannot explain all the relevant changes in our attitudes, “including
- changes in our readiness to interact with [the wrongdoer] in specific
- ways” (143). Yet Scanlon does not provide clear accounts of what types
- of relationships matter for blame and how violations of the “standards”
- of these relationships justifies what new attitudes. My aim is to address
- this. To do this, we need to turn not merely to particular reactive attitudes
- but to broad, interpersonal rational patterns of reactive attitudes in terms
- of which we can make sense of what I have come to call “communities
- of respect”. My claim is that the sort of relationship whose impairment
- is relevant to blame is that of co-membership in a community of respect,
- so that the significance of the agent’s wrongdoing relevant for blame is
- the significance those actions and attitudes have <span 
+     of blame, while they can capture some of the ways blaming attitudes vary
+     depending on one’s relationship to the wrongdoer, are in general “too thin”
+     and cannot explain all the relevant changes in our attitudes, “including
+     changes in our readiness to interact with [the wrongdoer] in specific
+     ways” (143). Yet Scanlon does not provide clear accounts of what types
+     of relationships matter for blame and how violations of the “standards”
+     of these relationships justifies what new attitudes. My aim is to address
+     this. To do this, we need to turn not merely to particular reactive attitudes
+     but to broad, interpersonal rational patterns of reactive attitudes in terms
+     of which we can make sense of what I have come to call “communities
+     of respect”. My claim is that the sort of relationship whose impairment
+     is relevant to blame is that of co-membership in a community of respect,
+     so that the significance of the agent’s wrongdoing relevant for blame is
+     the significance those actions and attitudes have <span 
 class="pplri9d-x-x-109">for us </span>in the community.
- However, accommodating the variability of blame on which Scanlon rightly
- insists requires a more careful examination of two additional factors that
- 
- 
- affect how it is proper for one to respond to the impairment to those
- relationships that the wrongdoing represents: one’s role in a given case
- as perpetrator, victim, or witness, and one’s personal commitments. For,
- I argue, these factors provide one with excuses for failing to treat the
- perpetrator with the normal trust and respect we demand of each other, and
- the validity of these excuses itself depends on the overall rational structure
- of the patterns of reactive attitudes within the community. Consequently,
- both the individual and the community are important in defining the
- relationships and modifications of relationships that are central to blame;
- however, such modifications to personal relationships are a <span 
+     However, accommodating the variability of blame on which Scanlon rightly
+                                                                          
+                                                                          
+     insists requires a more careful examination of two additional factors that
+     affect how it is proper for one to respond to the impairment to those
+     relationships that the wrongdoing represents: one’s role in a given case
+     as perpetrator, victim, or witness, and one’s personal commitments. For,
+     I argue, these factors provide one with excuses for failing to treat the
+     perpetrator with the normal trust and respect we demand of each other, and
+     the validity of these excuses itself depends on the overall rational structure
+     of the patterns of reactive attitudes within the community. Consequently,
+     both the individual and the community are important in defining the
+     relationships and modifications of relationships that are central to blame;
+     however, such modifications to personal relationships are a <span 
 class="pplri9d-x-x-109">consequence </span>of
- blame rather than, as Scanlon claims, part of its content.</span></details>
- </dd>
+     blame rather than, as Scanlon claims, part of its content.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib metaphysics rationality">
 <dt id="X1-Helm2017Truth-Objectivity-Emotional" class="thebibliography">
 29. </dt><dd 
 id="bib-12" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2017Truth-Objectivity-Emotional"></a>2017. “<a 
 href="https://doi.org/10.7551/mitpress/9780262035248.001.0001" >Truth, Objectivity, and Emotional Caring: Filling in the Gaps of
- Haugeland’s Existentialist Ontology</a>”. In: <span 
+     Haugeland’s Existentialist Ontology</a>”. In: <span 
 class="pplri9d-x-x-109">Giving a Damn: Essays in Dialogue</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">with John Haugeland</span>. Ed. by Zed Adams and Jacob Browning. Cambridge,
- MA: MIT Press, pp. 213–41. <span id="textcolor15"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">metaphysics, rationality</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhU3FJYThiMFpsQkU&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> In a
- remarkable series of papers, Haugeland lays out what is both a striking
- interpretation of Heidegger and a compelling account of objectivity and
- truth. Central to his account is a notion of existential commitment: a
- commitment to insist that one’s understanding of the world succeeds in
- making sense of the phenomena and so potentially to change or give up
- on that understanding in the face of apparently impossible phenomena.
- Although Haugeland never gives a clear account of existential commitment,
- he claims that it is fundamentally an individual matter. This, I argue, is a
- mistake that fails to make sense of the public, shared nature of the objective
- world. Instead, I offer an account of existential commitment as one we
- undertake <span 
+     MA: MIT Press, pp. 213–41. <span id="textcolor15"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">metaphysics, rationality</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhU3FJYThiMFpsQkU&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> In a
+     remarkable series of papers, Haugeland lays out what is both a striking
+     interpretation of Heidegger and a compelling account of objectivity and
+     truth. Central to his account is a notion of existential commitment: a
+     commitment to insist that one’s understanding of the world succeeds in
+     making sense of the phenomena and so potentially to change or give up
+     on that understanding in the face of apparently impossible phenomena.
+     Although Haugeland never gives a clear account of existential commitment,
+     he claims that it is fundamentally an individual matter. This, I argue, is a
+     mistake that fails to make sense of the public, shared nature of the objective
+     world. Instead, I offer an account of existential commitment as one we
+     undertake <span 
 class="pplri9d-x-x-109">jointly</span>, and I analyze it (and the corresponding responsibility)
- in terms of interpersonal rational patterns of reactive attitudes: emotions
- like resentment, gratitude, indignation, approbation, guilt, and trust. The
- upshot is that our existential commitment is not only to a shared, objective
- world but also to each other such that our ability individually to <span 
+     in terms of interpersonal rational patterns of reactive attitudes: emotions
+     like resentment, gratitude, indignation, approbation, guilt, and trust. The
+     upshot is that our existential commitment is not only to a shared, objective
+     world but also to each other such that our ability individually to <span 
 class="pplri9d-x-x-109">take</span>
- responsibility for our understanding of the world is intelligible only in
- terms of others’ being able to <span 
+     responsibility for our understanding of the world is intelligible only in
+     terms of others’ being able to <span 
 class="pplri9d-x-x-109">hold </span>us responsible for it.</span></details>
- </dd>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion valuetheory">
 <dt id="X1-Helm2016Emotional-Expression-Commitment" class="thebibliography">
 28. </dt><dd 
 id="bib-13" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2016Emotional-Expression-Commitment"></a>2016. “<a 
 href="https://doi.org/10.1017/cbo9781316275672.005" >Emotional Expression, Commitment, and Joint Value</a>”. In: <span 
 class="pplri9d-x-x-109">Expression</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">of Emotion: Philosophical, Psychological and Legal Perspectives</span>. Ed. by Catherine
- Abell and Joel Smith. Cambridge, UK: Cambridge University Press,
- pp. 95–114. <span id="textcolor16"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, value theory</span></span>. <a href="http://drive.google.com/open?id=0B45uPWgGHVLhci1VVUYzQ2JHT3M" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> After distinguishing
- between evincings and expressions of emotions, I argue that emotional
- expressions are more than mere reports of the content of emotions. Rather,
- they are expressions of commitments to the values underlying these
- emotions. Central to this argument is an understanding of the expression
- of the reactive attitudes—emotions like gratitude, resentment, approbation,
- and guilt. For in expressing the reactive attitudes we call others to account
- 
- 
- in light of shared norms, thereby not merely communicating a positive
- or negative evaluation of the other’s actions but also expressing the
- underlying values as <span 
+     Abell and Joel Smith. Cambridge, UK: Cambridge University Press,
+     pp. 95–114. <span id="textcolor16"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, value theory</span></span>. <a href="http://drive.google.com/open?id=0B45uPWgGHVLhci1VVUYzQ2JHT3M" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> After distinguishing
+     between evincings and expressions of emotions, I argue that emotional
+     expressions are more than mere reports of the content of emotions. Rather,
+     they are expressions of commitments to the values underlying these
+     emotions. Central to this argument is an understanding of the expression
+     of the reactive attitudes—emotions like gratitude, resentment, approbation,
+                                                                          
+                                                                          
+     and guilt. For in expressing the reactive attitudes we call others to account
+     in light of shared norms, thereby not merely communicating a positive
+     or negative evaluation of the other’s actions but also expressing the
+     underlying values as <span 
 class="pplri9d-x-x-109">our </span>values in a way that can preserve and reinforce
- this shared sense of value.</span></details>
- </dd>
+     this shared sense of value.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion agency rationality valuetheory">
 <dt id="X1-Helm2015Emotions-Recalcitrance-Reevaluating" class="thebibliography">
 27. </dt><dd 
 id="bib-14" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2015Emotions-Recalcitrance-Reevaluating"></a>2015. “<a 
 href="https://doi.org/10.1111/1746-8361.12119" >Emotions and Recalcitrance: Reevaluating the Perceptual Model</a>”. In:
- <span 
+     <span 
 class="pplri9d-x-x-109">dialectica </span>69.3, pp. 417–33. <span id="textcolor17"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, agency, rationality,
- value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhZDlJbjk3YnI2VGM&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> One central argument in favor of perceptual accounts
- of emotions concerns recalcitrant emotions: emotions that persist in the
- face of repudiating judgments. For, it is argued, to understand how
- the conflict between recalcitrant emotions and judgment falls short of
- incoherence in judgment, we need to understand recalcitrant emotions
- to be something like perceptual illusions of value, so that in normal,
- non-recalcitrant cases emotions are non-illusory perceptions of value. I
- argue that these arguments fail and that a closer examination of recalcitrant
- emotions reveals important disanalogies with perception that undermine
- the perceptual model of emotions.</span></details>
- </dd>
+     value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhZDlJbjk3YnI2VGM&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> One central argument in favor of perceptual accounts
+     of emotions concerns recalcitrant emotions: emotions that persist in the
+     face of repudiating judgments. For, it is argued, to understand how
+     the conflict between recalcitrant emotions and judgment falls short of
+     incoherence in judgment, we need to understand recalcitrant emotions
+     to be something like perceptual illusions of value, so that in normal,
+     non-recalcitrant cases emotions are non-illusory perceptions of value. I
+     argue that these arguments fail and that a closer examination of recalcitrant
+     emotions reveals important disanalogies with perception that undermine
+     the perceptual model of emotions.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology socialontology agency">
 <dt id="X1-Helm2015Rationality-Authority-Bindingness" class="thebibliography">
 26. </dt><dd 
 id="bib-15" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2015Rationality-Authority-Bindingness"></a>2015. “<a 
 href="https://doi.org/10.1093/acprof:oso/9780198744832.003.0010" >Rationality, Authority, and Bindingness: An Account of Communal
- Norms</a>”. In: <span 
+     Norms</a>”. In: <span 
 class="pplri9d-x-x-109">Oxford Studies in Agency and Responsibility</span>. Ed. by David
- Shoemaker. Vol. 3. Oxford: Oxford University Press, pp. 189–212. <span id="textcolor18">
- <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, social ontology, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLheXpKTURnVURScEk&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How can we be
- bound or obligated to the norms of particular communities? How can other
- community members have authority to hold us responsible and demand
- compliance? I argue that the bindingness of communal norms has its source
- in our joint commitment to the community and to each other, a commitment
- that is implicit in the rational structures of reactive attitudes we display
- in response to each other. In having a reactive attitude, one holds its
- target responsible to certain norms and calls on others likewise to hold her
- responsible, thereby both asserting one’s own authority and recognizing the
- authority of others to demand compliance with the norms. When this call
- is taken up by others, the interpersonal rational structure of these reactive
- attitudes constitutes our jointly granting such authority to ourselves and so
- binding ourselves to the norms.</span></details>
- </dd>
+     Shoemaker. Vol. 3. Oxford: Oxford University Press, pp. 189–212. <span id="textcolor18">
+     <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, social ontology, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLheXpKTURnVURScEk&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> How can we be
+     bound or obligated to the norms of particular communities? How can other
+     community members have authority to hold us responsible and demand
+     compliance? I argue that the bindingness of communal norms has its source
+     in our joint commitment to the community and to each other, a commitment
+     that is implicit in the rational structures of reactive attitudes we display
+     in response to each other. In having a reactive attitude, one holds its
+     target responsible to certain norms and calls on others likewise to hold her
+     responsible, thereby both asserting one’s own authority and recognizing the
+     authority of others to demand compliance with the norms. When this call
+     is taken up by others, the interpersonal rational structure of these reactive
+     attitudes constitutes our jointly granting such authority to ourselves and so
+     binding ourselves to the norms.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion socialontology valuetheory">
 <dt id="X1-Helm2014Emotional-Communities-Respect" class="thebibliography">
 25. </dt><dd 
 id="bib-16" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2014Emotional-Communities-Respect"></a>2014. “<a 
 href="https://doi.org/10.1093/acprof:oso/9780199659180.003.0004" >Emotional Communities of Respect</a>”. In: <span 
 class="pplri9d-x-x-109">Collective Emotions</span>. Ed. by
- Christian von Sheve and Mikko Salmela. Oxford: Oxford University Press,
- pp. 47–60. <span id="textcolor19"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, social ontology, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcmFSM3gxUmZDa2s&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p>
- My aim in this paper is to step back from an investigation of particular
- emotions and the way such emotions might have social dimensions, thereby
- bringing into view a broader emotional phenomenon—in general, the
- phenomenon of caring—that itself can have social dimensions. I have long
- argued that caring is to be understood in terms of a distinctive rational
- 
- 
- pattern of emotions. In saying that caring itself can have a social dimension,
- I mean in part that the relevant pattern of rationality is one that extends
- across multiple persons, so that what it is rational for me to feel is tied
- to what it is rational for others to feel. This is the case, I shall argue, for
- the reactive emotions, which are emotions, like resentment, indignation,
- gratitude, approbation, and guilt, that we feel in response to the good or
- ill will one person shows to another. For if you resent me, I ought to feel
- guilty and others ought to feel indignation or disapprobation. Indeed, your
- resentment in effect calls on others to feel these reactive emotions, and
- (other things being equal) others’ failure to feel them is a failure properly
- to respond to you as someone worthy of our respect. By examining the
- interpersonal rational interconnections among the reactive emotions, I shall
- argue that the resulting rational patterns constitute that respect which we
- owe each other and thereby constitute this group of people as a community
- bound together by their mutual respect. This is for us to form a community
- of respect.</span></details>
- </dd>
+     Christian von Sheve and Mikko Salmela. Oxford: Oxford University Press,
+     pp. 47–60. <span id="textcolor19"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, social ontology, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcmFSM3gxUmZDa2s&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p>
+     My aim in this paper is to step back from an investigation of particular
+     emotions and the way such emotions might have social dimensions, thereby
+     bringing into view a broader emotional phenomenon—in general, the
+     phenomenon of caring—that itself can have social dimensions. I have long
+                                                                          
+                                                                          
+     argued that caring is to be understood in terms of a distinctive rational
+     pattern of emotions. In saying that caring itself can have a social dimension,
+     I mean in part that the relevant pattern of rationality is one that extends
+     across multiple persons, so that what it is rational for me to feel is tied
+     to what it is rational for others to feel. This is the case, I shall argue, for
+     the reactive emotions, which are emotions, like resentment, indignation,
+     gratitude, approbation, and guilt, that we feel in response to the good or
+     ill will one person shows to another. For if you resent me, I ought to feel
+     guilty and others ought to feel indignation or disapprobation. Indeed, your
+     resentment in effect calls on others to feel these reactive emotions, and
+     (other things being equal) others’ failure to feel them is a failure properly
+     to respond to you as someone worthy of our respect. By examining the
+     interpersonal rational interconnections among the reactive emotions, I shall
+     argue that the resulting rational patterns constitute that respect which we
+     owe each other and thereby constitute this group of people as a community
+     bound together by their mutual respect. This is for us to form a community
+     of respect.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology">
 <dt id="X1-Helm2014Trust-as-Reactive" class="thebibliography">
 24. </dt><dd 
 id="bib-17" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2014Trust-as-Reactive"></a>2014. “<a 
 href="https://doi.org/10.1093/acprof:oso/9780198722120.003.0010" >Trust as a Reactive Attitude</a>”. In: <span 
 class="pplri9d-x-x-109">Oxford Studies in Agency and</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Responsibility: “Freedom and Resentment” at Fifty</span>. Ed. by David Shoemaker
- and Neal Tognazzini. Vol. 2. Oxford: Oxford University Press, pp. 187–215.
- <span id="textcolor20"> <span 
-class="pplri9d-x-x-109">Category:</span> <span class="categories">moral psychology</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcVZVOHBaOGZuMkk&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The reactive attitudes are central to
- our practices of holding each other responsible and so to a certain
- form of human community. This paper argues that trust is a reactive
- attitude—indeed that without self, personal, and vicarious reactive trust
- these practices, this form of human community, and responsible agency
- would not be possible. Moreover, understanding trust in this way helps
- resolve several problems that have confronted philosophers thinking about
- trust, including the distinction between trust and reliance, the conditions of
- the rationality of trust and the nature of trustworthiness, and how my trust
- can motivate your behavior.</span></details>
- </dd>
+     and Neal Tognazzini. Vol. 2. Oxford: Oxford University Press, pp. 187–215.
+     <span id="textcolor20"> <span 
+class="pplri9d-x-x-109">Category:</span> <span class="categories">moral psychology</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcVZVOHBaOGZuMkk&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The reactive attitudes are central to
+     our practices of holding each other responsible and so to a certain
+     form of human community. This paper argues that trust is a reactive
+     attitude—indeed that without self, personal, and vicarious reactive trust
+     these practices, this form of human community, and responsible agency
+     would not be possible. Moreover, understanding trust in this way helps
+     resolve several problems that have confronted philosophers thinking about
+     trust, including the distinction between trust and reliance, the conditions of
+     the rationality of trust and the nature of trustworthiness, and how my trust
+     can motivate your behavior.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib love agency moralpsychology popular">
 <dt id="X1-Helm2014What-Is-Role" class="thebibliography">
 23. </dt><dd 
 id="bib-18" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2014What-Is-Role"></a>2014. <span 
 class="pplri9d-x-x-109">What Is the Role of Love in Human Freedom? </span><span 
 class="pplrc9d-x-x-109"><span 
@@ -902,671 +904,671 @@ class="small-caps">U</span><span
 class="small-caps">R</span><span 
 class="small-caps">L</span></span>: <a 
 href="https://web.archive.org/web/20150317180132/https://www.bigquestionsonline.com/content/what-role-love-human-freedom" class="url" >https://web.archive.org/web/20150317180132/https://www.bigquestionsonline.com/content/what-role-love-human-freedom</a>
- (visited on 08/19/2014). <span id="textcolor21"> <span 
+     (visited on 08/19/2014). <span id="textcolor21"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">love, agency, moral psychology, popular</span></span>.
- </dd>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology rationality personhood">
 <dt id="X1-Helm2013Paternalistic-Love-Reasons" class="thebibliography">
 22. </dt><dd 
 id="bib-19" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2013Paternalistic-Love-Reasons"></a>2013. “<a 
 href="https://doi.org/10.1007/978-94-007-4789-0_10" >Paternalistic Love and Reasons for Caring</a>”. In: <span 
 class="pplri9d-x-x-109">Autonomy and the Self</span>.
- Ed. by Michael Kühler and Nadja Jelinek. Dordrecht: Springer, pp. 213–30.
- <span id="textcolor22"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, rationality, personhood</span></span>. <a href="https://drive.google.com/file/d/1lFRH4f-9yzrI9Ask19ZZfMRZ7skIHF3c/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> What reasons can
- children have for coming to care about particular things so that they can
- develop into responsible adults? This question raises issues both about the
- status of such reasons as “internal” or “external” to the child’s subjective
- motivational set and about the role of adults in guiding children’s choices.
- In confronting this latter question, Tamar Schapiro argues that adults can
- adopt what amounts to a two-pronged strategy: of rewarding or punishing
- 
- 
- the child and of offering explanations and justifications. Such a strategy,
- however, ignores the special role loving caregivers can play in a child’s life.
- By developing an account of such paternalistically loving relationships, I
- show how the caregiver’s conception of the child’s well-being can come
- to inform the child’s own sense of herself and so to provide her with
- essentially interpersonal reasons for caring. Indeed, such reasons can be
- both normatively and motivationally binding on the child even though she
- may not yet be in a position to understand them. That such reasons are
- essentially interpersonal seems to make otiose whether they are “internal”
- or “external,” thereby rendering that distinction less important than we
- might have thought.</span></details>
- </dd>
+     Ed. by Michael Kühler and Nadja Jelinek. Dordrecht: Springer, pp. 213–30.
+     <span id="textcolor22"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, rationality, personhood</span></span>. <a href="https://drive.google.com/file/d/1lFRH4f-9yzrI9Ask19ZZfMRZ7skIHF3c/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> What reasons can
+     children have for coming to care about particular things so that they can
+     develop into responsible adults? This question raises issues both about the
+     status of such reasons as “internal” or “external” to the child’s subjective
+     motivational set and about the role of adults in guiding children’s choices.
+     In confronting this latter question, Tamar Schapiro argues that adults can
+                                                                          
+                                                                          
+     adopt what amounts to a two-pronged strategy: of rewarding or punishing
+     the child and of offering explanations and justifications. Such a strategy,
+     however, ignores the special role loving caregivers can play in a child’s life.
+     By developing an account of such paternalistically loving relationships, I
+     show how the caregiver’s conception of the child’s well-being can come
+     to inform the child’s own sense of herself and so to provide her with
+     essentially interpersonal reasons for caring. Indeed, such reasons can be
+     both normatively and motivationally binding on the child even though she
+     may not yet be in a position to understand them. That such reasons are
+     essentially interpersonal seems to make otiose whether they are “internal”
+     or “external,” thereby rendering that distinction less important than we
+     might have thought.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology agency socialontology">
 <dt id="X1-Helm2012Accountability-Some-Social" class="thebibliography">
 21. </dt><dd 
 id="bib-20" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2012Accountability-Some-Social"></a>2012. “<a 
 href="https://doi.org/10.1111/j.1533-6077.2012.00226.x" >Accountability and Some Social Dimensions of Human Agency</a>”.
- In: <span 
+     In: <span 
 class="pplri9d-x-x-109">Philosophical Issues </span>22.1, pp. 217–32. <span id="textcolor23"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology,
- agency, social ontology</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhRWsxaExMaXJtODQ&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> What is responsible agency? I want to consider
- two perspectives we might take in thinking about responsibility, what
- we might call an inner and an outer perspective. The <span 
+     agency, social ontology</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhRWsxaExMaXJtODQ&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> What is responsible agency? I want to consider
+     two perspectives we might take in thinking about responsibility, what
+     we might call an inner and an outer perspective. The <span 
 class="pplri9d-x-x-109">inner perspective </span>is
- that of the agent herself, involving her having and exercising (or failing
- to exercise) certain agential capacities and so choosing and controlling
- her actions. The <span 
+     that of the agent herself, involving her having and exercising (or failing
+     to exercise) certain agential capacities and so choosing and controlling
+     her actions. The <span 
 class="pplri9d-x-x-109">outer perspective </span>is that from which we assess someone’s
- conduct and—crucially—her will as a matter of holding her to account.
- In each case, responsibility is always to a certain set of norms. From the
- internal perspective, these are norms that are <span 
+     conduct and—crucially—her will as a matter of holding her to account.
+     In each case, responsibility is always to a certain set of norms. From the
+     internal perspective, these are norms that are <span 
 class="pplri9d-x-x-109">binding </span>on her (or to which she
- binds herself); from the outer perspective these are norms in terms of which
- we assess her and so to which we <span 
+     binds herself); from the outer perspective these are norms in terms of which
+     we assess her and so to which we <span 
 class="pplri9d-x-x-109">hold </span>her. My aim in this paper is to argue
- that the inner perspective does not have priority over the outer perspective
- and thus that the theoretical approach is mistaken: our ability, prominent
- from the inner perspective, to take responsibility and so to hold ourselves
- accountable is not intelligible apart from our having a place in a broader
- community in which others hold us accountable. This idea, of course, is
- familiar to readers of Strawson’s “Freedom and Resentment”. However,
- unlike Strawson, I do not think this implies that the outer perspective
- is prior to the inner, for ultimately I think we cannot make sense of an
- agent’s being properly held accountable unless he can take responsibility
- for his actions in a way that ultimately presupposes his freedom. This is
- not something I can argue here; rather, my claim will be that we cannot
- understand an agent’s being accountable as depending simply on the
- agent herself; rather, accountable agency depends on capacities that are
- essentially social.</span></details>
- </dd>
+     that the inner perspective does not have priority over the outer perspective
+     and thus that the theoretical approach is mistaken: our ability, prominent
+     from the inner perspective, to take responsibility and so to hold ourselves
+     accountable is not intelligible apart from our having a place in a broader
+     community in which others hold us accountable. This idea, of course, is
+     familiar to readers of Strawson’s “Freedom and Resentment”. However,
+     unlike Strawson, I do not think this implies that the outer perspective
+     is prior to the inner, for ultimately I think we cannot make sense of an
+     agent’s being properly held accountable unless he can take responsibility
+     for his actions in a way that ultimately presupposes his freedom. This is
+     not something I can argue here; rather, my claim will be that we cannot
+     understand an agent’s being accountable as depending simply on the
+     agent herself; rather, accountable agency depends on capacities that are
+     essentially social.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion valuetheory">
 <dt id="X1-Helm2011Affektive-Intentionalitat-Holistisch" class="thebibliography">
 20. </dt><dd 
 id="bib-21" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2011Affektive-Intentionalitat-Holistisch"></a>2011. “Affektive Intentionalität: Holistisch Und Vielschichtig”. In: <span 
 class="pplri9d-x-x-109">Affektive</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Intentionalit</span><span 
 class="pplri9d-x-x-109">ät: Beitr</span><span 
 class="pplri9d-x-x-109">äge Zur Welterschließenden Funktion Der Menschlichen</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Gef</span><span 
 class="pplri9d-x-x-109">ühle</span>. Ed. by Jan Slaby, Achim Stephan, Henrik Walter, and Sven Walter.
- Trans.  by Jean Moritz Müller. Paderborn: mentis, pp. 72–99. <span id="textcolor24"> <span 
+                                                                          
+                                                                          
+     Trans.  by Jean Moritz Müller. Paderborn: mentis, pp. 72–99. <span id="textcolor24"> <span 
 class="pplri9d-x-x-109">Categories:</span>
- 
- 
- <span class="categories">mind/emotion, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcXRZR0lWNFZWVjQ&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Cognitivist theories of emotions, the
- dominant philosophical theory as recently as 15 years ago and still highly
- influential in psychology today, understand emotions to be essentially
- clusters of beliefs and desires. Thus, cognitivists claim, what it is to be
- afraid of something is to believe it dangerous and want to get away. The
- intentionality of emotions is therefore understood to be dependent on that
- of the constitutive beliefs and desires, and it seems that there is nothing we
- could call a distinctively “affective” intentionality. Indeed, for cognitivists
- affect is seemingly added on as an afterthought: the relevant belief and
- desire somehow come packaged together with a bodily sensation (of a
- sinking feeling in your gut, for example), and it is this packaging of those
- intentional states with a feeling that was supposed to account for their
- affective nature. As I shall argue, such cognitivist accounts of emotions fail
- to capture the distinctively affective character of emotions. A central reason
- for this failure lies in the kind of evaluations that emotions essentially
- involve. Cognitivist theories must understand emotional evaluations to be
- a part of either the belief or the desire; in either case, they are supposed
- to be intelligible prior to the emotions themselves. My contention is
- that this is false: we cannot make sense of these evaluations except in
- terms of the emotions themselves, and it is this fact about emotions that
- enables us to understand affective intentionality. That is, I shall argue,
- what is characteristic of affective intentionality is that it essentially involves
- evaluations that are felt, where such feelings are simultaneously both
- responsive to and constitutive of that evaluation. Our felt awareness of
- emotional objects as good or bad in some way just is a matter of our being
- emotionally pleased or pained by these objects, and this fact about emotions
- is central to understanding the nature of affective intentionality.</span></details>
- </dd>
+     <span class="categories">mind/emotion, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhcXRZR0lWNFZWVjQ&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Cognitivist theories of emotions, the
+     dominant philosophical theory as recently as 15 years ago and still highly
+     influential in psychology today, understand emotions to be essentially
+     clusters of beliefs and desires. Thus, cognitivists claim, what it is to be
+     afraid of something is to believe it dangerous and want to get away. The
+     intentionality of emotions is therefore understood to be dependent on that
+     of the constitutive beliefs and desires, and it seems that there is nothing we
+     could call a distinctively “affective” intentionality. Indeed, for cognitivists
+     affect is seemingly added on as an afterthought: the relevant belief and
+     desire somehow come packaged together with a bodily sensation (of a
+     sinking feeling in your gut, for example), and it is this packaging of those
+     intentional states with a feeling that was supposed to account for their
+     affective nature. As I shall argue, such cognitivist accounts of emotions fail
+     to capture the distinctively affective character of emotions. A central reason
+     for this failure lies in the kind of evaluations that emotions essentially
+     involve. Cognitivist theories must understand emotional evaluations to be
+     a part of either the belief or the desire; in either case, they are supposed
+     to be intelligible prior to the emotions themselves. My contention is
+     that this is false: we cannot make sense of these evaluations except in
+     terms of the emotions themselves, and it is this fact about emotions that
+     enables us to understand affective intentionality. That is, I shall argue,
+     what is characteristic of affective intentionality is that it essentially involves
+     evaluations that are felt, where such feelings are simultaneously both
+     responsive to and constitutive of that evaluation. Our felt awareness of
+     emotional objects as good or bad in some way just is a matter of our being
+     emotionally pleased or pained by these objects, and this fact about emotions
+     is central to understanding the nature of affective intentionality.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology socialontology agency">
 <dt id="X1-Helm2011Responsibility-Dignity-Strawsonian" class="thebibliography">
 19. </dt><dd 
 id="bib-22" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2011Responsibility-Dignity-Strawsonian"></a>2011. “<a 
 href="https://doi.org/10.1093/acprof:oso/9780199577507.003.0011" >Responsibility and Dignity: Strawsonian Themes</a>”. In: <span 
 class="pplri9d-x-x-109">Morality and</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">the Emotions</span>. Ed. by Carla Bagnoli. Oxford: Oxford University Press,
- pp. 217–34. <span id="textcolor25"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, social ontology, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhejE2ZmU4MFlFSTQ&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Peter Strawson’s “Freedom and Resentment” usefully connected the
- concepts of freedom and responsibility with the reactive attitudes, but
- there has been some controversy concerning both the nature of that
- connection and what the reactive attitudes are. I shall argue—tentatively
- and speculatively—that we can best understand the reactive attitudes by
- seeing them as individually presupposing and jointly constituting both our
- respect for persons and the dignity to which that respect is responsive.
- Consequently, being both a proper subject and object of the reactive
- attitudes is to be a member of the normative community of fellow persons
- within which one both takes responsibility and is held responsible for what
- one does. This just is to be a responsible agent.</span></details>
- </dd>
+     pp. 217–34. <span id="textcolor25"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, social ontology, agency</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhejE2ZmU4MFlFSTQ&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Peter Strawson’s “Freedom and Resentment” usefully connected the
+     concepts of freedom and responsibility with the reactive attitudes, but
+     there has been some controversy concerning both the nature of that
+     connection and what the reactive attitudes are. I shall argue—tentatively
+     and speculatively—that we can best understand the reactive attitudes by
+     seeing them as individually presupposing and jointly constituting both our
+     respect for persons and the dignity to which that respect is responsive.
+     Consequently, being both a proper subject and object of the reactive
+     attitudes is to be a member of the normative community of fellow persons
+     within which one both takes responsibility and is held responsible for what
+     one does. This just is to be a responsible agent.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology personhood love">
 <dt id="X1-Helm2010bLove-as-Intimate" class="thebibliography">
 18. </dt><dd 
 id="bib-23" class="thebibliography">
- 
- 
- <!--l. 279--><p class="noindent" ><a 
+                                                                          
+                                                                          
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2010bLove-as-Intimate"></a>2010. “<a 
 href="http://hdl.handle.net/20.500.12648/3261" >Love as Intimate Identification</a>”. In: <span 
 class="pplri9d-x-x-109">Philosophic Exchange </span>40.1,
- pp. 20–37. <span id="textcolor26"> <span 
+     pp. 20–37. <span id="textcolor26"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, personhood, love</span></span>. <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> It is widely
- acknowledged that love is a distinctively intimate form of concern in which
- we in some sense identify with our beloveds; it is common, moreover, to
- construe such identification in terms of the lover’s taking on the interests
- of the beloved. From this starting point, Harry Frankfurt argues that the
- paradigm form of love is that between parents and infants or young
- children. I think this is mistaken: the kind of loving attitude or relationship
- we can have towards or with young children is distinct in kind from that
- which we can have towards adult persons, as is revealed by reflection on the
- depth of love and its phenomenology. My aim is to present an alternative
- conception of the sort of distinctively intimate identification at issue in love,
- arguing that this account makes better sense of love and our experience of
- love.</span></details>
- </dd>
+     acknowledged that love is a distinctively intimate form of concern in which
+     we in some sense identify with our beloveds; it is common, moreover, to
+     construe such identification in terms of the lover’s taking on the interests
+     of the beloved. From this starting point, Harry Frankfurt argues that the
+     paradigm form of love is that between parents and infants or young
+     children. I think this is mistaken: the kind of loving attitude or relationship
+     we can have towards or with young children is distinct in kind from that
+     which we can have towards adult persons, as is revealed by reflection on the
+     depth of love and its phenomenology. My aim is to present an alternative
+     conception of the sort of distinctively intimate identification at issue in love,
+     arguing that this account makes better sense of love and our experience of
+     love.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion rationality agency">
 <dt id="X1-Helm2009Emotions-Motivation-Reconsidering" class="thebibliography">
 17. </dt><dd 
 id="bib-24" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Emotions-Motivation-Reconsidering"></a>2009. “Emotions and Motivation: Reconsidering Neo-Jamesian Accounts”.
- In: <span 
+     In: <span 
 class="pplri9d-x-x-109">The Oxford Handbook of Philosophy of Emotion</span>. Ed. by Peter Goldie.
- Oxford: Oxford University Press, pp. 303–23. <span id="textcolor27"> <span 
+     Oxford: Oxford University Press, pp. 303–23. <span id="textcolor27"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion,
- rationality, agency</span></span>. <a href="https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Emotions are notorious for their irrationality, and
- nowhere does this irrationality show up more clearly than in their effects
- on motivation. Thus, to take some stereotyped examples, fear, anger, and
- jealousy frequently seem to move us to act contrary to our better judgment.
- Recently, however, there has been increasing emphasis on the rationality of
- emotions and their place in practical reason. Thus, while deliberating about
- what to do, although we may be able to articulate reasons for and against
- each option, we may not be able to say why the weight of these reasons
- favor one over the others; in such cases, we may simply go with the one
- that “feels” right—that resonates more fully with our emotional sense of
- our circumstances—and such an appeal to emotions seems appropriate. I
- argue that emotions are fundamental to motivation and practical reasoning.
- In particular, emotions motivate not because they involve mere dispositions
- to behave but rather because they are rational responses to things we care
- about, responses that sometimes rationally demand intentional action. This,
- together with the way our linguistic concepts can inform these emotional
- responses, makes for rational interconnections with evaluative judgments
- that allow our emotions to play a significant role in our determining what
- to do.</span></details>
- </dd>
+     rationality, agency</span></span>. <a href="https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Emotions are notorious for their irrationality, and
+     nowhere does this irrationality show up more clearly than in their effects
+     on motivation. Thus, to take some stereotyped examples, fear, anger, and
+     jealousy frequently seem to move us to act contrary to our better judgment.
+     Recently, however, there has been increasing emphasis on the rationality of
+     emotions and their place in practical reason. Thus, while deliberating about
+     what to do, although we may be able to articulate reasons for and against
+     each option, we may not be able to say why the weight of these reasons
+     favor one over the others; in such cases, we may simply go with the one
+     that “feels” right—that resonates more fully with our emotional sense of
+     our circumstances—and such an appeal to emotions seems appropriate. I
+     argue that emotions are fundamental to motivation and practical reasoning.
+     In particular, emotions motivate not because they involve mere dispositions
+     to behave but rather because they are rational responses to things we care
+     about, responses that sometimes rationally demand intentional action. This,
+     together with the way our linguistic concepts can inform these emotional
+     responses, makes for rational interconnections with evaluative judgments
+     that allow our emotions to play a significant role in our determining what
+     to do.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion valuetheory">
 <dt id="X1-Helm2009Emotions-as-Evaluative" class="thebibliography">
 16. </dt><dd 
 id="bib-25" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Emotions-as-Evaluative"></a>2009. “<a 
 href="https://doi.org/10.1177/1754073909103593" >Emotions as Evaluative Feelings</a>”. In: <span 
 class="pplri9d-x-x-109">Emotion Review </span>1.3, pp. 248–55.
- <span id="textcolor28"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, value theory</span></span>. <a href="https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The phenomenology of
- emotions has traditionally been understood in terms of bodily sensations
- they involve. This is a mistake. We should instead understand their
- phenomenology in terms of their distinctively evaluative intentionality.
- Emotions are essentially affective modes of response to the ways our
- 
- 
- circumstances come to matter to us, and so they are ways of being pleased
- or pained by those circumstances. Making sense of the intentionality
- and phenomenology of emotions in this way requires rejecting traditional
- understandings of intentionality and so coming to see emotions as a
- distinctive and irreducible class of mental states lying at the intersection of
- intentionality, phenomenology, and motivation.</span></details>
- </dd>
+     <span id="textcolor28"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, value theory</span></span>. <a href="https://drive.google.com/file/d/1zpe-9bF3TjxLqpT5yu1byXd2H_P-bGPD/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The phenomenology of
+     emotions has traditionally been understood in terms of bodily sensations
+     they involve. This is a mistake. We should instead understand their
+     phenomenology in terms of their distinctively evaluative intentionality.
+     Emotions are essentially affective modes of response to the ways our
+                                                                          
+                                                                          
+     circumstances come to matter to us, and so they are ways of being pleased
+     or pained by those circumstances. Making sense of the intentionality
+     and phenomenology of emotions in this way requires rejecting traditional
+     understandings of intentionality and so coming to see emotions as a
+     distinctive and irreducible class of mental states lying at the intersection of
+     intentionality, phenomenology, and motivation.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion rationality valuetheory">
 <dt id="X1-Helm2009Gefuhlte-Bewertungen-Eine" class="thebibliography">
 15. </dt><dd 
 id="bib-26" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Gefuhlte-Bewertungen-Eine"></a>2009. “Gefühlte Bewertungen: Eine Theorie Der Lust Und Des Schmerzes”.
- In: <span 
+     In: <span 
 class="pplri9d-x-x-109">Philosophie Der Gef</span><span 
 class="pplri9d-x-x-109">ühle</span>. Ed. by Sabine A. Döring. Trans.  by Jean Moritz
- Müller. Suhrkamp, pp. 398–430. <span id="textcolor29"> <span 
+     Müller. Suhrkamp, pp. 398–430. <span id="textcolor29"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, rationality,
- value theory</span></span>.
- </dd>
+     value theory</span></span>.
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology personhood valuetheory love">
 <dt id="X1-Helm2009Love-Identification-Emotions" class="thebibliography">
 14. </dt><dd 
 id="bib-27" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Love-Identification-Emotions"></a>2009. “<a 
 href="https://www.jstor.org/stable/20464436" >Love, Identification, and the Emotions</a>”. In: <span 
 class="pplri9d-x-x-109">American Philosophical</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Quarterly </span>46.1, pp. 39–59. <span id="textcolor30"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, personhood, value
- theory, love</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhWnpvSzZwSlJJOG8&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Standard accounts of love, I argue, fail to make sense of
- the kind of intimacy love essentially involves because they understand
- such intimacy in tacitly egocentric terms and then either embrace it or
- recoil from it—in each case unsatisfactorily. By developing an account of
- emotions like pride and shame as “person-focused” and so analyzing their
- rational interconnections, I offer a non-egocentric account of intimacy as a
- kind of identification: an identification which, when reflexive, constitutes
- one’s own identity and, when non-reflexive, constitutes the close, personal
- attachment to another that love is.</span></details>
- </dd>
+     theory, love</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhWnpvSzZwSlJJOG8&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Standard accounts of love, I argue, fail to make sense of
+     the kind of intimacy love essentially involves because they understand
+     such intimacy in tacitly egocentric terms and then either embrace it or
+     recoil from it—in each case unsatisfactorily. By developing an account of
+     emotions like pride and shame as “person-focused” and so analyzing their
+     rational interconnections, I offer a non-egocentric account of intimacy as a
+     kind of identification: an identification which, when reflexive, constitutes
+     one’s own identity and, when non-reflexive, constitutes the close, personal
+     attachment to another that love is.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib valuetheory personhood love">
 <dt id="X1-Helm2009Self-Love-Structure-Personal" class="thebibliography">
 13. </dt><dd 
 id="bib-28" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Self-Love-Structure-Personal"></a>2009. “<a 
 href="https://doi.org/10.1075/ceb.5.03hel" >Self-Love and the Structure of Personal Values</a>”. In: <span 
 class="pplri9d-x-x-109">Emotions, Ethics,</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">and Authenticity</span>. Ed. by Mikko Salmela and Verena E. Mayer. Consciousness
- and Emotion. Amsterdam: John Benjamins, pp. 11–32. <span id="textcolor31"> <span 
+     and Emotion. Amsterdam: John Benjamins, pp. 11–32. <span id="textcolor31"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">value
- theory, personhood, love</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhUF95eHljajJmbWM&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Authenticity, it is plausible to suppose, is a
- feature of one’s identity as a person—of one’s sense of the kind of life
- worth living. Most attempts to explicate this notion of a person’s identity
- do so in terms of an antecedent understanding of what it is for a person to
- value something. This is, I argue, a mistake: a concern is not intelligible as
- a value apart from the place it has within a larger identity that the value
- serves in turn to constitute; to assume otherwise is to risk leaving out the
- very person whose identity these values allegedly constitute. By contrast, I
- offer an account of values as always already a part of one’s identity. I do so
- by providing an analysis of values in terms of what I call ’person-focused
- emotions,’ emotions like pride and shame. Such emotions, I argue, involve
- a commitment to the import of a person primarily and, only secondarily, to
- things valued, and in this way enable us to understand what it is to value
- these things for the sake of the person. The upshot is a more satisfying
- account of a person’s identity and values, an account that can provide the
- necessary background for a more thorough investigation of authenticity.</span></details>
- 
- 
- </dd>
+     theory, personhood, love</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhUF95eHljajJmbWM&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Authenticity, it is plausible to suppose, is a
+     feature of one’s identity as a person—of one’s sense of the kind of life
+     worth living. Most attempts to explicate this notion of a person’s identity
+     do so in terms of an antecedent understanding of what it is for a person to
+     value something. This is, I argue, a mistake: a concern is not intelligible as
+     a value apart from the place it has within a larger identity that the value
+     serves in turn to constitute; to assume otherwise is to risk leaving out the
+     very person whose identity these values allegedly constitute. By contrast, I
+     offer an account of values as always already a part of one’s identity. I do so
+     by providing an analysis of values in terms of what I call ’person-focused
+     emotions,’ emotions like pride and shame. Such emotions, I argue, involve
+     a commitment to the import of a person primarily and, only secondarily, to
+     things valued, and in this way enable us to understand what it is to value
+     these things for the sake of the person. The upshot is a more satisfying
+     account of a person’s identity and values, an account that can provide the
+     necessary background for a more thorough investigation of authenticity.</span></details>
+                                                                          
+                                                                          
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion agency popular">
 <dt id="X1-Helm2009Import-Human-Action" class="thebibliography">
 12. </dt><dd 
 id="bib-29" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2009Import-Human-Action"></a>2009. “<a 
 href="http://www.worldcat.org/oclc/318901257" >The Import of Human Action</a>”. In: <span 
 class="pplri9d-x-x-109">Philosophy of Action: 5 Questions</span>.
- Ed. by Jesus Aguilar and Andrei Buckareff. Copenhagen: Automatic
- Press/VIP, pp. 89–100. <span id="textcolor32"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, agency, popular</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhU2JhbE5NSkxMVU0&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- </dd>
+     Ed. by Jesus Aguilar and Andrei Buckareff. Copenhagen: Automatic
+     Press/VIP, pp. 89–100. <span id="textcolor32"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, agency, popular</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhU2JhbE5NSkxMVU0&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib socialontology rationality agency friendship">
 <dt id="X1-Helm2008Plural-Agents" class="thebibliography">
 11. </dt><dd 
 id="bib-30" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2008Plural-Agents"></a>2008. “<a 
 href="https://doi.org/10.1111/j.1468-0068.2007.00672.x" >Plural Agents</a>”. In: <span 
 class="pplri9d-x-x-109">No</span><span 
 class="pplri9d-x-x-109">ûs </span>42.1, pp. 17–49. <span id="textcolor33"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">social
- ontology, rationality, agency, friendship</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhdnA3MU1UeVdKTWM&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Genuine agents are able to
- engage in activity because they find it worth pursuing—because they
- care about it. In this respect, they differ from what might be called
- “mere intentional systems”: systems like chess-playing computers that
- exhibit merely goal-directed behavior mediated by instrumental rationality,
- without caring. A parallel distinction can be made in the domain of
- social activity: plural agents must be distinguished from plural intentional
- systems in that plural agents have cares and engage in activity because of
- those cares. In this paper, I sketch an account of what it is for an individual
- to care about things in terms of her exhibiting a certain pattern of emotions.
- After extending this account to make sense of an individual’s caring about
- other agents, I then show how a certain sort of emotional connectedness
- among a group of people can make intelligible the group’s having cares
- and thereby constitute that group as a plural agent. Alternative accounts of
- social action, by ignoring the difference between mere intentional systems
- and genuine agents, and so by leaving out these emotional entanglements
- from their accounts of social action, thereby fail to capture a whole range
- of social phenomena involving plural agents.</span></details>
- </dd>
+     ontology, rationality, agency, friendship</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhdnA3MU1UeVdKTWM&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Genuine agents are able to
+     engage in activity because they find it worth pursuing—because they
+     care about it. In this respect, they differ from what might be called
+     “mere intentional systems”: systems like chess-playing computers that
+     exhibit merely goal-directed behavior mediated by instrumental rationality,
+     without caring. A parallel distinction can be made in the domain of
+     social activity: plural agents must be distinguished from plural intentional
+     systems in that plural agents have cares and engage in activity because of
+     those cares. In this paper, I sketch an account of what it is for an individual
+     to care about things in terms of her exhibiting a certain pattern of emotions.
+     After extending this account to make sense of an individual’s caring about
+     other agents, I then show how a certain sort of emotional connectedness
+     among a group of people can make intelligible the group’s having cares
+     and thereby constitute that group as a plural agent. Alternative accounts of
+     social action, by ignoring the difference between mere intentional systems
+     and genuine agents, and so by leaving out these emotional entanglements
+     from their accounts of social action, thereby fail to capture a whole range
+     of social phenomena involving plural agents.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology friendship">
 <dt id="X1-Helm2005Friendship" class="thebibliography">
 10. </dt><dd 
 id="bib-31" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2005Friendship"></a>2005. “<a 
 href="http://plato.stanford.edu/entries/friendship/" >Friendship</a>”. In: <span 
 class="pplri9d-x-x-109">The Stanford Encyclopedia of Philosophy</span>. Ed. by
- Edward N. Zalta. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021. <span id="textcolor34">
- <span 
+     Edward N. Zalta. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021. <span id="textcolor34">
+     <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, friendship</span></span>.
- </dd>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib love moralpsychology">
 <dt id="X1-Helm2005Love" class="thebibliography">
  9. </dt><dd 
 id="bib-32" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2005Love"></a>2005. “<a 
 href="http://plato.stanford.edu/entries/love/" >Love</a>”. In: <span 
 class="pplri9d-x-x-109">The Stanford Encyclopedia of Philosophy</span>. Ed. by Edward N.
- Zalta. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021. <span id="textcolor35"> <span 
+     Zalta. Revised: Fall 2009, Fall 2013, Fall 2017, Fall 2021. <span id="textcolor35"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">love,
- moral psychology</span></span>.
- </dd>
+     moral psychology</span></span>.
+     </dd>
 </div>
- 
+     
 <div class="show filterBib agency rationality">
 <dt id="X1-Helm2002Action-for-Sake" class="thebibliography">
  8. </dt><dd 
 id="bib-33" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2002Action-for-Sake"></a>2002. “<a 
 href="https://doi.org/10.1515/auk-2002-0203" >Action for the Sake of …: Caring and the Rationality of (Social)
- Action</a>”. In: <span 
+     Action</a>”. In: <span 
 class="pplri9d-x-x-109">Analyse &#x0026; Kritik </span>24.2, pp. 189–208. <span id="textcolor36"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">agency,
- rationality</span></span>.
- </dd>
+     rationality</span></span>.
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion rationality valuetheory">
 <dt id="X1-Helm2002Felt-Evaluations-Theory" class="thebibliography">
  7. </dt><dd 
 id="bib-34" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2002Felt-Evaluations-Theory"></a>2002. “<a 
 href="http://www.jstor.org/stable/20010055" >Felt Evaluations: A Theory of Pleasure and Pain</a>”. In: <span 
 class="pplri9d-x-x-109">American</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Philosophical Quarterly </span>39.1, pp. 13–30. <span id="textcolor37"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion,
- rationality, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhRDhCa1AyUUpmUTA&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This paper argues that pleasure and pains are not
- 
- 
- qualia and they are not to be analyzed in terms of supposedly antecedently
- intelligible mental states like bodily sensation or desire. Rather, pleasure
- and pain are characteristic of a distinctive kind of evaluation that is
- common to emotions, desires, and (some) bodily sensations. These are
- felt evaluations: passive responses to attend to and be motivated by the
- import of something impressing itself on us, responses that are nonetheless
- simultaneously constitutive of that import by virtue of the broader rational
- patterns of which they are a part and that they serve to de?ne. This
- account of felt evaluations makes sense of the way in which pleasures
- and pains grab our attention and motivate us to act and of the peculiar
- dual objectivity and subjectivity of their implicit evaluations, while o?ering
- a phenomenology adequate to both emotional and bodily pleasures and
- pains.</span></details>
- </dd>
+     rationality, value theory</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhRDhCa1AyUUpmUTA&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> This paper argues that pleasure and pains are not
+                                                                          
+                                                                          
+     qualia and they are not to be analyzed in terms of supposedly antecedently
+     intelligible mental states like bodily sensation or desire. Rather, pleasure
+     and pain are characteristic of a distinctive kind of evaluation that is
+     common to emotions, desires, and (some) bodily sensations. These are
+     felt evaluations: passive responses to attend to and be motivated by the
+     import of something impressing itself on us, responses that are nonetheless
+     simultaneously constitutive of that import by virtue of the broader rational
+     patterns of which they are a part and that they serve to de?ne. This
+     account of felt evaluations makes sense of the way in which pleasures
+     and pains grab our attention and motivate us to act and of the peculiar
+     dual objectivity and subjectivity of their implicit evaluations, while o?ering
+     a phenomenology adequate to both emotional and bodily pleasures and
+     pains.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology agency rationality">
 <dt id="X1-Helm2001Emotions-Practical-Reason" class="thebibliography">
  6. </dt><dd 
 id="bib-35" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2001Emotions-Practical-Reason"></a>2001. “<a 
 href="http://www.jstor.org/stable/2672003" >Emotions and Practical Reason: Rethinking Evaluation and
- Motivation</a>”. In: <span 
+     Motivation</a>”. In: <span 
 class="pplri9d-x-x-109">No</span><span 
 class="pplri9d-x-x-109">ûs </span>35.2, pp. 190–213. <span id="textcolor38"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology,
- agency, rationality</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhV0lvU2o1blhiY2c&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The motivational problem is the problem of
- understanding how we can have rational control over what we do. In
- the face of phenomena like weakness of the will, it is commonly thought
- that evaluation and reason can always remain intact even as we sever
- their connection with motivation; consequently, solving the motivational
- problem is thought to be a matter of figuring out how to bridge this
- inevitable gap between evaluation and motivation. I argue that this is
- fundamentally mistaken and results in a conception of practical reason
- that is motivationally impotent. Instead, I argue, a proper understanding of
- evaluation and practical reason must include not only evaluative judgments
- but emotions as well. By analyzing the role of emotions in evaluation
- and the rational interconnections among emotions, desires, and evaluative
- judgments, I articulate a new conception of evaluation and motivation
- according to which there is a conceptual connection between them, albeit
- one that allows for the possibility of weakness of the will.</span></details>
- </dd>
+     agency, rationality</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhV0lvU2o1blhiY2c&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> The motivational problem is the problem of
+     understanding how we can have rational control over what we do. In
+     the face of phenomena like weakness of the will, it is commonly thought
+     that evaluation and reason can always remain intact even as we sever
+     their connection with motivation; consequently, solving the motivational
+     problem is thought to be a matter of figuring out how to bridge this
+     inevitable gap between evaluation and motivation. I argue that this is
+     fundamentally mistaken and results in a conception of practical reason
+     that is motivationally impotent. Instead, I argue, a proper understanding of
+     evaluation and practical reason must include not only evaluative judgments
+     but emotions as well. By analyzing the role of emotions in evaluation
+     and the rational interconnections among emotions, desires, and evaluative
+     judgments, I articulate a new conception of evaluation and motivation
+     according to which there is a conceptual connection between them, albeit
+     one that allows for the possibility of weakness of the will.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology rationality valuetheory personhood">
 <dt id="X1-Helm2000Emotional-Reason-How" class="thebibliography">
  5. </dt><dd 
 id="bib-36" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm2000Emotional-Reason-How"></a>2000. “<a 
 href="https://www.jstor.org/stable/20009981" >Emotional Reason: How to Deliberate about Value</a>”. In: <span 
 class="pplri9d-x-x-109">American</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Philosophical Quarterly </span>37.1, pp. 1–22. <span id="textcolor39"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology,
- rationality, value theory, personhood</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhM1lwNVprU0toRmM&amp;authuser=0" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Deliberation about personal,
- non-moral values involves elements of both invention and discovery. Thus,
- we invent our values by freely choosing them, where such distinctively
- human freedom is essential to our defining and taking responsibility for the
- kinds of persons we are; nonetheless, we also discover our values insofar
- as we can deliberate about them rationally and arrive at non-arbitrary
- decisions about what has value in our lives. Yet these notions of invention
- and discovery seem inconsistent with each other, and the possibility of
- deliberation about value therefore seems paradoxical. My aim is to argue
- that this apparent paradox is no paradox at all. I offer an account of
- 
- 
- what it is to value something largely in terms of emotions and desires.
- By examining the rational interconnections among emotions and evaluative
- judgments, I argue for an account both of how judgments can shape our
- emotions, thereby shaping our values in a way that makes intelligible
- the possibility of inventing our values, and of how our emotions can
- simultaneously rationally constrain correct deliberation, thereby making
- intelligible the possibility of discovering our values. The result is a rejection
- of both cognitivist and non-cognitivist accounts of value and deliberation
- about value.</span></details>
- </dd>
+     rationality, value theory, personhood</span></span>. <a href="https://drive.google.com/open?id=0B45uPWgGHVLhM1lwNVprU0toRmM&amp;authuser=0" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> Deliberation about personal,
+     non-moral values involves elements of both invention and discovery. Thus,
+     we invent our values by freely choosing them, where such distinctively
+     human freedom is essential to our defining and taking responsibility for the
+     kinds of persons we are; nonetheless, we also discover our values insofar
+     as we can deliberate about them rationally and arrive at non-arbitrary
+     decisions about what has value in our lives. Yet these notions of invention
+     and discovery seem inconsistent with each other, and the possibility of
+     deliberation about value therefore seems paradoxical. My aim is to argue
+     that this apparent paradox is no paradox at all. I offer an account of
+                                                                          
+                                                                          
+     what it is to value something largely in terms of emotions and desires.
+     By examining the rational interconnections among emotions and evaluative
+     judgments, I argue for an account both of how judgments can shape our
+     emotions, thereby shaping our values in a way that makes intelligible
+     the possibility of inventing our values, and of how our emotions can
+     simultaneously rationally constrain correct deliberation, thereby making
+     intelligible the possibility of discovering our values. The result is a rejection
+     of both cognitivist and non-cognitivist accounts of value and deliberation
+     about value.</span></details>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion moralpsychology agency">
 <dt id="X1-Helm1996Freedom-Heart" class="thebibliography">
  4. </dt><dd 
 id="bib-37" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm1996Freedom-Heart"></a>1996. “<a 
 href="https://doi.org/10.1111/j.1468-0114.1996.tb00159.x" >Freedom of the Heart</a>”. In: <span 
 class="pplri9d-x-x-109">Pacific Philosophical Quarterly </span>77.2,
- pp. 71–87. <span id="textcolor40"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, moral psychology, agency</span></span>. <a href="https://drive.google.com/file/d/1nWu5zW_19pTpKvelTTTqBQN7IGJeUTwX/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- </dd>
+     pp. 71–87. <span id="textcolor40"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, moral psychology, agency</span></span>. <a href="https://drive.google.com/file/d/1nWu5zW_19pTpKvelTTTqBQN7IGJeUTwX/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib moralpsychology personhood valuetheory">
 <dt id="X1-Helm1996Integration-Fragmentation-Self" class="thebibliography">
  3. </dt><dd 
 id="bib-38" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm1996Integration-Fragmentation-Self"></a>1996. “<a 
 href="https://doi.org/10.1111/j.2041-6962.1996.tb00775.x" >Integration and Fragmentation of the Self</a>”. In: <span 
 class="pplri9d-x-x-109">Southern Journal of</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Philosophy </span>34.1, pp. 43–63. <span id="textcolor41"> <span 
 class="pplri9d-x-x-109">Categories:</span> <span class="categories">moral psychology, personhood,
- value theory</span></span>. <a href="https://drive.google.com/file/d/1xRrjsIh2tlp1VrYhvEc-3FgCO5fya3W9/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- </dd>
+     value theory</span></span>. <a href="https://drive.google.com/file/d/1xRrjsIh2tlp1VrYhvEc-3FgCO5fya3W9/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib mindemotion agency">
 <dt id="X1-Helm1994Significance-Emotions" class="thebibliography">
  2. </dt><dd 
 id="bib-39" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm1994Significance-Emotions"></a>1994. “<a 
 href="http://www.jstor.org/stable/20009794" >The Significance of Emotions</a>”. In: <span 
 class="pplri9d-x-x-109">American Philosophical Quarterly</span>
- 31.4, pp. 319–31. <span id="textcolor42"> <span 
-class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, agency</span></span>. <a href="https://drive.google.com/file/d/1g7F2zbfoJbW3wgWL8oMGab4MJTKvIyuL/view?usp=drive_link" style="font-family:sans-serif; font-weight:bold;">Download.</a>
- </dd>
+     31.4, pp. 319–31. <span id="textcolor42"> <span 
+class="pplri9d-x-x-109">Categories:</span> <span class="categories">mind/emotion, agency</span></span>. <a href="https://drive.google.com/file/d/1g7F2zbfoJbW3wgWL8oMGab4MJTKvIyuL/view?usp=drive_link" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a>
+     </dd>
 </div>
- 
+     
 <div class="show filterBib rationality history">
 <dt id="X1-Helm1993Why-We-Believe" class="thebibliography">
  1. </dt><dd 
 id="bib-40" class="thebibliography">
- <!--l. 279--><p class="noindent" ><a 
+     <!--l. 283--><p class="noindent" ><a 
  id="cite.1@Helm1993Why-We-Believe"></a>1993. “<a 
 href="https://www.humesociety.org/uploads/issues/v19n1/388485.pdf" >Why We Believe in Induction: Standards of Taste and Hume’s Two
- Definitions of Causation</a>”. In: <span 
+     Definitions of Causation</a>”. In: <span 
 class="pplri9d-x-x-109">Hume Studies </span>19.1, pp. 117–40. <span id="textcolor43"> <span 
 class="pplri9d-x-x-109">Categories:</span>
- <span class="categories">rationality, history</span></span>. <a href="https://drive.google.com/file/d/1s0bmKWBSS4XPGUaNENHaf9il3jVI09Og/view?usp=sharing" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> It is somewhat striking that two interrelated elements
- of Hume’s account of causation have received so little attention in the
- secondary literature on the subject. The first is the distinction of causation
- into the natural and the philosophical relations: Although many have tried
- to give accounts of why Hume presents two definitions of causality, it is
- often not clear in these accounts that the one definition is of causality as
- a natural relation and the other is of causality as a philosophical relation,
- where to make the contrast between these two kinds of relations we need
- to give a naturalistic account of natural relations and a normative account
- of philosophical relations. (That Hume intends this to be the contrast will
- be defended in more detail below.) The second element is that, in many
- cases of our inferences from cause to effect, “we must follow our taste and
- sentiment” (A Treatise of Human Nature [T], 103), where the appeal to
- taste here, as in morality and aesthetics, is not to be understood as up to
- the individual. Rather, Hume makes it clear both in Book 3 of the Treatise
- and in “Of the Standard of Taste” that there are standards to which our
- individual judgments (in morality, aesthetics, or causality) must conform.
- My purpose in this paper is to attempt to provide an interpretation of
- Hume’s account of causality that brings these two elements explicitly into
- the foreground. This interpretation is, to a greater extent than usual, a
- 
- 
- reconstruction of Hume’s account of our causal inferences, drawing, as
- I have indicated above, from a range of texts not normally associated
- with Hume’s discussion of causality. As such, this interpretation should be
- considered as exploratory in nature, perhaps focussing too single-mindedly
- on these two elements in an attempt to make out as strong a case as possible
- for their relevance in understanding Hume’s account of causal inference.</span></details></dd>
+     <span class="categories">rationality, history</span></span>. <a href="https://drive.google.com/file/d/1s0bmKWBSS4XPGUaNENHaf9il3jVI09Og/view?usp=sharing" target="_blank" style="font-family:sans-serif; font-weight:bold;">Download.</a> <details style="margin-bottom:1.0ex; margin-top:.5ex;"><summary><span style="font-family:sans-serif; font-weight:bold; color:0000cc;">Abstract</span></summary><span style="font-size:.95em"><p> It is somewhat striking that two interrelated elements
+     of Hume’s account of causation have received so little attention in the
+     secondary literature on the subject. The first is the distinction of causation
+     into the natural and the philosophical relations: Although many have tried
+     to give accounts of why Hume presents two definitions of causality, it is
+     often not clear in these accounts that the one definition is of causality as
+     a natural relation and the other is of causality as a philosophical relation,
+     where to make the contrast between these two kinds of relations we need
+     to give a naturalistic account of natural relations and a normative account
+     of philosophical relations. (That Hume intends this to be the contrast will
+     be defended in more detail below.) The second element is that, in many
+     cases of our inferences from cause to effect, “we must follow our taste and
+     sentiment” (A Treatise of Human Nature [T], 103), where the appeal to
+     taste here, as in morality and aesthetics, is not to be understood as up to
+     the individual. Rather, Hume makes it clear both in Book 3 of the Treatise
+     and in “Of the Standard of Taste” that there are standards to which our
+     individual judgments (in morality, aesthetics, or causality) must conform.
+     My purpose in this paper is to attempt to provide an interpretation of
+     Hume’s account of causality that brings these two elements explicitly into
+     the foreground. This interpretation is, to a greater extent than usual, a
+                                                                          
+                                                                          
+     reconstruction of Hume’s account of our causal inferences, drawing, as
+     I have indicated above, from a range of texts not normally associated
+     with Hume’s discussion of causality. As such, this interpretation should be
+     considered as exploratory in nature, perhaps focussing too single-mindedly
+     on these two elements in an attempt to make out as strong a case as possible
+     for their relevance in understanding Hume’s account of causal inference.</span></details></dd>
 </div>
- </dl>
-<!--l. 291--><p class="noindent" >
+     </dl>
+<!--l. 295--><p class="noindent" >
 </div>
 <div id="5" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 291--><p class="indent" > <a 
+<!--l. 295--><p class="indent" > <a 
  id="x1-120005"></a>Awards</h3>
- <ul class="itemize1">
- <li class="itemize">
- <!--l. 295--><p class="noindent" >Cowling Distinguished Visiting Professor of Philosophy, Carleton College
- (2018)
- </li>
- <li class="itemize">
- <!--l. 296--><p class="noindent" >Templeton Foundation Grant (2012–15): <span 
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 299--><p class="noindent" >Cowling Distinguished Visiting Professor of Philosophy, Carleton College
+     (2018)
+     </li>
+     <li class="itemize">
+     <!--l. 300--><p class="noindent" >Templeton Foundation Grant (2012–15): <span 
 class="pplri9d-x-x-109">Love and Human Agency: An</span>
- <span 
+     <span 
 class="pplri9d-x-x-109">Interdisciplinary Investigation </span>(with Agnieszka Jaworska and Jeffrey
- Seidman), $640,317
- </li>
- <li class="itemize">
- <!--l. 297--><p class="noindent" >NEH Fellowship (2012–13): “Defining Moral Communities: Respect,
- Dignity, and the Reactive Attitudes”, $50,400
- </li>
- <li class="itemize">
- <!--l. 298--><p class="noindent" >Laurance S. Rockefeller Visiting Faculty Fellow (2012–13), Princeton
- University Center for Human Values, $47,000
- </li>
- <li class="itemize">
- <!--l. 299--><p class="noindent" >Bradley R. Dewey Award for Outstanding Scholarship (2012), Franklin &#x0026;
- Marshall College
- </li>
- <li class="itemize">
- <!--l. 300--><p class="noindent" >Brocher Foundation Award (2011) for a workshop on “The Neuroethics of
- Caring” (with Agnieszka Jaworska), $36,000
- 
- 
- </li>
- <li class="itemize">
- <!--l. 301--><p class="noindent" >NEH Fellowship (2005–06): “Love, Friendship and the Self: The Emotional
- and Interpersonal Grounds of Autonomy”, $40,000
- </li>
- <li class="itemize">
- <!--l. 302--><p class="noindent" >NSF-CCLI Grant (2001–04): Creation of Artificial Intelligence Laboratory
- (with Tony Chemero), $173,281
- </li>
- <li class="itemize">
- <!--l. 303--><p class="noindent" >ACLS Fellowship (1998–99): “Emotion, Judgment, and Practical Reason:
- How to Deliberate about Value”, $20,000
- </li>
- <li class="itemize">
- <!--l. 304--><p class="noindent" >NEH Summer Stipend (1998): “Reason, Emotion, and Evaluative
- Judgment: How to Think about the Meaning of Life”, $6,000
- </li></ul>
-<!--l. 308--><p class="noindent" >
+     Seidman), $640,317
+     </li>
+     <li class="itemize">
+     <!--l. 301--><p class="noindent" >NEH Fellowship (2012–13): “Defining Moral Communities: Respect,
+     Dignity, and the Reactive Attitudes”, $50,400
+     </li>
+     <li class="itemize">
+     <!--l. 302--><p class="noindent" >Laurance S. Rockefeller Visiting Faculty Fellow (2012–13), Princeton
+     University Center for Human Values, $47,000
+     </li>
+     <li class="itemize">
+     <!--l. 303--><p class="noindent" >Bradley R. Dewey Award for Outstanding Scholarship (2012), Franklin &#x0026;
+     Marshall College
+     </li>
+     <li class="itemize">
+     <!--l. 304--><p class="noindent" >Brocher Foundation Award (2011) for a workshop on “The Neuroethics of
+     Caring” (with Agnieszka Jaworska), $36,000
+                                                                          
+                                                                          
+     </li>
+     <li class="itemize">
+     <!--l. 305--><p class="noindent" >NEH Fellowship (2005–06): “Love, Friendship and the Self: The Emotional
+     and Interpersonal Grounds of Autonomy”, $40,000
+     </li>
+     <li class="itemize">
+     <!--l. 306--><p class="noindent" >NSF-CCLI Grant (2001–04): Creation of Artificial Intelligence Laboratory
+     (with Tony Chemero), $173,281
+     </li>
+     <li class="itemize">
+     <!--l. 307--><p class="noindent" >ACLS Fellowship (1998–99): “Emotion, Judgment, and Practical Reason:
+     How to Deliberate about Value”, $20,000
+     </li>
+     <li class="itemize">
+     <!--l. 308--><p class="noindent" >NEH Summer Stipend (1998): “Reason, Emotion, and Evaluative
+     Judgment: How to Think about the Meaning of Life”, $6,000
+     </li></ul>
+<!--l. 312--><p class="noindent" >
 </div>
 <div id="6" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 308--><p class="indent" > <a 
+<!--l. 312--><p class="indent" > <a 
  id="x1-130006"></a>Students</h3>
- <ul class="itemize1">
- <li class="itemize">
- <!--l. 312--><p class="noindent" >Anzhou He (Hackman Scholar, 2023): “Resisting the Misconstruction of
- Social Identities: The Interpersonal Call of Ontological Reactive Attitudes”
- </li>
- <li class="itemize">
- <!--l. 313--><p class="noindent" >Raluca Rilla (Hackman Scholar, 2022): “Objective Self-Constitution of
- Personhood”
- </li>
- <li class="itemize">
- <!--l. 314--><p class="noindent" >Grace Adams (Hackman Scholar, 2017): “Race, Gender, and Community”
- </li>
- <li class="itemize">
- <!--l. 315--><p class="noindent" >Dan Kaplan (Hackman Scholar, 2011): “Joint Caring about Truth”
- 
- 
- </li>
- <li class="itemize">
- <!--l. 316--><p class="noindent" >Kathryn Kutz (Hackman Scholar, 2009): “Truth, Emotion, and Shared
- Commitment”
- </li>
- <li class="itemize">
- <!--l. 317--><p class="noindent" >Neal Swisher (Coutros Scholar, 2004): “Artificial-Life Learning in Mobile
- Robotics”
- </li>
- <li class="itemize">
- <!--l. 318--><p class="noindent" >Yaroslava Babych and Aleksandra Markovic (Hackman Scholars, 1998),
- “Moods as a Sense of Priorities”
- </li></ul>
-<!--l. 322--><p class="noindent" >
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 316--><p class="noindent" >Anzhou He (Hackman Scholar, 2023): “Resisting the Misconstruction of
+     Social Identities: The Interpersonal Call of Ontological Reactive Attitudes”
+     </li>
+     <li class="itemize">
+     <!--l. 317--><p class="noindent" >Raluca Rilla (Hackman Scholar, 2022): “Objective Self-Constitution of
+     Personhood”
+     </li>
+     <li class="itemize">
+     <!--l. 318--><p class="noindent" >Grace Adams (Hackman Scholar, 2017): “Race, Gender, and Community”
+     </li>
+     <li class="itemize">
+     <!--l. 319--><p class="noindent" >Dan Kaplan (Hackman Scholar, 2011): “Joint Caring about Truth”
+                                                                          
+                                                                          
+     </li>
+     <li class="itemize">
+     <!--l. 320--><p class="noindent" >Kathryn Kutz (Hackman Scholar, 2009): “Truth, Emotion, and Shared
+     Commitment”
+     </li>
+     <li class="itemize">
+     <!--l. 321--><p class="noindent" >Neal Swisher (Coutros Scholar, 2004): “Artificial-Life Learning in Mobile
+     Robotics”
+     </li>
+     <li class="itemize">
+     <!--l. 322--><p class="noindent" >Yaroslava Babych and Aleksandra Markovic (Hackman Scholars, 1998),
+     “Moods as a Sense of Priorities”
+     </li></ul>
+<!--l. 326--><p class="noindent" >
 </div>
 <div id="7" class="sectionDiv w3-container">
 <h3 class="sectionHead">
-<!--l. 322--><p class="indent" > <a 
+<!--l. 326--><p class="indent" > <a 
  id="x1-140007"></a>Courses</h3>
-<!--l. 324--><p class="indent" > Many of these courses satisfy requirements for our interdisciplinary majors in
+<!--l. 328--><p class="indent" > Many of these courses satisfy requirements for our interdisciplinary majors in
 <a 
 href="https://www.fandm.edu/fields-of-study/cognitive-science/index.html" >Cognitive Science</a> and <a 
 href="https://www.fandm.edu/fields-of-study/moral-psychology/index.html" >Moral Psychology</a>.
@@ -1574,9 +1576,9 @@ href="https://www.fandm.edu/fields-of-study/moral-psychology/index.html" >Moral 
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-15000"></a><span id="textcolor44">CNX 149: Race, Gender, and Community.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 329--><p class="indent" > Race and gender are centrally important to each of our lives. But what are
+<!--l. 333--><p class="indent" > Race and gender are centrally important to each of our lives. But what are
 they exactly? How many races or genders are there? Who has what race or
 what gender? How are these answers determined? (Are race and gender
 biologically real? Are they socially constructed? Would their being socially
@@ -1589,8 +1591,8 @@ on fields such as philosophy, sociology, women’s and gender studies, and
 critical race theory, we will critically examine a variety of answers to these
 questions, in the process trying to understand how we can have reasonable and
 productive disagreements about these contentious and politically charged
- 
- 
+                                                                          
+                                                                          
 issues.
 </div>
 </details>
@@ -1599,9 +1601,9 @@ issues.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-16000"></a><span id="textcolor45">SPM 100: Minds, Machines, and Morals.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 333--><p class="indent" > This course provides an introduction to some central problems, concepts, and
+<!--l. 337--><p class="indent" > This course provides an introduction to some central problems, concepts, and
 methods of cognitive science and moral psychology. We will address questions
 concerning the nature of intelligence, the relationship between minds and
 bodies, and the basis of moral beliefs and behaviors. These explorations will
@@ -1614,9 +1616,9 @@ perspective.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-17000"></a><span id="textcolor46">PHI 250: Philosophy of Mind.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 337--><p class="indent" > This class is designed as a general introduction to the philosophy of mind (and,
+<!--l. 341--><p class="indent" > This class is designed as a general introduction to the philosophy of mind (and,
 consequently, as an introduction to the philosophical side of both majors in the
 Scientific and Philosophical Studies of Mind program: Cognitive Science and Moral
 Psychology). We will begin by examining the mind–body problem, a problem which
@@ -1632,8 +1634,8 @@ psychological explanation, freedom, and meaning, and identity. In addressing the
 questions, we shall gain a clearer understanding of the strengths, weaknesses, and
 implications of the various theories about what the mind is and its relation to the
 body.
- 
- 
+                                                                          
+                                                                          
 </div>
 </details>
 </div>
@@ -1641,9 +1643,9 @@ body.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-18000"></a><span id="textcolor47">PHI 351: Mind-Body Problem.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 341--><p class="indent" > It has long been perceived by many philosophers that there is a problem about the
+<!--l. 345--><p class="indent" > It has long been perceived by many philosophers that there is a problem about the
 relationship between the mind and the body. The body, after all, is just a hunk of
 physical matter that obeys the laws of nature mechanistically—mindlessly—whereas
 the mind, of course, is anything but mindless. So what’s the connection between the
@@ -1663,9 +1665,9 @@ it.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-19000"></a><span id="textcolor48">PHI 352: Philosophy of Emotions.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 345--><p class="indent" > Long neglected in philosophy, the emotions have recently and increasingly come to
+<!--l. 349--><p class="indent" > Long neglected in philosophy, the emotions have recently and increasingly come to
 be seen as important both in their own right and for their bearing on a wide variety of
 issues, including (a) the mind–body problem and the nature of consciousness and
 intentionality, (b) the nature of rationality, (c) aesthetics, (d) interpersonal
@@ -1679,14 +1681,14 @@ diminish.
 </details>
 </div>
 <div>
- 
- 
+                                                                          
+                                                                          
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-20000"></a><span id="textcolor49">PHI 360: Concept of a Person.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 349--><p class="indent" > Philosophers tend to understand the concept of a person in two ways: as a
+<!--l. 353--><p class="indent" > Philosophers tend to understand the concept of a person in two ways: as a
 metaphysical notion and as a moral notion. <span 
 class="pplri9d-x-x-109">Moral personhood </span>is roughly an
 understanding of ourselves as the subjects of moral rights and responsibilities. By
@@ -1707,9 +1709,9 @@ nature.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-21000"></a><span id="textcolor50">PHI 361: Moral Psychology.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 353--><p class="indent" > Moral psychology is the study of us persons as responsible moral agents and
+<!--l. 357--><p class="indent" > Moral psychology is the study of us persons as responsible moral agents and
 subjects of value. As such, it is constrained by, and must cohere with, the
 facts about human psychology; but its primary focus is on human good, an
 evaluative notion. Topics include virtue and character, motivation and reasons,
@@ -1722,14 +1724,14 @@ blame.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-22000"></a><span id="textcolor51">PHI 362: Love and Friendship.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 357--><p class="indent" > Love and friendship are undoubtedly important in our lives … but why? Although
+<!--l. 361--><p class="indent" > Love and friendship are undoubtedly important in our lives … but why? Although
 we commonly say that we “love” both chocolate cake and philosophy or that we are
 “friends” with people on Facebook, these seem to be thin surrogates for the
 potentially deep, rich, intimate, and rewarding attitudes and relationships we develop
- 
- 
+                                                                          
+                                                                          
 towards and with other persons. Clearly it is the latter that we interested in here:
 forms of love and friendship that apply paradigmatically to intimate relations among
 persons. In investigating personal love and friendship, we will encounter several
@@ -1743,22 +1745,22 @@ including moral values.
 <details>
 <summary style="margin-top:1.0ex;">
 <span style="font-family:sans-serif; font-weight:bold;">
- <a 
+   <a 
  id="x1-23000"></a><span id="textcolor52">PHI 363: Respect, Responsibility, and Ethics.</span></span></summary><div style="margin-left:1.33em;">
-<!--l. 361--><p class="indent" > Recently many philosophers have argued that certain interpersonal emotions, such
+<!--l. 365--><p class="indent" > Recently many philosophers have argued that certain interpersonal emotions, such
 as resentment, indignation, guilt, gratitude, and approbation, are fundamental to a
 host of interconnected issues in ethics, including the nature of respect, dignity,
 responsibility and freedom, and the origins of moral values. This class will closely
 examine these claims and arguments with the aim of understanding more clearly how
 moral psychology and metaethics intersect.
-<!--l. 364--><p class="indent" > <div>
+<!--l. 368--><p class="indent" > <div>
 </div>
 </details>
 </div>
 </div>
- 
+    
 </body> 
 </html>
- 
+                                                                          
 
 
