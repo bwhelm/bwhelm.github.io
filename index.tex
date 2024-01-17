@@ -16,11 +16,13 @@
 % BibLaTeX
 \usepackage[%
   bibstyle=publist,%
-  hlyear=false,%
+  fixyear=false,%                 Don't print year at very beginning
+  hlyear=false,%                  Don't highlight the year
+  labeldateparts=false,%          Remove extra 'a', 'b', etc. on year
   % marginyear=true,%
-  plnumbering=local-descending,%
-  plauthorhandling=omit,%
-  linktitles=all,%
+  plnumbering=local-descending,%  Order by most recent
+  plauthorhandling=omit,%         Don't print author name
+  linktitles=all,%                Add links to all titles
   % authordate,%
   eprint=false,%
   doi=false,%
@@ -34,7 +36,6 @@
 % Customize bibliography printing
 \AtEveryBibitem{\clearfield{month}}               % Don't use month field
 \AtEveryBibitem{\clearfield{day}}                 % Don't use day field
-\AtEveryBibitem{\clearfield{extradate}}           % Remove extra 'a', 'b', etc. on year
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}  % Set numbering style
 
 % Page geometry
@@ -66,7 +67,7 @@
 \renewcommand\paragraph[1]{\oldparagraph{\textcolor{myblue}{#1}}}
 
 \ProvideDocumentCommand\link{m}{%
-  \href{#1}{\textbf{Preprint.}}%
+  \href{#1}{\textbf{\small{Preprint.}}}%
 }
 
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
