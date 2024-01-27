@@ -16,11 +16,13 @@
 % BibLaTeX
 \usepackage[%
   bibstyle=publist,%
-  hlyear=false,%
+  fixyear=false,%                 Don't print year at very beginning
+  hlyear=false,%                  Don't highlight the year
+  labeldateparts=false,%          Remove extra 'a', 'b', etc. on year
   % marginyear=true,%
-  plnumbering=local-descending,%
-  plauthorhandling=omit,%
-  linktitles=all,%
+  plnumbering=local-descending,%  Order by most recent
+  plauthorhandling=omit,%         Don't print author name
+  linktitles=all,%                Add links to all titles
   % authordate,%
   eprint=false,%
   doi=false,%
@@ -32,9 +34,8 @@
 \addbibresource{bibdatabase-helm.bib}
 
 % Customize bibliography printing
-\AtEveryBibitem{\clearfield{month}}               % Don't use month field
-\AtEveryBibitem{\clearfield{day}}                 % Don't use day field
-\AtEveryBibitem{\clearfield{extradate}}           % Remove extra 'a', 'b', etc. on year
+% \AtEveryBibitem{\clearfield{month}}               % Don't use month field
+% \AtEveryBibitem{\clearfield{day}}                 % Don't use day field
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot}  % Set numbering style
 
 % Page geometry
@@ -66,7 +67,7 @@
 \renewcommand\paragraph[1]{\oldparagraph{\textcolor{myblue}{#1}}}
 
 \ProvideDocumentCommand\link{m}{%
-  \href{#1}{\textbf{Download.}}%
+  \href{#1}{\textbf{\small{Preprint.}}}%
 }
 
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
@@ -139,6 +140,7 @@
   }
 }
 \DeclareFieldFormat{usera}{\link{#1}}
+\DeclareFieldFormat{pubstate}{\MakeSentenceCase{#1}}
 
 % Print keywords and download (usera) at end of entry
 \renewbibmacro*{addendum+pubstate}{%
@@ -262,6 +264,8 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 \section{Books}
 
+\textbf{Note:} Links to preprints are to the first chapter. I'm happy to send full .pdfs on request.
+
 % Cite just things I've written, so that I can filter out only the books
 \nocite{Helm2017Communities-Respect-Persons,Helm2010Love-Friendship-Self,Helm2001Emotional-Reason-Deliberation}
 
@@ -278,7 +282,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 % FIXME: Uncomment line below for CATEGORIES
 Choose a category below.
-Download links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions.
+Download links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions, or contact me directly to request .pdf copies.
 
 \printbibliography[filter=myarticle, heading=none]
 

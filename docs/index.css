@@ -3,7 +3,10 @@
 .pplr9d-x-x-109{}
 .ectt-1095{ font-family: monospace,monospace;}
 .pplb9d-x-x-109{font-weight: bold;}
+.pplb9d-x-x-109{font-weight: bold;}
 .pplri9d-x-x-109{font-style: italic;}
+.pplb9d-{font-size:90%;font-weight: bold;}
+.pplb9d-{font-weight: bold;}
 .pplrc9d-x-x-109{}
 .small-caps{font-variant: small-caps; }
 p{margin-top:0;margin-bottom:0}
@@ -227,7 +230,7 @@ span#textcolor40{color:#008080}
 span#textcolor41{color:#008080}
 span#textcolor42{color:#008080}
 span#textcolor43{color:#008080}
-span#textcolor44{color:#0000BF}
+span#textcolor44{color:#008080}
 span#textcolor45{color:#0000BF}
 span#textcolor46{color:#0000BF}
 span#textcolor47{color:#0000BF}
@@ -236,5 +239,6 @@ span#textcolor49{color:#0000BF}
 span#textcolor50{color:#0000BF}
 span#textcolor51{color:#0000BF}
 span#textcolor52{color:#0000BF}
+span#textcolor53{color:#0000BF}
 /* end css.sty */
 

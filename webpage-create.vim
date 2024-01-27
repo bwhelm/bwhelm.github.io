@@ -74,51 +74,45 @@ function! s:tohtml() abort  " {{{
     " FIXME: Uncomment the line below for CATEGORIES
     call append(line('.') - 1, l:bibNavBarList)
 
+    " " If using `marginyear=true`, put year into description field
+    " 1
+    " while(search('reversemarginpar', 'W'))  " This finds marginyears
+    "     normal dat                          " Delete around than <span>
+    "     call search('.<\/dt>', 'bW')        " Search for previous description tag
+    "     normal P
+    "     +
+    " endwhile
+
+    " OLD STUFF
+    " " Delete unneeded tags
+    " silent %substitute/<a id=\_s*[^>]*><\/a>//ge
+    " silent %substitute/<!--l. \d\+-->//ge
+
+    " " Remove all classes and ids
+    " silent %substitute/ class="[^"]*"//ge
+    " silent %substitute/ id="[^"]*"//ge
+
+    " " Fix color attributes by adding a '#' where it doesn't exist
+    " silent %substitute/color:\([^#]\)/color:#\1/ge
+
+    " " Remove empty paragraphs
+    " global/^\s*<p><\/p>\s*$/d
+
+    " " Remove <p> ... </p> within <li> tags
+    " 1
+    " while search("<li>", "We")
+    "     " Add more bottom padding to list item
+    "     normal! i style="padding-bottom:2ex;"
+
+    "     " Find the next <, and delete the surrounding tag. This works only
+    "     " when the <p> is the next tag after the <li>.
+    "     normal f<dst
+    " endwhile
+
     update
 
     " Open .html file
     execute "!open -g" fnameescape(expand("%:r")) . ".html"
-
-    return
-
-    " Delete unneeded tags
-    silent %substitute/<a id=\_s*[^>]*><\/a>//ge
-    silent %substitute/<!--l. \d\+-->//ge
-
-    " Remove all classes and ids
-    silent %substitute/ class="[^"]*"//ge
-    silent %substitute/ id="[^"]*"//ge
-
-    " Fix color attributes by adding a '#' where it doesn't exist
-    silent %substitute/color:\([^#]\)/color:#\1/ge
-
-    " Remove empty paragraphs
-    global/^\s*<p><\/p>\s*$/d
-
-    " Remove <p> ... </p> within <li> tags
-    1
-    while search("<li>", "We")
-        " Add more bottom padding to list item
-        normal! i style="padding-bottom:2ex;"
-
-        " Find the next <, and delete the surrounding tag. This works only
-        " when the <p> is the next tag after the <li>.
-        normal f<dst
-    endwhile
-
-    update
-
-    " Open .html file
-    execute "!open" fnameescape(expand("%:r")) . ".html"
-
-    " " Remove header and footer
-    " if search("\/body>", "w")
-    "     .,$ delete_
-    " endif
-    " if search("<body>", "w")
-    "     1,. delete_
-    " endif
-    " update
 
     " Return to LaTeX file
     edit #
