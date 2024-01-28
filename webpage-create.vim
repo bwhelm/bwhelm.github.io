@@ -36,11 +36,11 @@ function! s:tohtml() abort  " {{{
         normal! "ayt"
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
         " Append the image in a div
-        call append(line('.'), '<div class="bookcontainer"><img src="' . @a . '.jpg" style="width:100%">')
+        call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><img src="' . @a . '.jpg" style="width:100%"></div>')
         call search('<details')  " Put end of div before abstract
         normal! i</div>
         call search('<\/details>', 'e')  " Add horizontal rule after abstract
-        normal! a<hr style="height:50px">
+        normal! a<hr style="clear: both;">
     endwhile
     let @a = l:savereg
 
