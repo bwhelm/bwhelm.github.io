@@ -26,6 +26,24 @@ function! s:tohtml() abort  " {{{
         execute "silent substitute/secNav/secNav secButton" . l:id
     endwhile
 
+    " Put jpgs of books into webpage
+    1
+    let l:savereg = @a
+    call search('Books<\/h3>')
+    let l:bookend = search('<\/dl>', 'n')  " Find end of book section
+    while search('<dt id="X0-.', 'We') && line('.') < l:bookend  " Search for <dt> tag before end
+        " copy the book's bibtex id, whcih is used for the .jpg filename
+        normal! "ayt"
+        call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
+        " Append the image in a div
+        call append(line('.'), '<div class="container"><img src="' . @a . '.jpg" style="width:100%">')
+        call search('<details')  " Put end of div before abstract
+        normal! i</div>
+        call search('<\/details>', 'e')  " Add horizontal rule after abstract
+        normal! a<hr style="height:50px">
+    endwhile
+    let @a = l:savereg
+
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
