@@ -175,6 +175,8 @@
 % No title for tableofcontents or bibliography sections
 \renewcommand{\contentsname}{}
 
+\newcommand{\onrequest}{\href{mailto:bennett.helm@fandm.edu}{on request}}
+
 \begin{document}
 
 % Compile this file to .pdf. To generate the .html file, run:
@@ -264,7 +266,11 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 \section{Books}
 
-\textbf{Note:} Links to preprints are to the first chapter. I'm happy to send full .pdfs on request.
+\begin{center}
+  Links to preprints are to the first chapter.\\
+  Full PDFs of final books are available \onrequest{}.\\
+  ~
+\end{center}
 
 % Cite just things I've written, so that I can filter out only the books
 \nocite{Helm2017Communities-Respect-Persons,Helm2010Love-Friendship-Self,Helm2001Emotional-Reason-Deliberation}
@@ -280,9 +286,13 @@ Ultimately my aim is to provide an account of moral values as the communal value
 % FIXME: These entry types should be listed the `\DeclareSourcemap` above!
 \defbibfilter{myarticle}{type=article or type=incollection or type=online}
 
+\begin{center}
+  PDFs of final articles available \onrequest{}.\\
+  ~
+\end{center}
+
 % FIXME: Uncomment line below for CATEGORIES
 Choose a category below.
-Download links to published articles are mostly to late drafts; see the relevant journals or volumes for the definitive versions, or contact me directly to request .pdf copies.
 
 \printbibliography[filter=myarticle, heading=none]
 
