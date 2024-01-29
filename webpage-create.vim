@@ -35,10 +35,12 @@ function! s:tohtml() abort  " {{{
         " copy the book's bibtex id, whcih is used for the .jpg filename
         normal! "ayt"
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
-        " Append the image in a div
-        call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><img src="' . @a . '.jpg" style="width:100%"></div>')
-        call search('<details')  " Put end of div before abstract
-        normal! i</div>
+        " Append the image in a div if the image exists
+        if findfile(@a . '.jpg', './docs') != ""
+            call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><img src="' . @a . '.jpg" style="width:100%"></div>')
+            call search('<details')  " Put end of div before abstract
+            normal! i</div>
+        endif
         call search('<\/details>', 'e')  " Add horizontal rule after abstract
         normal! a<hr style="clear: both;">
     endwhile
