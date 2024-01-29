@@ -17,7 +17,7 @@ function! s:tohtml() abort  " {{{
         let l:theline = line('.')
         let l:line = getline('.')
         let l:id = matchstr(l:line, ')">\zs[^<]*')
-        call search('<div id="' . l:id . '" class="sectionDiv w3-container">', 'W')
+        call search('<div id="' . l:id . '" class="sectionDiv">', 'W')
         let l:line = getline(search('<\/a>', 'W'))
         let l:sectionName = matchstr(l:line, '<\/a>\zs[^<]*')
         execute l:theline
