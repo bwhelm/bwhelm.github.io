@@ -37,7 +37,7 @@ function! s:tohtml() abort  " {{{
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
         " Append the image in a div if the image exists
         if findfile(@a . '.jpg', './docs') != ""
-            call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><img src="' . @a . '.jpg" style="width:100%"></div>')
+            call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><div class="imgborder"><img src="' . @a . '.jpg" style="width:100%"></div></div>')
             call search('<details')  " Put end of div before abstract
             normal! i</div>
         endif
