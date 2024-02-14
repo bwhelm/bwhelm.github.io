@@ -17,7 +17,7 @@ function! s:tohtml() abort  " {{{
         let l:theline = line('.')
         let l:line = getline('.')
         let l:id = matchstr(l:line, ')">\zs[^<]*')
-        call search('<div id="' . l:id . '" class="sectionDiv w3-container">', 'W')
+        call search('<div id="' . l:id . '" class="sectionDiv">', 'W')
         let l:line = getline(search('<\/a>', 'W'))
         let l:sectionName = matchstr(l:line, '<\/a>\zs[^<]*')
         execute l:theline
@@ -35,10 +35,12 @@ function! s:tohtml() abort  " {{{
         " copy the book's bibtex id, whcih is used for the .jpg filename
         normal! "ayt"
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
-        " Append the image in a div
-        call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><img src="' . @a . '.jpg" style="width:100%"></div>')
-        call search('<details')  " Put end of div before abstract
-        normal! i</div>
+        " Append the image in a div if the image exists
+        if findfile(@a . '.jpg', './docs') != ""
+            call append(line('.'), '<div class="bookcontainer"><div class="imgfloat"><div class="imgborder"><img src="' . @a . '.jpg" style="width:100%"></div></div>')
+            call search('<details')  " Put end of div before abstract
+            normal! i</div>
+        endif
         call search('<\/details>', 'e')  " Add horizontal rule after abstract
         normal! a<hr style="clear: both;">
     endwhile
