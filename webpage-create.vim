@@ -79,10 +79,10 @@ function! s:tohtml() abort  " {{{
     call sort(l:categoryList)
     call uniq(l:categoryList)
     " Create navigation/filter bar
-    let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-blue w3-padding-small w3-hover-blue w3-small"
+    let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-teal w3-padding-small w3-hover-teal w3-small"
     " l:buttonSpacer is needed to provide vertical spacing between lines of buttons
     let l:buttonSpacer = '      <span style="font-size:1.5em;">&hairsp;</span>'
-    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-blue showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>', l:buttonSpacer]
+    let l:bibNavBarList = ['<div id="bibFilterContainer">', '  <button class="w3-teal showall ' . l:buttonClasses . '" onclick="filterBibliography(''showall'')">Show all</button>', l:buttonSpacer]
     for l:category in l:categoryList
         let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
         call add(l:bibNavBarList, '  <button class="' . l:shortCategory . ' ' . l:buttonClasses . '" onclick="filterBibliography(''' . l:shortCategory . ''')"> ' . l:category . '</button>')
