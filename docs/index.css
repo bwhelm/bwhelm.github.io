@@ -147,6 +147,7 @@ p + figcaption, img + figcaption{margin-top: 1em;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
 dd.thebibliography {margin-left: 2.5em;}
 dt.thebibliography {float:left; clear:left; margin-right:1em;}
+.textls{letter-spacing:0.1rem;}
 span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
 span.textul{text-decoration:underline}
 span.textst{text-decoration:line-through}
@@ -232,7 +233,7 @@ span#textcolor41{color:#008080}
 span#textcolor42{color:#008080}
 span#textcolor43{color:#008080}
 span#textcolor44{color:#008080}
-span#textcolor45{color:#0000BF}
+span#textcolor45{color:#008080}
 span#textcolor46{color:#0000BF}
 span#textcolor47{color:#0000BF}
 span#textcolor48{color:#0000BF}
@@ -241,5 +242,6 @@ span#textcolor50{color:#0000BF}
 span#textcolor51{color:#0000BF}
 span#textcolor52{color:#0000BF}
 span#textcolor53{color:#0000BF}
+span#textcolor54{color:#0000BF}
 /* end css.sty */
 
