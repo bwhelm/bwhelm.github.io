@@ -3,12 +3,21 @@
 function! s:tohtml() abort  " {{{
     let l:htmlroot = expand("%:p:h") . '/'
     execute "cd" l:htmlroot
-    let l:texfile = expand("%:p")
     let l:htmlfile = l:htmlroot . "docs/" . expand("%:t:r") . ".html"
     let l:cssfile = l:htmlroot . "docs/" . expand("%:t:r") . ".css"
     execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
+
+    " Edit .css file: eliminate all hard-coded colors
+    " FIXME: This is a cludge. I need to figure out how to ensure that those
+    " colors don't get added by make4ht in the first place!
+    execute "edit" l:cssfile
+    global/textcolor\d\+.*BF/delete_
+    update
+    " Return to LaTeX file
+    edit #
+
     execute "edit" l:htmlfile
     silent %substitute/\S\zs\s\+/ /ge
 
@@ -133,16 +142,11 @@ function! s:tohtml() abort  " {{{
 
     update
 
-    " Edit .css file: eliminate all hard-coded colors
-    execute "edit" l:cssfile
-    global/textcolor\d\+/delete_
-    update
-
     " Open .html file
     execute "!open -g" fnameescape(expand("%:r")) . ".html"
 
     " Return to LaTeX file
-    execute "edit" l:texfile
+    edit #
 endfunction " }}}
 
 command! ToHtml :call <SID>tohtml()
