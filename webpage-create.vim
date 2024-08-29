@@ -3,7 +3,9 @@
 function! s:tohtml() abort  " {{{
     let l:htmlroot = expand("%:p:h") . '/'
     execute "cd" l:htmlroot
+    let l:texfile = expand("%:p")
     let l:htmlfile = l:htmlroot . "docs/" . expand("%:t:r") . ".html"
+    let l:cssfile = l:htmlroot . "docs/" . expand("%:t:r") . ".css"
     execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
@@ -131,11 +133,16 @@ function! s:tohtml() abort  " {{{
 
     update
 
+    " Edit .css file: eliminate all hard-coded colors
+    execute "edit" l:cssfile
+    global/textcolor\d\+/delete_
+    update
+
     " Open .html file
     execute "!open -g" fnameescape(expand("%:r")) . ".html"
 
     " Return to LaTeX file
-    edit #
+    execute "edit" l:texfile
 endfunction " }}}
 
 command! ToHtml :call <SID>tohtml()
