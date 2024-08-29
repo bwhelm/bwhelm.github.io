@@ -9,15 +9,6 @@ function! s:tohtml() abort  " {{{
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
 
-    " Edit .css file: eliminate all hard-coded colors
-    " FIXME: This is a cludge. I need to figure out how to ensure that those
-    " colors don't get added by make4ht in the first place!
-    execute "edit" l:cssfile
-    global/textcolor\d\+.*BF/delete_
-    update
-    " Return to LaTeX file
-    edit #
-
     execute "edit" l:htmlfile
     silent %substitute/\S\zs\s\+/ /ge
 
@@ -102,7 +93,7 @@ function! s:tohtml() abort  " {{{
     call add(l:bibNavBarList, '</div>')
     call search('Articles<\/h3>', 'w')
     call search('<dl class="thebibliography">')
-    " FIXME: Uncomment the line below for CATEGORIES
+    " Add categories
     call append(line('.') - 1, l:bibNavBarList)
 
     " " If using `marginyear=true`, put year into description field

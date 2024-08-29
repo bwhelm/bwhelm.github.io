@@ -190,6 +190,9 @@ span.dotuline, .dotuline-math {text-decoration:underline dotted;}
 .mdframed{margin-top:1em;margin-bottom:1em;}
 dl.enumerate-enumitem{display:grid; grid-template-columns: 3ch 1fr; align-items: top; row-gap:1ch;}
  body { background-color: Canvas; color: CanvasText; color-scheme: light dark; } a { color: 0000BF; } a:visited { color: purple; } div.sectionDiv { display: none; } .filterBib { display: none; } .show { display: block; } .container { margin-top: 20px; overflow: hidden; } .thebibliography { margin-bottom: 1ex; } .bookcontainer { width: 100%; } .imgfloat { float: right; width: 40%; min-width: 150px; padding: 1em; } .imgborder { border-width: 1px; border-style: solid; border-color: grey; } .collapsible { font-family:sans-serif; font-weight:bold; color: 0000BF; } .abstract { font-family:sans-serif; font-weight:bold; color: 0000BF; } @media (prefers-color-scheme:dark) { a { color: 089FFF; } .abstract { color: 089FFF; } .collapsible { color: 089FFF; } } 
+span#textcolor1{color:#008080}
+span#textcolor2{color:#008080}
+span#textcolor3{color:#008080}
 span#textcolor4{color:#008080}
 span#textcolor5{color:#008080}
 span#textcolor6{color:#008080}
@@ -229,8 +232,5 @@ span#textcolor39{color:#008080}
 span#textcolor40{color:#008080}
 span#textcolor41{color:#008080}
 span#textcolor42{color:#008080}
-span#textcolor43{color:#008080}
-span#textcolor44{color:#008080}
-span#textcolor45{color:#008080}
 /* end css.sty */
 

@@ -63,9 +63,6 @@
   urlcolor={myblue},
 }
 
-\let\oldparagraph\paragraph
-\renewcommand\paragraph[1]{\oldparagraph{\textcolor{myblue}{#1}}}
-
 \ProvideDocumentCommand\link{m}{%
   \href{#1}{\textbf{\small{Preprint.}}}%
 }
@@ -104,11 +101,10 @@
     {\addcomma\space}%
   #1%
 }
-% FIXME: Uncomment the lines below for CATEGORIES
+% Use categories
 \ProvideDocumentCommand\categoryStyle{m}{%
   \textcolor{teal}{#1}
 }
-% FIXME: Uncomment the lines below for CATEGORIES
 \DeclareFieldFormat{keywords}{%
   \setcounter{cbx@keyword@total}{0}%
   \setcounter{cbx@keyword@count}{0}%
@@ -151,7 +147,7 @@
 
 % Define htmlabstract environment -- gets redefined in ./webpage-create.cfg
 \NewDocumentEnvironment{htmlabstract}{}%
-  {\par\begin{small}\textbf{\textcolor{myblue}{Abstract:}}}%
+  {\par\begin{small}\textbf{Abstract:}}%
   {\end{small}}
 
 % Print abstract field after bibliography entry
@@ -287,7 +283,6 @@ Ultimately my aim is to provide an account of moral values as the communal value
   ~
 \end{center}
 
-% FIXME: Uncomment line below for CATEGORIES
 Choose a category below.
 
 \printbibliography[filter=myarticle, heading=none]
