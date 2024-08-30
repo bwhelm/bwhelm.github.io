@@ -33,7 +33,7 @@ function! s:tohtml() abort  " {{{
     let l:savereg = @a
     call search('Books<\/h3>')
     let l:bookend = search('<\/dl>', 'n')  " Find end of book section
-    while search('<dt id="X0-.', 'We') && line('.') < l:bookend  " Search for <dt> tag before end
+    while search('<dt id="X\d\+-.', 'We') && line('.') < l:bookend  " Search for <dt> tag before end
         " copy the book's bibtex id, whcih is used for the .jpg filename
         normal! "ayt"
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
@@ -96,6 +96,10 @@ function! s:tohtml() abort  " {{{
     " Add categories
     call append(line('.') - 1, l:bibNavBarList)
 
+    " Remove space after opening quote (which happens for articles that have
+    " linked titles)
+    %substitute/“ /“/ge
+
     " " If using `marginyear=true`, put year into description field
     " 1
     " while(search('reversemarginpar', 'W'))  " This finds marginyears
@@ -109,10 +113,6 @@ function! s:tohtml() abort  " {{{
     " " Delete unneeded tags
     " silent %substitute/<a id=\_s*[^>]*><\/a>//ge
     " silent %substitute/<!--l. \d\+-->//ge
-
-    " " Remove all classes and ids
-    " silent %substitute/ class="[^"]*"//ge
-    " silent %substitute/ id="[^"]*"//ge
 
     " " Fix color attributes by adding a '#' where it doesn't exist
     " silent %substitute/color:\([^#]\)/color:#\1/ge
