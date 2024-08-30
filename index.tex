@@ -102,26 +102,23 @@
   #1%
 }
 % Use categories
-\ProvideDocumentCommand\categoryStyle{m}{%
-  \textcolor{teal}{#1}
-}
 \DeclareFieldFormat{keywords}{%
   \setcounter{cbx@keyword@total}{0}%
   \setcounter{cbx@keyword@count}{0}%
-  \categoryStyle{%
-    \forcsvlist{\keywordscount}{#1}%
-    \emph{
-      \ifnumgreater{\value{cbx@keyword@total}}{1}
-        {\bibstring{keywords}}
-        {\bibstring{keyword}}%
+  \forcsvlist{\keywordscount}{#1}%
+  % Print "\emph{Categories:} "
+  \emph{
+    \ifnumgreater{\value{cbx@keyword@total}}{1}
+      {\bibstring{keywords}}
+      {\bibstring{keyword}}%
       \addcolon
     }
-    \space
-    \categories{%
-      \forcsvlist{\keywordsprint}{#1}%
-    }%
+  \space
+  % Print list of categories for given entry
+  \categories{%
+    \forcsvlist{\keywordsprint}{#1}%
   }%
-}
+}%
 
 % Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
 \DeclareSourcemap{
@@ -170,6 +167,13 @@
 \newcommand{\onrequest}{\href{mailto:bhelm@fandm.edu}{on request}}
 
 \begin{document}
+
+\ifx\HCode\undefined
+  \title{Webpage}
+  \author{Bennett W. Helm\footnote{Department of Philosophy, Franklin \& Marshall College, Lancaster, PA 17601. email: \href{mailto:bennett.helm@fandm.edu}{bennett.helm@fandm.edu}.}}
+  \date{}
+  \maketitle
+\fi
 
 % Compile this file to .pdf. To generate the .html file, run:
 %     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
