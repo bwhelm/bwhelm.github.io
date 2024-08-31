@@ -85,10 +85,11 @@
 
 % Print keywords at end of entry, but before abstract and download link.
 \ProvideDocumentCommand\categories{m}{#1}
+\ProvideDocumentCommand\categoryname{m}{#1}
 \NewBibliographyString{keyword,keywords}
 \DefineBibliographyStrings{english}{%
-  keyword  = {category},
-  keywords = {categories},
+  keyword  = {Category},
+  keywords = {Categories},
 }
 \newcounter{cbx@keyword@total}
 \newcounter{cbx@keyword@count}
@@ -99,26 +100,28 @@
   \ifnumless{\value{cbx@keyword@count}}{2}
     {}
     {\addcomma\space}%
-  #1%
-}
-% Use categories
-\DeclareFieldFormat{keywords}{%
-  \setcounter{cbx@keyword@total}{0}%
-  \setcounter{cbx@keyword@count}{0}%
-  \forcsvlist{\keywordscount}{#1}%
-  % Print "\emph{Categories:} "
-  \emph{
-    \ifnumgreater{\value{cbx@keyword@total}}{1}
-      {\bibstring{keywords}}
-      {\bibstring{keyword}}%
-      \addcolon
-    }
-  \space
-  % Print list of categories for given entry
-  \categories{%
-    \forcsvlist{\keywordsprint}{#1}%
-  }%
-}%
+    #1%
+  }
+  % Use categories
+  \DeclareFieldFormat{keywords}{%
+    \setcounter{cbx@keyword@total}{0}%
+    \setcounter{cbx@keyword@count}{0}%
+    \forcsvlist{\keywordscount}{#1}%
+    % Print "\emph{Categories:} "
+    \emph{%
+      \categoryname{%
+        \ifnumgreater{\value{cbx@keyword@total}}{1}%
+          {\bibstring{keywords}}%
+          {\bibstring{keyword}}%
+          \addcolon%
+        }%
+      }%
+      \space
+      % Print list of categories for given entry
+      \categories{%
+        \forcsvlist{\keywordsprint}{#1}%
+      }%
+    }%
 
 % Use `download` field in .bib file, and have that linked here to `usera` (default custom field)
 \DeclareSourcemap{
@@ -168,15 +171,15 @@
 
 \begin{document}
 
+% Compile this file to .pdf. To generate the .html file, run:
+%     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
+
 \ifx\HCode\undefined
   \title{Webpage}
   \author{Bennett W. Helm\footnote{Department of Philosophy, Franklin \& Marshall College, Lancaster, PA 17601. email: \href{mailto:bennett.helm@fandm.edu}{bennett.helm@fandm.edu}.}}
   \date{}
   \maketitle
 \fi
-
-% Compile this file to .pdf. To generate the .html file, run:
-%     execute "source" fnameescape(expand("%:h:~:.")) . "/webpage-create.vim | ToHtml"
 
 \tableofcontents
 
