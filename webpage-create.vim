@@ -5,6 +5,9 @@ function! s:tohtml() abort  " {{{
     execute "cd" l:htmlroot
     let l:htmlfile = l:htmlroot . "docs/" . expand("%:t:r") . ".html"
     let l:cssfile = l:htmlroot . "docs/" . expand("%:t:r") . ".css"
+    let l:robotsfile = l:htmlroot . "docs/robots.txt"
+    " Get updated `robots.txt` file
+    call system('curl "https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt" > ' . l:robotsfile)
     execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
@@ -16,13 +19,13 @@ function! s:tohtml() abort  " {{{
     %substitute/<button/\r<button/ge
     1
     while search("SeCtIoN", "W")
-        let l:theline = line('.')
-        let l:line = getline('.')
-        let l:id = matchstr(l:line, ')">\zs[^<]*')
+        let l:lineNumber = line('.')
+        let l:theLine = getline('.')
+        let l:id = matchstr(l:theLine, ')">\zs[^<]*')
         call search('<div id="' . l:id . '" class="sectionDiv">', 'W')
-        let l:line = getline(search('<\/a>', 'W'))
-        let l:sectionName = matchstr(l:line, '<\/a>\zs[^<]*')
-        execute l:theline
+        let l:theLine = getline(search('<\/a>', 'W'))
+        let l:sectionName = matchstr(l:theLine, '<\/a>\zs[^<]*')
+        execute l:lineNumber
         execute "silent substitute/>" . l:id . "</>" . l:sectionName . "<"
         execute "silent substitute/SeCtIoN/" . l:id
         execute "silent substitute/secNav/secNav secButton" . l:id
