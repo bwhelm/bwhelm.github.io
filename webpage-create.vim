@@ -24,7 +24,13 @@ function! s:tohtml() abort  " {{{
         let l:id = matchstr(l:theLine, ')">\zs[^<]*')
         call search('<div id="' . l:id . '" class="sectionDiv">', 'W')
         let l:theLine = getline(search('<\/a>', 'W'))
-        let l:sectionName = matchstr(l:theLine, '<\/a>\zs[^<]*')
+        if match(l:theLine, '<butName>') > -1
+            " If button name is provided, use that (and delete it from the line)
+            let l:sectionName = matchstr(l:theLine, '<butName>\zs[^<]*')
+            silent substitute/<butName>[^<]*<\/butName>//
+        else  " Otherwise, use heading name
+            let l:sectionName = matchstr(l:theLine, '<\/a>\zs[^<]*')
+        endif
         execute l:lineNumber
         execute "silent substitute/>" . l:id . "</>" . l:sectionName . "<"
         execute "silent substitute/SeCtIoN/" . l:id
