@@ -63,8 +63,16 @@
   urlcolor={myblue},
 }
 
+% Define command for links within bib entries
 \ProvideDocumentCommand\link{m}{%
   \href{#1}{\textbf{\small{Preprint.}}}%
+}
+
+% Define command for button labels
+\ProvideDocumentCommand\buttonName{m}{%
+  \ifdefined\HCode
+    \HCode{<butName>}#1\HCode{</butName>}%
+  \fi
 }
 
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
@@ -229,7 +237,7 @@ Philosophy of Race and Gender
   \HCode{</div>}
 \fi
 
-\section{Research}
+\section{Research Overview}\buttonName{Research}
 
 My research aims to understand what it is to be a person, integrating the practical and theoretical dimensions of persons and grounding all of this in an account of the nature of rationality; in this, I weave together moral psychology, value theory, social ontology, philosophy of mind and emotions, and philosophy of action.
 
@@ -271,7 +279,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 % \section{Publications}
 
-\section{Books}
+\section{Publications: Books}\buttonName{Books}
 
 \newrefsection
 
@@ -286,7 +294,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 \printbibliography[heading=none]
 
-\section{Articles}
+\section{Publications: Articles}\buttonName{Articles}
 
 \newrefsection
 % Now cite everything
@@ -314,7 +322,7 @@ Choose a category below.
 
 % \printbibliography[filter=mytalk, heading=none]
 
-\section{Awards}
+\section{Fellowships and Awards}\buttonName{Awards}
 
 \begin{itemize}
   \item Cowling Distinguished Visiting Professor of Philosophy, Carleton College (2018)
@@ -329,7 +337,7 @@ Choose a category below.
   \item NEH Summer Stipend (1998): \enquote{Reason, Emotion, and Evaluative Judgment: How to Think about the Meaning of Life}, \$6,000
 \end{itemize}
 
-\section{Students}
+\section{Student Collaborations}\buttonName{Students}
 
 The following is a list of students with whom I've worked on research projects:
 \begin{itemize}
@@ -342,7 +350,7 @@ The following is a list of students with whom I've worked on research projects:
   \item Yaroslava Babych and Aleksandra Markovic (Hackman Scholars, 1998), \enquote{Moods as a Sense of Priorities}
 \end{itemize}
 
-\section{Courses}
+\section{Courses Taught Regularly}\buttonName{Courses}
 
 Many of these courses satisfy requirements for our interdisciplinary majors in \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology}.
 \medskip{}
