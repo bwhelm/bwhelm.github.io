@@ -146,7 +146,7 @@ p + figcaption, img + figcaption{margin-top: 1em;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
 dd.thebibliography {margin-left: 2.5em;}
 dt.thebibliography {float:left; clear:left; margin-right:1em;}
-.textls{letter-spacing:0.1rem;}
+.textls{letter-spacing:0.05rem;}
 span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
 span.textul{text-decoration:underline}
 span.textst{text-decoration:line-through}
