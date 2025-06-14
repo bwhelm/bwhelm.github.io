@@ -9,6 +9,7 @@ function! s:tohtml() abort  " {{{
     " Get updated `robots.txt` file
     call system('curl "https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt" > ' . l:robotsfile)
     execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
+    " execute '!make4ht --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
 
@@ -105,6 +106,8 @@ function! s:tohtml() abort  " {{{
     call search('<dl class=[''"]thebibliography[''"]>')
     " Add categories
     call append(line('.') - 1, l:bibNavBarList)
+    " Convert HTML-coded double quotes
+    %substitute/&#39;/"/ge
 
     " Remove space after opening quote (which happens for articles that have
     " linked titles)
