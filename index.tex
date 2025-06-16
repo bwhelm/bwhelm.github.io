@@ -60,13 +60,6 @@
   \href{#1}{\textbf{\small{Preprint.}}}%
 }
 
-% Define command for button labels
-\ProvideDocumentCommand\buttonName{m}{%
-  \ifdefined\HCode
-    \HCode{<butName>}#1\HCode{</butName>}%
-  \fi
-}
-
 % Throw away entries of various types that have `notincv` field set to `true`. FIXME: These entry types
 % should be listed in the `\defbibfilter`, below!
 \DeclareSourcemap{
@@ -160,9 +153,7 @@
 }
 
 % Limit TOC to sections and above
-\ifdefined\HCode
-  \setcounter{tocdepth}{1}
-\fi
+\setcounter{tocdepth}{1}
 
 % No title for tableofcontents or bibliography sections
 \renewcommand{\contentsname}{}
@@ -184,15 +175,19 @@
 \tableofcontents
 
 \ifdefined\HCode
-  \HCode{<div class="w3-container" style="margin-top:15ex;">}
+  \NewLogicalBlock{document}
+  \SetTag{document}{div}
+  \SetBlockProperty{document}{class}{w3-container}
+  \SetBlockProperty{document}{style}{margin-top:15ex;}
 
-  \HCode{<div id="startDiv" class="sectionDiv" style="display: block;">}
-    \begin{center}
-      \HCode{<img src="Helm.jpg" alt="Bennett Helm" style="width:300px;">}
-    \end{center}
+  \BlockElementStart{document}{}
 \fi
 
-\section*{About Me}
+\section[About]{}
+
+\begin{center}
+  \includegraphics{Helm.jpg}
+\end{center}
 
 I am a professor of \href{https://www.fandm.edu/fields-of-study/philosophy/index.html}{philosophy} at \href{https://www.fandm.edu}{Franklin \& {} Marshall College}, and teach courses that are mostly oriented to our \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology} majors. My research focuses on understanding what it is to be a person as a distinctive sort of free and responsible social agent. Central to my approach is a concern with the \enquote{evaluative attitudes}---caring, valuing, loving, respecting, etc.---and the holistic rational patterns of emotions in terms of which they are intelligible.
 
@@ -225,11 +220,7 @@ Philosophy of Race and Gender
 
 \noindent\href{https://drive.google.com/file/d/1-8fjo2F9EzgfDyYo_WSTYhaU-xrDNU8P/view}{\textbf{Curriculum Vitae}}.
 
-\ifdefined\HCode
-  \HCode{</div>}
-\fi
-
-\section{Research Overview}\buttonName{Research}
+\section[Research]{Research Overview}
 
 My research aims to understand what it is to be a person, integrating the practical and theoretical dimensions of persons and grounding all of this in an account of the nature of rationality; in this, I weave together moral psychology, value theory, social ontology, philosophy of mind and emotions, and philosophy of action.
 
@@ -258,9 +249,7 @@ We persons are social animals partly insofar as we are able to form intimate, lo
 
 To make sense of persons, we must examine as well the \emph{non-intimate} relationships we have with others who are in community with us. In this book I join other Strawsonians in thinking that the reactive attitudes and the ways we \emph{hold} each other responsible are central to our \emph{being} responsible agents at all. Yet in contrast to other accounts, I reject the explanatory priority of the reactive attitudes over our being responsible agents: our reactive attitudes are appropriate in part because they are directed at responsible agents, while simultaneously someone is a responsible agent because they are an appropriate target of the reactive attitudes. I make sense of such circularity as non-vicious by appealing to interpersonal, rational patterns of reactive attitudes, which I argue constitute the community itself, communal norms and values as \emph{our} norms and values, and so individual members of the community as bound by those norms and as having the authority to hold each other responsible to them. Consequently, we in the community \emph{collectively} respect each other as members, and each as one of us ought therefore to respect the others as members. Such an account is not second-personal but \emph{first-person plural}, a conclusion that has several important implications for the social dimension of us persons. First, \emph{responsibility is social}: to be a responsible agent requires that one have the capacity for reactive attitudes, a capacity that one can develop and sustain only as a member of a community of respect. Second, \emph{rationality has a social dimension}: insofar as it is we collectively who have authority over ourselves, we must reject a Humean conception of practical reason (as depending on one's \enquote{subjective motivation set}, say) and recognize an essentially social dimension to practical reason and the possible connections and conflicts among such social reasons and individual reasons grounded in, for example, personal values. Finally, \emph{identity is social}: a community of respect can shape and define certain social identities by prescribing or proscribing communal values as elements of the kind of life worth its members living.
 
-\ifdefined\HCode
-  \subsubsection*{}% Empty section to break collapsed paragraph category
-\fi
+\subsubsection*{}% Empty section to break collapsed paragraph category
 
 \noindent\textbf{Recent Work.}
 In the last few years I have begun work on a fourth book that applies these ideas to the nature of social roles and identities, which I understand to be constructed partly through communal norms and values within communities of respect. Social roles and identities presuppose an at least rough-and-ready practical-cum-theoretical understanding in virtue of which such communal norms and values hang together as a coherent whole that can have a point in our lives. Indeed, these understandings must normally come to inform the interpersonal patterns of participants' reactive attitudes that constitute those norms and values and hence the social role or identity itself. This makes room for the possibility that participants' experiences of themselves as occupants of these roles and identities is inconsistent with that understanding and point, providing empirical purchase for rationally contesting those understandings and hence the roles and identities themselves. Whereas other philosophers conceive of such contestation as grounded in unjust \emph{consequences} of these social roles, my claim is that our construction of social roles and identities \emph{itself} can \emph{also} be objective in that our activities of construction, through our holding each other responsible for getting these things right, can come to be answerable to the very roles and identities they thereby construct.
@@ -271,7 +260,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 % \section{Publications}
 
-\section{Publications: Books}\buttonName{Books}
+\section[Books]{Publications: Books}
 
 \newrefsection
 
@@ -286,7 +275,7 @@ Ultimately my aim is to provide an account of moral values as the communal value
 
 \printbibliography[heading=none]
 
-\section{Publications: Articles}\buttonName{Articles}
+\section[Articles]{Publications: Articles}
 
 \newrefsection
 % Now cite everything
@@ -304,17 +293,13 @@ Choose a category below.
 
 \printbibliography[filter=myarticle, heading=none]
 
-% \ifdefined\HCode
-%   \subsubsection*{}% Empty section to break collapsed paragraph category
-% \fi
-
 % \section{Talks}
 
 % \defbibfilter{mytalk}{type=misc}
 
 % \printbibliography[filter=mytalk, heading=none]
 
-\section{Fellowships and Awards}\buttonName{Awards}
+\section[Awards]{Fellowships and Awards}
 
 \begin{itemize}
   \item Cowling Distinguished Visiting Professor of Philosophy, Carleton College (2018)
@@ -329,7 +314,7 @@ Choose a category below.
   \item NEH Summer Stipend (1998): \enquote{Reason, Emotion, and Evaluative Judgment: How to Think about the Meaning of Life}, \$6,000
 \end{itemize}
 
-\section{Student Collaborations}\buttonName{Students}
+\section[Students]{Student Collaborations}
 
 The following is a list of students with whom I've worked on research projects:
 \begin{itemize}
@@ -342,7 +327,7 @@ The following is a list of students with whom I've worked on research projects:
   \item Yaroslava Babych and Aleksandra Markovic (Hackman Scholars, 1998), \enquote{Moods as a Sense of Priorities}
 \end{itemize}
 
-\section{Courses Taught Regularly}\buttonName{Courses}
+\section[Courses]{Courses Taught Regularly}
 
 Many of these courses satisfy requirements for our interdisciplinary majors in \href{https://www.fandm.edu/fields-of-study/cognitive-science/index.html}{Cognitive Science} and \href{https://www.fandm.edu/fields-of-study/moral-psychology/index.html}{Moral Psychology}.
 \medskip{}
@@ -388,7 +373,7 @@ Love and friendship are undoubtedly important in our lives \dots{} but why? Alth
 Recently many philosophers have argued that certain interpersonal emotions, such as resentment, indignation, guilt, gratitude, and approbation, are fundamental to a host of interconnected issues in ethics, including the nature of respect, dignity, responsibility and freedom, and the origins of moral values. This course will closely examine these claims and arguments with the aim of understanding more clearly how moral psychology and metaethics intersect.
 
 \ifdefined\HCode
-  \HCode{<div>}
+  \BlockElementEnd{document}
 \fi
 
 \end{document}

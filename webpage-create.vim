@@ -8,34 +8,22 @@ function! s:tohtml() abort  " {{{
     let l:robotsfile = l:htmlroot . "docs/robots.txt"
     " Get updated `robots.txt` file
     call system('curl "https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt" > ' . l:robotsfile)
-    execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
-    " execute '!make4ht --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
+    " execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
+    execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
 
     execute "edit" l:htmlfile
     silent %substitute/\S\zs\s\+/ /ge
 
+    " Fix <body> tag to run JavaScript function
+    call search("<body>", "")
+    substitute /body/body onload='openSection("1")';/
+
     " Fix TOC
-    %substitute/<button/\r<button/ge
     1
-    while search("SeCtIoN", "W")
-        let l:lineNumber = line('.')
-        let l:theLine = getline('.')
-        let l:id = matchstr(l:theLine, ')[''"]>\zs[^<]*')
-        call search('<div class=[''"]sectionDiv[''"] id=[''"]' . l:id . '[''"]>', 'W')
-        let l:theLine = getline(search('<\/a>', 'W'))
-        if match(l:theLine, '<butname>') > -1
-            " If button name is provided, use that (and delete it from the line)
-            let l:sectionName = matchstr(l:theLine, '<butname>\zs[^<]*')
-            silent substitute/<butname>[^<]*<\/butname>//
-        else  " Otherwise, use heading name
-            let l:sectionName = matchstr(l:theLine, '<\/a>\zs[^<]*')
-        endif
-        execute l:lineNumber
-        execute "silent substitute/>" . l:id . "</>" . l:sectionName . "<"
-        execute "silent substitute/SeCtIoN/" . l:id
-        execute "silent substitute/secNav/secNav secButton" . l:id
+    while search("id='QQ", "W")
+        substitute /<a href=[^>]*>\([^<]*\)<\/a>/\1/e
     endwhile
 
     " Put jpgs of books into webpage
@@ -62,7 +50,7 @@ function! s:tohtml() abort  " {{{
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
-    call search('Articles<\/p><\/h3>')
+    call search('Articles<\/h3>')
     while(search('<span class=[''"]categories[''"]>', 'W'))
         let [l:startLine, l:startPos] = searchpos('<span class=[''"]categories[''"]>', 'e')
         let [l:endLine, l:endPos] = searchpos('<\/span>')
@@ -102,16 +90,17 @@ function! s:tohtml() abort  " {{{
         call add(l:bibNavBarList, l:buttonSpacer)
     endfor
     call add(l:bibNavBarList, '</div>')
-    call search('Articles<\/p><\/h3>', 'w')
+    call search('Articles<\/h3>', 'w')
     call search('<dl class=[''"]thebibliography[''"]>')
     " Add categories
     call append(line('.') - 1, l:bibNavBarList)
-    " Convert HTML-coded double quotes
-    %substitute/&#39;/"/ge
 
     " Remove space after opening quote (which happens for articles that have
     " linked titles)
     %substitute/“ /“/ge
+
+    " " Convert HTML-coded double quotes
+    " %substitute/&#39;/"/ge
 
     " " If using `marginyear=true`, put year into description field
     " 1
