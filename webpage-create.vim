@@ -13,14 +13,15 @@ function! s:tohtml() abort  " {{{
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".css"
 
+    " Make various fixes to resulting .html file.
     execute "edit" l:htmlfile
     silent %substitute/\S\zs\s\+/ /ge
 
     " Fix <body> tag to run JavaScript function
     call search("<body>", "")
-    substitute /body/body onload='openSection("1")';/
+    substitute /<body/\r<body onload='openSection("1")';/
 
-    " Fix TOC
+    " Fix TOC: eliminate extra hyperlinks
     1
     while search("id='QQ", "W")
         substitute /<a href=[^>]*>\([^<]*\)<\/a>/\1/e
@@ -47,6 +48,7 @@ function! s:tohtml() abort  " {{{
     endwhile
     let @a = l:savereg
 
+    " Add category buttons to article section
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
@@ -90,17 +92,17 @@ function! s:tohtml() abort  " {{{
         call add(l:bibNavBarList, l:buttonSpacer)
     endfor
     call add(l:bibNavBarList, '</div>')
+    " Now add categories to appropriate location
     call search('Articles<\/h3>', 'w')
     call search('<dl class=[''"]thebibliography[''"]>')
-    " Add categories
     call append(line('.') - 1, l:bibNavBarList)
 
     " Remove space after opening quote (which happens for articles that have
     " linked titles)
     %substitute/“ /“/ge
 
-    " " Convert HTML-coded double quotes
-    " %substitute/&#39;/"/ge
+    " Convert HTML-coded double quotes
+    %substitute/&#39;/"/ge
 
     " " If using `marginyear=true`, put year into description field
     " 1
@@ -112,26 +114,19 @@ function! s:tohtml() abort  " {{{
     " endwhile
 
     " OLD STUFF
-    " " Delete unneeded tags
-    " silent %substitute/<a id=\_s*[^>]*><\/a>//ge
-    " silent %substitute/<!--l. \d\+-->//ge
-
-    " " Fix color attributes by adding a '#' where it doesn't exist
-    " silent %substitute/color:\([^#]\)/color:#\1/ge
-
-    " " Remove empty paragraphs
-    " global/^\s*<p><\/p>\s*$/d
-
-    " " Remove <p> ... </p> within <li> tags
-    " 1
-    " while search("<li>", "We")
-    "     " Add more bottom padding to list item
-    "     normal! i style="padding-bottom:2ex;"
-
-    "     " Find the next <, and delete the surrounding tag. This works only
-    "     " when the <p> is the next tag after the <li>.
-    "     normal f<dst
-    " endwhile
+    " Put <h1>, <h2>, and <h3> tags at beginning of line
+    silent %substitute/<h[123]/\r&/ge
+    " Remove end-of-line spaces
+    silent %substitute/\s\+$//e
+    " Delete unneeded tags
+    silent %substitute/<a id=\_s*[^>]*><\/a>//ge
+    silent %substitute/<!-- l. \d\+ -->//ge
+    " Delete unneeded blank lines
+    silent %substitute/\n\+/\r/
+    " Put blank line before <div class='sectionDiv'> tags
+    global /sectionDiv/-put_
+    " Delete any blank lines at end of document
+    global /<\/html>/+,$delete_
 
     update
 
