@@ -70,6 +70,7 @@ div.flushleft {text-align: left;}
 .framebox-r {text-align:right;}
 span.thank-mark{ vertical-align: super }
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+aside.footnote-text p{margin-top:0; margin-bottom:0;text-indent: 0;}
 code.verb{font-family:monospace,monospace;}
 div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
 table.tabular td p{margin-top:0em;}
@@ -150,7 +151,7 @@ p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-botto
 .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center;}
-h2.titleHead{text-align:center;}
+h1.titleHead{text-align:center;}
 div.maketitle{ margin-bottom: 2em; }
 div.author, div.date {text-align:center;}
 div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
@@ -182,6 +183,7 @@ table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
 table.longtable{border-collapse: collapse; border-spacing: 0;}
 div.longtable{text-align:center;}
 table.longtable{margin-left:auto; margin-right: auto;}
+table.longtable p{margin-top: 0; margin-bottom: 0;}
 caption.longtable .id{font-weight:bold;}
 .rotatebox{display: inline-block;}
 .uline,.uline-math{ text-decoration:underline; }
