@@ -8,6 +8,8 @@ function! s:tohtml() abort  " {{{
     let l:robotsfile = l:htmlroot . "docs/robots.txt"
     " Get updated `robots.txt` file
     call system('curl "https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt" > ' . l:robotsfile)
+    " First rerun latex, ensuring to use pdflatex
+    execute '!latexmk -pdf "%"'
     " execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 --format html5+common_domfilters+latexmk_build %'
     execute '!make4ht --config' l:htmlroot . 'webpage-create.cfg --output-dir' l:htmlroot . 'docs --utf8 %'
     execute '!rm -f' l:htmlroot . expand("%:t:r") . ".html"

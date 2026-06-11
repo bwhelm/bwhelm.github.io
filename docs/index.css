@@ -1,12 +1,11 @@
  
 /* start css.sty */
-.pplr9d-x-x-109{}
-.pplb9d-x-x-109{font-weight: bold;}
-.pplb9d-x-x-109{font-weight: bold;}
-.pplri9d-x-x-109{font-style: italic;}
-.pplb9d-{font-size:90%;font-weight: bold;}
-.pplb9d-{font-weight: bold;}
-.pplrc9d-x-x-109{}
+.pplr9o-x-x-109{}
+.pplb9o-x-x-109{font-weight: bold;}
+.pplr9c-x-x-109{}
+.pplri9o-x-x-109{font-style: italic;}
+.pplb9o-{font-size:90%;font-weight: bold;}
+.pplrc9o-x-x-109{}
 .small-caps{font-variant: small-caps; }
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
@@ -174,11 +173,11 @@ p + figcaption, img + figcaption{margin-top: 1em;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
 dd.thebibliography {margin-left: 2.5em;}
 dt.thebibliography {float:left; clear:left; margin-right:1em;}
-.textls{letter-spacing:0.05rem;}
 span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
 span.textul{text-decoration:underline}
 span.textst{text-decoration:line-through}
 span.textcaps{font-variant:small-caps}
+.textls{letter-spacing:0.05rem;}
 table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
 table.longtable{border-collapse: collapse; border-spacing: 0;}
 div.longtable{text-align:center;}
@@ -186,13 +185,6 @@ table.longtable{margin-left:auto; margin-right: auto;}
 table.longtable p{margin-top: 0; margin-bottom: 0;}
 caption.longtable .id{font-weight:bold;}
 .rotatebox{display: inline-block;}
-.uline,.uline-math{ text-decoration:underline; }
-.uuline,.uuline-math{ text-decoration:underline double; }
-span.sout, .sout-math {text-decoration: line-through }
-span.xout, .xout-math {text-decoration: line-through underline }
-span.uwave, .uwave-math {text-decoration:underline wavy; }
-span.dashuline, .dashuline-math {text-decoration:underline dashed;}
-span.dotuline, .dotuline-math {text-decoration:underline dotted;}
 .mdframed{margin-top:1em;margin-bottom:1em;}
 dl.enumerate-enumitem{display:grid; grid-template-columns: min-content 1fr; align-items: top; row-gap:0ch;}
 dt.enumerate-enumitem{text-align: right;}
