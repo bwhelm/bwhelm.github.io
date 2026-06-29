@@ -21,7 +21,11 @@ function! s:tohtml() abort  " {{{
 
     " Fix <body> tag to run JavaScript function
     call search("<body>", "")
-    substitute /<body/\r<body onload='openSection("1")';/
+    substitute /<body/\r<body onload='openSection("1")'/e
+
+    " Give it a title
+    call search("<title><\/title>")
+    substitute /></>CV: Bennett Helm</e
 
     " Fix TOC: eliminate extra hyperlinks
     1
@@ -32,7 +36,7 @@ function! s:tohtml() abort  " {{{
     " Put jpgs of books into webpage
     1
     let l:savereg = @a
-    call search('Books<\/p><\/h3>')
+    call search('Books<\/p><\/h2>')
     let l:bookend = search('<\/dl>', 'n')  " Find end of book section
     while search('<dt class=[''"]thebibliography[''"] id=[''"]X\d\+-[^''"]*[''"]', 'We') && line('.') < l:bookend  " Search for <dt> tag before end
         " copy the book's bibtex id, whcih is used for the .jpg filename
@@ -41,7 +45,7 @@ function! s:tohtml() abort  " {{{
         call search('<dd\_.\{-}>', 'e')  " Find after the <dd> tag
         " Append the image in a div if the image exists
         if findfile(l:filename, './docs') != ""
-            call append(line('.'), '<div class=''bookcontainer''><div class=''imgfloat''><div class=''imgborder''><img src=''' . l:filename . ''' style=''width:100%''></div></div>')
+            call append(line('.'), '<div class=''bookcontainer''><div class=''imgfloat''><div class=''imgborder''><img src=''' . l:filename . ''' style=''width:100%'' alt=''Book cover''></div></div>')
             call search('<details')  " Put end of div before abstract
             normal! i</div>
         endif
@@ -54,7 +58,7 @@ function! s:tohtml() abort  " {{{
     " Get complete list of categories and put <div> around list items
     let l:categoryList = []
     1
-    call search('Articles<\/h3>')
+    call search('Articles<\/h2>')
     while(search('<span class=[''"]categories[''"]>', 'W'))
         let [l:startLine, l:startPos] = searchpos('<span class=[''"]categories[''"]>', 'e')
         let [l:endLine, l:endPos] = searchpos('<\/span>')
@@ -71,13 +75,12 @@ function! s:tohtml() abort  " {{{
         call map(l:keywordsList, 'substitute(v:val, "\\s\\+", " ", "g")')  " Remove spaces within items
         call extend(l:categoryList, l:keywordsList)
         call map(l:keywordsList, 'substitute(v:val, "[^A-z]", "", "g")')
-        " Put <div> around the list item -- above `<dt...>` and below `</dd>`
+        " Put <span> around the list item -- above `<dt...>` and below `</dd>`
+        " for filtering bib items by keyword
         call search('<dt', 'b')
         normal! i
-        call append(line('.') - 1, '<div class=''show filterBib ' . join(l:keywordsList) . '''>')
+        execute '.,+substitute/thebibliography/thebibliography show filterBib ' . join(l:keywordsList)
         call search('<\/dd>', 'e')
-        normal! a
-        call append(line('.') - 1, '</div>')
     endwhile
     "Clean up categoryList
     call map(l:categoryList, 'trim(v:val)')  " Remove spaces from all items
@@ -87,15 +90,15 @@ function! s:tohtml() abort  " {{{
     let l:buttonClasses = "bibNav w3-button w3-round-large w3-border w3-border-teal w3-padding-small w3-hover-teal w3-small"
     " l:buttonSpacer is needed to provide vertical spacing between lines of buttons
     let l:buttonSpacer = '      <span style=''font-size:1.5em;''>&hairsp;</span>'
-    let l:bibNavBarList = ['<div id=''bibFilterContainer''>', '  <button class=''w3-teal showall ' . l:buttonClasses . ''' onclick=''filterBibliography("showall")''>Show all</button>', l:buttonSpacer]
+    let l:bibNavBarList = ['<span id=''bibFilterContainer''>', '  <button class=''w3-teal showall ' . l:buttonClasses . ''' onclick=''filterBibliography("showall")''>Show all</button>', l:buttonSpacer]
     for l:category in l:categoryList
         let l:shortCategory = substitute(l:category, '[^A-z]', '', 'g')
         call add(l:bibNavBarList, '  <button class=''' . l:shortCategory . ' ' . l:buttonClasses . ''' onclick=''filterBibliography("' . l:shortCategory . '")''> ' . l:category . '</button>')
         call add(l:bibNavBarList, l:buttonSpacer)
     endfor
-    call add(l:bibNavBarList, '</div>')
+    call add(l:bibNavBarList, '</span>')
     " Now add categories to appropriate location
-    call search('Articles<\/h3>', 'w')
+    call search('Articles<\/h2>', 'w')
     call search('<dl class=[''"]thebibliography[''"]>')
     call append(line('.') - 1, l:bibNavBarList)
 
